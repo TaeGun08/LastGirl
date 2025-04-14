@@ -17,7 +17,7 @@ public class PlayerWalkState : PlayerState
     public override void StateUpdate(PlayerController playerController)
     {
         Vector2 inputAxis = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        Vector3 moveVec = new Vector3(inputAxis.x, 0, inputAxis.y);
+        Vector3 moveVec = transform.right * inputAxis.x + transform.forward * inputAxis.y;
         playerController.CharacterController.Move(moveVec * 
                                                   (playerController.LocalPlayer.status.WalkSpeed * Time.deltaTime));
 
