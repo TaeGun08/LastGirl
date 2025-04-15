@@ -24,12 +24,22 @@ public class Player : MonoBehaviour
     public Transform leftHand;
     public Transform rightHand;
 
+    public bool isShot;
+    
     protected virtual void OnAnimatorIK(int layerIndex)
     {
+        if (isShot == false) return;
+        
         animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1f);
         animator.SetIKPosition(AvatarIKGoal.LeftHand, leftHand.position);
         
         animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1f);
         animator.SetIKPosition(AvatarIKGoal.RightHand, rightHand.position);
+        
+        animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1f);
+        animator.SetIKRotation(AvatarIKGoal.RightHand, rightHand.rotation);
+        
+        animator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1f);
+        animator.SetIKRotation(AvatarIKGoal.RightHand, rightHand.rotation);
     }
 }

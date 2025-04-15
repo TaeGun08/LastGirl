@@ -63,6 +63,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4692212215009279652}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &35242097822949107
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1919432369232804077}
+  m_Layer: 0
+  m_Name: WeaponRotate
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1919432369232804077
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35242097822949107}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: -0.121}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3483696637453250675}
+  m_Father: {fileID: 3591233503034327234}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &107696984658092529
 GameObject:
   m_ObjectHideFlags: 0
@@ -1167,7 +1199,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3483696637453250675}
+  - {fileID: 1919432369232804077}
   m_Father: {fileID: 1761544776600227125}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1480655213383369731
@@ -1313,6 +1345,7 @@ MonoBehaviour:
   animator: {fileID: 8751281623149366321}
   leftHand: {fileID: 4579165526302489053}
   rightHand: {fileID: 4698059070923109823}
+  isShot: 0
   status:
     Hp: 100
     MaxHp: 100
@@ -1339,6 +1372,7 @@ MonoBehaviour:
   - {fileID: 6853745509944574861}
   - {fileID: 3865223911955220738}
   - {fileID: 2408523777892887511}
+  weaponTrs: {fileID: 1919432369232804077}
 --- !u!114 &5868534227756243862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3241,8 +3275,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3878495064499473704}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.013208491, y: -0.08126757, z: -0.3730284, w: -0.9241596}
-  m_LocalPosition: {x: 0.49321103, y: 0.99500096, z: -0.016279876}
+  m_LocalRotation: {x: -0, y: -0, z: 0.000000029802322, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3558,13 +3592,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4208025871247004801}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.021, y: 0.056, z: -0.018}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4879002021146901272}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &4257812338018833346
 GameObject:
   m_ObjectHideFlags: 0
@@ -3620,13 +3654,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4261013998305509699}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.6826238, y: 0.2283273, z: -0.61456424, w: 0.3228036}
-  m_LocalPosition: {x: -0.12888664, y: 1.0533903, z: 0.4253086}
+  m_LocalRotation: {x: 0.5000004, y: -0.4999999, z: 0.49999988, w: -0.49999985}
+  m_LocalPosition: {x: 0.008897413, y: 0.017456308, z: 0.17026976}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4879002021146901272}
-  m_Father: {fileID: 3591233503034327234}
+  m_Father: {fileID: 1919432369232804077}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4282449107981774998
 GameObject:
@@ -4380,7 +4414,7 @@ Transform:
   m_GameObject: {fileID: 5117207337088898125}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.021, y: -0.239, z: 0.063}
+  m_LocalPosition: {x: -0.045, y: -0.259, z: 0.027}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -16,7 +16,9 @@ public class PlayerFireIdleState : PlayerState
 
     public override void StateEnter()
     {
+        localPlayer.isShot = true;
         animator.SetTrigger(FIRE);
+        animator.SetLayerWeight(1, 1f);
     }
 
     public override void StateUpdate(PlayerController playerController)
@@ -28,27 +30,32 @@ public class PlayerFireIdleState : PlayerState
         targetRotation.z = 0f;
         localPlayer.transform.rotation = 
             Quaternion.Slerp(localPlayer.transform.rotation, targetRotation, Time.deltaTime * 10f);
-
+        
+        playerController.WeaponTrs.localRotation = Quaternion.Euler(0f, -mainCam.transform.eulerAngles.x, 0f);
+        
         if (Input.GetMouseButton(0))
         {
             if (inputAxis.Equals(Vector2.zero) == false)
                 playerController.ChangeState(StateName.FireWalk);
-            
             return;
         }
         
         if (!localPlayer.IsZoom)
         {
             playerController.ChangeState(StateName.Idle);
+            playerController.WeaponTrs.localRotation = Quaternion.identity;
             return;
         }
         
         if (inputAxis.Equals(Vector2.zero)) return;
+        playerController.WeaponTrs.localRotation = Quaternion.identity;
         playerController.ChangeState(StateName.FireWalk);
     }
 
     public override void StateExit()
     {
+        localPlayer.isShot = false;
+        animator.SetLayerWeight(1, 0f);
         animator.ResetTrigger(FIRE);
         gameObject.SetActive(false);
     }

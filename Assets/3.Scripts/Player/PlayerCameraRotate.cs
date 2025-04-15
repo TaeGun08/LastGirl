@@ -45,12 +45,12 @@ public class PlayerCameraRotate : MonoBehaviour
     {
         if (Input.GetMouseButton(1) && virtualCamera.m_Lens.FieldOfView > 30f)
         {
-            Zoom(30f, 0.5f,  Time.deltaTime * 5f);
+            Zoom(30f, 0.4f,  Time.deltaTime * 5f);
             localPlayer.IsZoom = true;
         }
         else if (!Input.GetMouseButton(1) && virtualCamera.m_Lens.FieldOfView < 60f)
         {
-            Zoom(60f, 0.3f,  Time.deltaTime * 5f);
+            Zoom(60f, 0.5f,  Time.deltaTime * 5f);
             localPlayer.IsZoom = false;
         }
     }
