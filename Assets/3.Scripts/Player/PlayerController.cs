@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
 
     public void ChangeState(PlayerState.StateName changeState)
     {
+        currentState.StateExit();
         currentState = playerStatesDic[changeState];
         currentState.gameObject.SetActive(true);
         currentState.StateEnter();

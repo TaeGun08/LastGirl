@@ -20,4 +20,16 @@ public class Player : MonoBehaviour
     
     [Header("Player Settings")] 
     public Animator animator;
+
+    public Transform leftHand;
+    public Transform rightHand;
+
+    protected virtual void OnAnimatorIK(int layerIndex)
+    {
+        animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1f);
+        animator.SetIKPosition(AvatarIKGoal.LeftHand, leftHand.position);
+        
+        animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1f);
+        animator.SetIKPosition(AvatarIKGoal.RightHand, rightHand.position);
+    }
 }

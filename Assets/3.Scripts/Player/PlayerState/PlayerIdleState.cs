@@ -15,15 +15,27 @@ public class PlayerIdleState : PlayerState
 
     public override void StateUpdate(PlayerController playerController)
     {
+        if (localPlayer.IsZoom)
+        {
+            playerController.ChangeState(StateName.FireIdle);
+            return;
+        }
+        
         Vector2 inputAxis = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-        if (inputAxis == Vector2.zero) return;
+        if (Input.GetMouseButtonDown(0))
+        {
+            playerController.ChangeState(StateName.FireIdle);
+            return;
+        }
+        
+        if (inputAxis.Equals(Vector2.zero)) return;
         playerController.ChangeState(Input.GetKeyDown(KeyCode.LeftShift) ? StateName.Run : StateName.Walk);
-        StateExit();
     }
 
     public override void StateExit()
     {
+        animator.ResetTrigger(IDLE);
         gameObject.SetActive(false);
     }
 }

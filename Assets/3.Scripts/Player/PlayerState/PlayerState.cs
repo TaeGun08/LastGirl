@@ -9,15 +9,19 @@ public abstract class PlayerState : MonoBehaviour
         Idle,
         Walk,
         Run,
+        FireIdle,
+        FireWalk,
     }
 
     protected Animator animator;
+    protected LocalPlayer localPlayer;
 
     public abstract StateName Name { get;}
 
     protected void Start()
     {
-        this.animator = Player.LocalPlayer.animator;
+        localPlayer = Player.LocalPlayer.GetComponent<LocalPlayer>();
+        animator = localPlayer.animator;
     }
 
     public abstract void StateEnter();

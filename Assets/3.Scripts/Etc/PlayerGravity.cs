@@ -30,6 +30,6 @@ public class PlayerGravity : Gravity
         
         velocity -= gravity * Time.deltaTime;
         Vector3 direction = new Vector3(0, velocity, 0);
-        characterController.Move(direction * Time.deltaTime);
+        characterController.Move(direction * Time.deltaTime); 
     }
 }
