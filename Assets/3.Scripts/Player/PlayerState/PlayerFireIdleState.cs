@@ -31,6 +31,7 @@ public class PlayerFireIdleState : PlayerState
         localPlayer.transform.rotation = 
             Quaternion.Slerp(localPlayer.transform.rotation, targetRotation, Time.deltaTime * 10f);
         
+        
         playerController.WeaponTrs.localRotation = Quaternion.Euler(0f, -mainCam.transform.eulerAngles.x, 0f);
         
         if (Input.GetMouseButton(0))

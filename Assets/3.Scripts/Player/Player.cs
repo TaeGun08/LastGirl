@@ -24,11 +24,16 @@ public class Player : MonoBehaviour
     public Transform leftHand;
     public Transform rightHand;
 
+    public Transform aimPoint;
+    
     public bool isShot;
     
     protected virtual void OnAnimatorIK(int layerIndex)
     {
         if (isShot == false) return;
+        
+        animator.SetLookAtWeight(1.0f);
+        animator.SetLookAtPosition(aimPoint.position);
         
         animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1f);
         animator.SetIKPosition(AvatarIKGoal.LeftHand, leftHand.position);
@@ -37,7 +42,7 @@ public class Player : MonoBehaviour
         animator.SetIKPosition(AvatarIKGoal.RightHand, rightHand.position);
         
         animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1f);
-        animator.SetIKRotation(AvatarIKGoal.RightHand, rightHand.rotation);
+        animator.SetIKRotation(AvatarIKGoal.LeftHand, leftHand.rotation);
         
         animator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1f);
         animator.SetIKRotation(AvatarIKGoal.RightHand, rightHand.rotation);
