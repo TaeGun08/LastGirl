@@ -9,7 +9,7 @@ public class PlayerCameraRotate : MonoBehaviour
 {
     [Header("PlayerCameraRotate Settings")]
     [SerializeField, Range(0f, 1000f)] private float mouseSensitivity = 300f;
-    private CinemachineVirtualCamera virtualCamera;
+    [SerializeField] private CinemachineVirtualCamera virtualCamera;
     private CinemachinePOV pov;
     private CinemachineFramingTransposer framingTransposer;
     
@@ -17,7 +17,6 @@ public class PlayerCameraRotate : MonoBehaviour
 
     private void Awake()
     {
-        virtualCamera = GetComponent<CinemachineVirtualCamera>();
         pov = virtualCamera.GetCinemachineComponent<CinemachinePOV>();
         framingTransposer = virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
     }
@@ -33,6 +32,7 @@ public class PlayerCameraRotate : MonoBehaviour
     private void Update()
     {
         UpdateCameraZoom();
+        UpdateWeaponRecoil();
     }
 
     private void LateUpdate()
@@ -60,5 +60,13 @@ public class PlayerCameraRotate : MonoBehaviour
         virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(virtualCamera.m_Lens.FieldOfView, targetFOV, speed);
         framingTransposer.m_TrackedObjectOffset.x = 
             Mathf.Lerp(framingTransposer.m_TrackedObjectOffset.x, targetOffsetX, speed);
+    }
+
+    private void UpdateWeaponRecoil()
+    {
+        if (localPlayer.IsShotReady)
+        {
+            transform.Translate(Vector3.forward * Time.deltaTime, Space.World);
+        }
     }
 }

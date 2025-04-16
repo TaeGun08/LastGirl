@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerFireWalkState : PlayerState
 {
     private static readonly int FIRE = Animator.StringToHash("Fire");
+    private static readonly int FIRE_IK = Animator.StringToHash("FireIK");
     private static readonly int FORWARD_MOVE = Animator.StringToHash("ForwardMove");
     private static readonly int LEFT_MOVE = Animator.StringToHash("LeftMove");
 
@@ -19,7 +20,7 @@ public class PlayerFireWalkState : PlayerState
 
     public override void StateEnter()
     {
-        localPlayer.isShot = true;
+        localPlayer.IsShotReady = true;
         animator.SetLayerWeight(1, 1f);
         animator.SetTrigger(FIRE);
     }
@@ -45,7 +46,16 @@ public class PlayerFireWalkState : PlayerState
         if (Input.GetMouseButton(0))
         {
             if (inputAxis.Equals(Vector2.zero))
+            {
                 playerController.ChangeState(StateName.FireIdle);
+                return;
+            }
+            
+            if (playerController.currentWeapon.Data.Ammo <= 0f) return;
+            if (!playerController.currentWeapon.Fire()) return;
+            animator.ResetTrigger(FIRE_IK);
+            animator.SetTrigger(FIRE_IK);
+            
             return;
         }
 
@@ -63,7 +73,7 @@ public class PlayerFireWalkState : PlayerState
 
     public override void StateExit()
     {
-        localPlayer.isShot = false;
+        localPlayer.IsShotReady = false;
         animator.SetLayerWeight(1, 0f);
         animator.ResetTrigger(FIRE);
         animator.SetFloat(LEFT_MOVE, 0f);

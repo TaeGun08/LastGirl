@@ -37,14 +37,9 @@ public class PlayerRunState : PlayerState
             return;
         }
         
-        if (inputAxis.x != 0)
+        if (inputAxis != Vector2.zero)
         {
-            UpdateRotation(inputAxis.x, mainCam.transform.right, Time.deltaTime * 5f);
-        }
-        
-        if (inputAxis.y != 0)
-        {
-            UpdateRotation(inputAxis.y, mainCam.transform.forward, Time.deltaTime * 5f);
+            UpdateRotation(inputAxis, Time.deltaTime * 5f);
         }
 
         if (!Input.GetKey(KeyCode.LeftShift))
@@ -58,10 +53,10 @@ public class PlayerRunState : PlayerState
         playerController.ChangeState(StateName.Idle);
     }
     
-    private void UpdateRotation(float inputAxis, Vector3 rotateDirection, float rotateSpeed)
+    private void UpdateRotation(Vector2 inputAxis, float rotateSpeed)
     {
-        Quaternion targetRotation = Quaternion.LookRotation(inputAxis > 0 ? 
-            rotateDirection : -rotateDirection);
+        Vector3 moveVec = (mainCam.transform.forward * inputAxis.y + mainCam.transform.right *  inputAxis.x).normalized;
+        Quaternion targetRotation = Quaternion.LookRotation(moveVec);
         targetRotation.x = 0f;
         targetRotation.z = 0f;
         localPlayer.transform.rotation = Quaternion.Slerp(localPlayer.transform.rotation, targetRotation, rotateSpeed);

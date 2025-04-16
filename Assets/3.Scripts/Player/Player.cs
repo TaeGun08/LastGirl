@@ -26,11 +26,13 @@ public class Player : MonoBehaviour
 
     public Transform aimPoint;
     
-    public bool isShot;
-    
+    public bool IsShotReady { get; set; }
+    public bool IsZoom { get; set; }
+    public bool IsFire { get; set; }
+
     protected virtual void OnAnimatorIK(int layerIndex)
     {
-        if (isShot == false) return;
+        if (IsShotReady == false) return;
         
         animator.SetLookAtWeight(1.0f);
         animator.SetLookAtPosition(aimPoint.position);

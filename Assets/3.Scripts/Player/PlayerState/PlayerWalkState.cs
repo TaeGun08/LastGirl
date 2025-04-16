@@ -9,6 +9,8 @@ public class PlayerWalkState : PlayerState
     public override StateName Name => StateName.Walk;
 
     private Camera mainCam;
+    
+    private Tween tween;
 
     private void Awake()
     {
@@ -28,26 +30,22 @@ public class PlayerWalkState : PlayerState
             return;
         }
         
-        Vector2 inputAxis = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        playerController.CharacterController.Move(transform.forward.normalized *
-                                                  (playerController.LocalPlayer.status.WalkSpeed * Time.deltaTime));
-
         if (Input.GetMouseButtonDown(0))
         {
             playerController.ChangeState(StateName.FireIdle);
             return;
         }
         
-        if (inputAxis.x != 0)
+        Vector2 inputAxis = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        
+        playerController.CharacterController.Move(transform.forward.normalized *
+                                                  (playerController.LocalPlayer.status.WalkSpeed * Time.deltaTime));
+
+        if (inputAxis != Vector2.zero)
         {
-            UpdateRotation(inputAxis.x, mainCam.transform.right, Time.deltaTime * 5f);
+            UpdateRotation(inputAxis, Time.deltaTime * 5f);
         }
         
-        if (inputAxis.y != 0)
-        {
-            UpdateRotation(inputAxis.y, mainCam.transform.forward, Time.deltaTime * 5f);
-        }
-
         if (Input.GetKey(KeyCode.LeftShift))
         {
             playerController.ChangeState(StateName.Run);
@@ -59,10 +57,10 @@ public class PlayerWalkState : PlayerState
         playerController.ChangeState(StateName.Idle);
     }
 
-    private void UpdateRotation(float inputAxis, Vector3 rotateDirection, float rotateSpeed)
+    private void UpdateRotation(Vector2 inputAxis, float rotateSpeed)
     {
-        Quaternion targetRotation = Quaternion.LookRotation(inputAxis > 0 ? 
-            rotateDirection : -rotateDirection);
+        Vector3 moveVec = (mainCam.transform.forward * inputAxis.y + mainCam.transform.right *  inputAxis.x).normalized;
+        Quaternion targetRotation = Quaternion.LookRotation(moveVec);
         targetRotation.x = 0f;
         targetRotation.z = 0f;
         localPlayer.transform.rotation = Quaternion.Slerp(localPlayer.transform.rotation, targetRotation, rotateSpeed);

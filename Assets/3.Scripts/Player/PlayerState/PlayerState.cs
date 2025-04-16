@@ -18,7 +18,7 @@ public abstract class PlayerState : MonoBehaviour
 
     public abstract StateName Name { get;}
 
-    protected void Start()
+    protected virtual void Start()
     {
         localPlayer = Player.LocalPlayer.GetComponent<LocalPlayer>();
         animator = localPlayer.animator;

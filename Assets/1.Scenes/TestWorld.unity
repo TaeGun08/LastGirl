@@ -254,6 +254,7 @@ GameObject:
   - component: {fileID: 383294278}
   - component: {fileID: 383294277}
   - component: {fileID: 383294276}
+  - component: {fileID: 383294281}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -413,6 +414,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
+--- !u!114 &383294281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383294274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 861e2223b447c834fb964051ab8e2acf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseSensitivity: 300
+  virtualCamera: {fileID: 496250731}
 --- !u!4 &427568158 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3349650346187310344, guid: d3397946efcf7c24bac1f5905ad14eee,
@@ -430,7 +445,6 @@ GameObject:
   - component: {fileID: 496250732}
   - component: {fileID: 496250731}
   - component: {fileID: 496250730}
-  - component: {fileID: 496250733}
   m_Layer: 0
   m_Name: TPSCamera
   m_TagString: Untagged
@@ -522,20 +536,7 @@ Transform:
   m_Children:
   - {fileID: 1491049429}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0.08, z: 0}
---- !u!114 &496250733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 496250729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 861e2223b447c834fb964051ab8e2acf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseSensitivity: 300
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.06}
 --- !u!1 &920302769
 GameObject:
   m_ObjectHideFlags: 0
@@ -908,6 +909,17 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 383294279}
+    - target: {fileID: 6150771063595670572, guid: d3397946efcf7c24bac1f5905ad14eee,
+        type: 3}
+      propertyPath: hitVFX
+      value: 
+      objectReference: {fileID: 6722088792676444454, guid: c871dddfd81fe9a45929e20ac76e27cc,
+        type: 3}
+    - target: {fileID: 6150771063595670572, guid: d3397946efcf7c24bac1f5905ad14eee,
+        type: 3}
+      propertyPath: Data.FireDelay
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8282099474852784593, guid: d3397946efcf7c24bac1f5905ad14eee,
         type: 3}
       propertyPath: m_LocalPosition.x

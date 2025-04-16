@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
 
     private Dictionary<PlayerState.StateName, PlayerState> playerStatesDic
         = new Dictionary<PlayerState.StateName, PlayerState>();
+    
+    [SerializeField] private Weapon[] weapons;
+    public Weapon currentWeapon { get; private set; }
 
     private void Awake()
     {
@@ -37,6 +40,8 @@ public class PlayerController : MonoBehaviour
 
         currentState = states[0];
         states[0].gameObject.SetActive(true);
+        
+        currentWeapon = weapons[0];
     }
 
     private void Update()
