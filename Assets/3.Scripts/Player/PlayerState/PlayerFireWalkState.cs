@@ -21,7 +21,7 @@ public class PlayerFireWalkState : PlayerState
     public override void StateEnter()
     {
         localPlayer.IsShotReady = true;
-        animator.SetLayerWeight(1, 1f);
+        animator.SetLayerWeight(localPlayer.IsReload ? 2 : 1, 1f);
         animator.SetTrigger(FIRE);
     }
 
@@ -38,11 +38,19 @@ public class PlayerFireWalkState : PlayerState
         localPlayer.transform.rotation =
             Quaternion.Slerp(localPlayer.transform.rotation, targetRotation, Time.deltaTime * 10f);
         
-        playerController.WeaponTrs.localRotation = Quaternion.Euler(0f, -mainCam.transform.eulerAngles.x, 0f);
-
         animator.SetFloat(LEFT_MOVE, inputAxis.x);
         animator.SetFloat(FORWARD_MOVE, inputAxis.y);
-
+        
+        playerController.ReloadWeapon(inputAxis);
+        if (localPlayer.IsReload)
+        {
+            if (inputAxis.Equals(Vector2.zero)) 
+                playerController.ChangeState(StateName.FireIdle);
+            return;
+        }
+        
+        playerController.WeaponTrs.localRotation = Quaternion.Euler(0f, -mainCam.transform.eulerAngles.x, 0f);
+        
         if (Input.GetMouseButton(0))
         {
             if (inputAxis.Equals(Vector2.zero))
@@ -61,14 +69,14 @@ public class PlayerFireWalkState : PlayerState
 
         if (!localPlayer.IsZoom)
         {
-            playerController.ChangeState(StateName.Walk);
+            playerController.ChangeState(inputAxis.Equals(Vector2.zero) ? StateName.Idle : StateName.Walk);
             playerController.WeaponTrs.localRotation = Quaternion.identity;
             return;
         }
 
-        if (inputAxis.Equals(Vector2.zero) == false) return;
+        if (inputAxis.Equals(Vector2.zero) == false && localPlayer.IsZoom) return;
         playerController.WeaponTrs.localRotation = Quaternion.identity;
-        playerController.ChangeState(!localPlayer.IsZoom ? StateName.Idle : StateName.FireIdle);
+        playerController.ChangeState(StateName.FireIdle);
     }
 
     public override void StateExit()
@@ -76,8 +84,6 @@ public class PlayerFireWalkState : PlayerState
         localPlayer.IsShotReady = false;
         animator.SetLayerWeight(1, 0f);
         animator.ResetTrigger(FIRE);
-        animator.SetFloat(LEFT_MOVE, 0f);
-        animator.SetFloat(FORWARD_MOVE, 0f);
         gameObject.SetActive(false);
     }
 }

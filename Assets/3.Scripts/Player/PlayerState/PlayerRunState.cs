@@ -10,6 +10,8 @@ public class PlayerRunState : PlayerState
 
     private Camera mainCam;
     
+    private float turnCalmVelocity;
+    
     private void Awake()
     {
         mainCam = Camera.main;
@@ -22,15 +24,18 @@ public class PlayerRunState : PlayerState
 
     public override void StateUpdate(PlayerController playerController)
     {
+        Vector2 inputAxis = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        
+        playerController.ReloadWeapon(inputAxis);
+        
+        if(localPlayer.IsReload) return;
+        
         if (localPlayer.IsZoom)
         {
             playerController.ChangeState(StateName.FireIdle);
             return;
         }
-        
-        Vector2 inputAxis = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        playerController.CharacterController.Move(transform.forward.normalized * 
-                                                  (playerController.LocalPlayer.status.RunSpeed * Time.deltaTime));
+
         if (Input.GetMouseButtonDown(0))
         {
             playerController.ChangeState(StateName.FireIdle);
@@ -39,7 +44,7 @@ public class PlayerRunState : PlayerState
         
         if (inputAxis != Vector2.zero)
         {
-            UpdateRotation(inputAxis, Time.deltaTime * 5f);
+            UpdateRotation(playerController, inputAxis, 0.1f);
         }
 
         if (!Input.GetKey(KeyCode.LeftShift))
@@ -53,13 +58,16 @@ public class PlayerRunState : PlayerState
         playerController.ChangeState(StateName.Idle);
     }
     
-    private void UpdateRotation(Vector2 inputAxis, float rotateSpeed)
+    private void UpdateRotation(PlayerController playerController, Vector2 inputAxis, float smoothTime)
     {
-        Vector3 moveVec = (mainCam.transform.forward * inputAxis.y + mainCam.transform.right *  inputAxis.x).normalized;
-        Quaternion targetRotation = Quaternion.LookRotation(moveVec);
-        targetRotation.x = 0f;
-        targetRotation.z = 0f;
-        localPlayer.transform.rotation = Quaternion.Slerp(localPlayer.transform.rotation, targetRotation, rotateSpeed);
+        float targetAngle = Mathf.Atan2(inputAxis.x, inputAxis.y) * Mathf.Rad2Deg + mainCam.transform.eulerAngles.y;
+        float angle =
+            Mathf.SmoothDampAngle(localPlayer.transform.eulerAngles.y, targetAngle, ref turnCalmVelocity, smoothTime);
+        localPlayer.transform.rotation = Quaternion.Euler(0f, angle, 0f);
+
+        Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+        playerController.CharacterController.Move(moveDirection.normalized *
+                                                  (playerController.LocalPlayer.status.RunSpeed * Time.deltaTime));
     }
 
     public override void StateExit()

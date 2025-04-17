@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private static readonly int RELOAD = Animator.StringToHash("Reload");
     public LocalPlayer LocalPlayer { get; private set; }
 
     [Header("PlayerController Settings")] [SerializeField]
@@ -55,5 +57,33 @@ public class PlayerController : MonoBehaviour
         currentState = playerStatesDic[changeState];
         currentState.gameObject.SetActive(true);
         currentState.StateEnter();
+    }
+
+    public void ReloadWeapon(Vector2 inputAxis)
+    {
+        AnimatorStateInfo stateInfo = LocalPlayer.animator.GetCurrentAnimatorStateInfo(2);
+
+        if (stateInfo.IsName("Reload") && stateInfo.normalizedTime < 0.85f) return;
+        
+        if (!Input.GetKeyDown(KeyCode.R) || currentWeapon.Data.Ammo.Equals(currentWeapon.Data.MaxAmmo)) return;
+        
+        StartCoroutine(ReloadCoroutine(inputAxis));
+    }
+
+    private IEnumerator ReloadCoroutine(Vector2 inputAxis)
+    {
+        LocalPlayer.IsReload = true;
+        ChangeState(inputAxis == Vector2.zero ? PlayerState.StateName.FireIdle: PlayerState.StateName.FireWalk);
+        LocalPlayer.animator.ResetTrigger(RELOAD);
+        LocalPlayer.animator.SetTrigger(RELOAD);
+        weaponTrs.localRotation = Quaternion.identity;
+        
+        yield return new WaitForSeconds(1f);
+        
+        LocalPlayer.IsReload = false;
+        LocalPlayer.animator.ResetTrigger(RELOAD);
+        LocalPlayer.animator.SetLayerWeight(2, 0f);
+        currentWeapon.Data.Ammo = currentWeapon.Data.MaxAmmo;
+        ChangeState(currentState.Name);
     }
 }

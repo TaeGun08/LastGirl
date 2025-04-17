@@ -7,6 +7,7 @@ public class GunData
 {
     public int Damage;
     public int Ammo;
+    public int MaxAmmo;
     public float FireDelay;
     public float Recoil;
 }

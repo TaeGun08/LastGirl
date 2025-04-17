@@ -15,13 +15,17 @@ public class PlayerIdleState : PlayerState
 
     public override void StateUpdate(PlayerController playerController)
     {
+        Vector2 inputAxis = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        
+        playerController.ReloadWeapon(inputAxis);
+        
+        if(localPlayer.IsReload) return;
+        
         if (localPlayer.IsZoom)
         {
             playerController.ChangeState(StateName.FireIdle);
             return;
         }
-        
-        Vector2 inputAxis = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
         if (Input.GetMouseButtonDown(0))
         {

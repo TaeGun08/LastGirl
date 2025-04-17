@@ -6,6 +6,8 @@ public class PlayerFireIdleState : PlayerState
 {
     private static readonly int FIRE = Animator.StringToHash("Fire");
     private static readonly int FIRE_IK = Animator.StringToHash("FireIK");
+    private static readonly int FORWARD_MOVE = Animator.StringToHash("ForwardMove");
+    private static readonly int LEFT_MOVE = Animator.StringToHash("LeftMove");
     public override StateName Name => StateName.FireIdle;
 
     private Camera mainCam;
@@ -18,8 +20,10 @@ public class PlayerFireIdleState : PlayerState
     public override void StateEnter()
     {
         localPlayer.IsShotReady = true;
+        animator.SetLayerWeight(localPlayer.IsReload ? 2 : 1, 1f);
         animator.SetTrigger(FIRE);
-        animator.SetLayerWeight(1, 1f);
+        animator.SetFloat(LEFT_MOVE, 0f);
+        animator.SetFloat(FORWARD_MOVE, 0f);
     }
 
     public override void StateUpdate(PlayerController playerController)
@@ -33,6 +37,14 @@ public class PlayerFireIdleState : PlayerState
             Quaternion.Slerp(localPlayer.transform.rotation, targetRotation, Time.deltaTime * 10f);
 
 
+        playerController.ReloadWeapon(inputAxis);
+        if (localPlayer.IsReload)
+        {
+            if (inputAxis.Equals(Vector2.zero) == false) 
+                playerController.ChangeState(StateName.FireWalk);
+            return;
+        }
+        
         playerController.WeaponTrs.localRotation = Quaternion.Euler(0f, -mainCam.transform.eulerAngles.x, 0f);
 
         if (Input.GetMouseButton(0))
@@ -47,7 +59,7 @@ public class PlayerFireIdleState : PlayerState
             if (!playerController.currentWeapon.Fire()) return;
             animator.ResetTrigger(FIRE_IK);
             animator.SetTrigger(FIRE_IK);
-            
+
             return;
         }
 
@@ -58,7 +70,7 @@ public class PlayerFireIdleState : PlayerState
             return;
         }
 
-        if (inputAxis.Equals(Vector2.zero)) return;
+        if (inputAxis.Equals(Vector2.zero) && localPlayer.IsZoom) return;
         playerController.WeaponTrs.localRotation = Quaternion.identity;
         playerController.ChangeState(StateName.FireWalk);
     }

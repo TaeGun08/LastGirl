@@ -11,6 +11,7 @@ public abstract class PlayerState : MonoBehaviour
         Run,
         FireIdle,
         FireWalk,
+        ReLoad,
     }
 
     protected Animator animator;

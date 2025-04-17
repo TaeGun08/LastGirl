@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     public bool IsShotReady { get; set; }
     public bool IsZoom { get; set; }
     public bool IsFire { get; set; }
+    public bool IsReload { get; set; }
 
     protected virtual void OnAnimatorIK(int layerIndex)
     {
@@ -40,11 +41,13 @@ public class Player : MonoBehaviour
         animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1f);
         animator.SetIKPosition(AvatarIKGoal.LeftHand, leftHand.position);
         
-        animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1f);
-        animator.SetIKPosition(AvatarIKGoal.RightHand, rightHand.position);
-        
         animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1f);
         animator.SetIKRotation(AvatarIKGoal.LeftHand, leftHand.rotation);
+        
+        if (IsReload) return;
+        
+        animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1f);
+        animator.SetIKPosition(AvatarIKGoal.RightHand, rightHand.position);
         
         animator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1f);
         animator.SetIKRotation(AvatarIKGoal.RightHand, rightHand.rotation);
