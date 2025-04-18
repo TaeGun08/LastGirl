@@ -33,6 +33,12 @@ public class AK47 : Weapon
             GameObject obj = effectPoolSystem.ParticlePool(IEffectPool.ParticleType.HitA).gameObject;
             obj.transform.position = hit.point;
             obj.transform.rotation = Quaternion.LookRotation(hit.normal);
+            
+            var hitAble = CombatSystem.Instance.GetHitPartType(hit.collider);
+            if (hitAble != null)
+            {
+                //hit.collider.GetComponent<IDamageAble>().TakeDamage(10, parts);
+            }
         }
         
         fireOn = false;

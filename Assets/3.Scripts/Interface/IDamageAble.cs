@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum PartType
 {
+    Unknown,
     Arm,
     Leg,
     Body,
@@ -12,5 +13,5 @@ public enum PartType
 
 public interface IDamageAble
 {
-    public void TakeDamage(int damage, PartType part);
+    public void TakeDamage(CombatEvent combatEvent);
 }

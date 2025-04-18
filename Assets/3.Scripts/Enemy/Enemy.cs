@@ -18,14 +18,20 @@ public abstract class Enemy : MonoBehaviour, IDamageAble
         public int HasArca;
     }
 
-    [Header("EnemyData Settings")] [SerializeField]
-    protected EnemyData Data;
+    [Header("EnemyData Settings")] 
+    [SerializeField] protected EnemyData Data;
 
+    [Header("Enemy Settings")] 
+    [SerializeField] protected Collider[] headHitColliders;
+    [SerializeField] protected Collider[] bodyHitColliders;
+    [SerializeField] protected Collider[] legHitColliders;
+    [SerializeField] protected Collider[] armHitColliders;
     protected LocalPlayer localPlayer;
     protected Animator animator;
     protected NavMeshAgent agent;
     protected bool isMoveStop;
     protected bool isDead;
+    
 
     protected virtual void Start()
     {
@@ -33,6 +39,17 @@ public abstract class Enemy : MonoBehaviour, IDamageAble
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         agent.speed = Data.Speed;
+        // foreach (Collider hitCollider in headHitColliders)
+        //     CombatSystem.Instance.AddHitPartType(hitCollider, PartType.Head);
+        //
+        // foreach (Collider hitCollider in bodyHitColliders)
+        //     CombatSystem.Instance.AddHitPartType(hitCollider, PartType.Body);
+        //
+        // foreach (Collider hitCollider in legHitColliders)
+        //     CombatSystem.Instance.AddHitPartType(hitCollider, PartType.Leg);
+        //
+        // foreach (Collider hitCollider in armHitColliders)
+        //     CombatSystem.Instance.AddHitPartType(hitCollider, PartType.Arm);
     }
 
     protected virtual void Update()
@@ -45,15 +62,14 @@ public abstract class Enemy : MonoBehaviour, IDamageAble
 
     protected abstract void UpdatePattern();
 
-    public void TakeDamage(int damage, PartType part)
+    public void TakeDamage(CombatEvent combatEvent)
     {
         if (isDead) return;
         
-        Data.Hp -= damage * (int)part;
+        //Data.Hp -= damage * (int)part;
 
-        if (Data.Hp <= 0f)
-        {
-            isDead = true;
-        }
+        if (Data.Hp > 0f) return;
+        isDead = true;
+        Destroy(gameObject);
     }
 }

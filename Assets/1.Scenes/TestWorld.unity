@@ -567,6 +567,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3813781498053471811, guid: 3bd420c845beb5245b9db3b2d9fa11e2,
         type: 3}
+    - target: {fileID: 5652389846024637039, guid: 9769e68378b657f449be2bf43b455436,
+        type: 3}
+      propertyPath: bodyHitColliders.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652389846024637039, guid: 9769e68378b657f449be2bf43b455436,
+        type: 3}
+      propertyPath: bodyHitColliders.Array.data[0]
+      value: 
+      objectReference: {fileID: 425021874}
     - target: {fileID: 5751732599428477963, guid: 9769e68378b657f449be2bf43b455436,
         type: 3}
       propertyPath: m_Name
@@ -627,6 +637,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9769e68378b657f449be2bf43b455436, type: 3}
+--- !u!135 &425021874 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 6751080581636284013, guid: 9769e68378b657f449be2bf43b455436,
+    type: 3}
+  m_PrefabInstance: {fileID: 425021873}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &427568158 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3349650346187310344, guid: d3397946efcf7c24bac1f5905ad14eee,

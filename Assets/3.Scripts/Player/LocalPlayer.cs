@@ -13,7 +13,7 @@ public class LocalPlayer : Player, IDamageAble
         LocalPlayer = this;
     }
 
-    public void TakeDamage(int damage, PartType part)
+    public void TakeDamage(CombatEvent combatEvent)
     {
         Debug.Log("아얏!");
     }

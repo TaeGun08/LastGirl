@@ -11,6 +11,6 @@ public class EnergyExplosion : MonoBehaviour
     {
         if (!other.gameObject.layer.Equals(LayerMask.NameToLayer("Player"))) return;
         IDamageAble player = other.GetComponent<IDamageAble>();
-        player.TakeDamage(Damage * (int)PartType.Head, PartType.Head);
+        //player.TakeDamage(Damage * (int)PartType.Head, PartType.Head);
     }
 }
