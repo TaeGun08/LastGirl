@@ -428,7 +428,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSensitivity: 300
   virtualCamera: {fileID: 496250731}
-<<<<<<< HEAD
 --- !u!1 &390058296 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6604251368498824019, guid: 9204ae7a3c3fb814a9bec18ca4790e2a,
@@ -457,8 +456,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
-=======
->>>>>>> parent of 55d459a (Enemy Asset 추가)
 --- !u!4 &427568158 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3349650346187310344, guid: d3397946efcf7c24bac1f5905ad14eee,
@@ -568,7 +565,6 @@ Transform:
   - {fileID: 1491049429}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.06}
-<<<<<<< HEAD
 --- !u!1 &516522123 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5751732599428477963, guid: 9769e68378b657f449be2bf43b455436,
@@ -741,8 +737,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1796021909}
   m_SourcePrefab: {fileID: 100100000, guid: 8b72926b713cbba43b891170509d4475, type: 3}
-=======
->>>>>>> parent of 55d459a (Enemy Asset 추가)
 --- !u!1 &920302769
 GameObject:
   m_ObjectHideFlags: 0
@@ -805,7 +799,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
 --- !u!1001 &1230147422
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -878,8 +871,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 516522126}
   m_SourcePrefab: {fileID: 100100000, guid: 9769e68378b657f449be2bf43b455436, type: 3}
-=======
->>>>>>> parent of 55d459a (Enemy Asset 추가)
 --- !u!1 &1463981627
 GameObject:
   m_ObjectHideFlags: 0
@@ -1155,6 +1146,21 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4649564983209803961, guid: fc5a676d2c90b3d4f8a22e369c35950d,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649564983209803961, guid: fc5a676d2c90b3d4f8a22e369c35950d,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649564983209803961, guid: fc5a676d2c90b3d4f8a22e369c35950d,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649564983209803961, guid: fc5a676d2c90b3d4f8a22e369c35950d,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
       objectReference: {fileID: 0}
@@ -1218,7 +1224,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc5a676d2c90b3d4f8a22e369c35950d, type: 3}
-<<<<<<< HEAD
 --- !u!1 &1796021906 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1494820839098077679, guid: 8b72926b713cbba43b891170509d4475,
@@ -1247,8 +1252,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
-=======
->>>>>>> parent of 55d459a (Enemy Asset 추가)
 --- !u!1001 &3117157512672840409
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1335,9 +1338,6 @@ SceneRoots:
   - {fileID: 3117157512672840409}
   - {fileID: 1463981630}
   - {fileID: 1632190379}
-<<<<<<< HEAD
   - {fileID: 1230147422}
   - {fileID: 861520157}
   - {fileID: 569093020}
-=======
->>>>>>> parent of 55d459a (Enemy Asset 추가)

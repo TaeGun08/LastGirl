@@ -37,8 +37,16 @@ public class PlayerCameraRotate : MonoBehaviour
 
     private void LateUpdate()
     {
-        pov.m_HorizontalAxis.m_MaxSpeed = mouseSensitivity;
-        pov.m_VerticalAxis.m_MaxSpeed = mouseSensitivity;
+        if (localPlayer.IsZoom)
+        {
+            pov.m_HorizontalAxis.m_MaxSpeed = mouseSensitivity * 0.5f;
+            pov.m_VerticalAxis.m_MaxSpeed = mouseSensitivity * 0.5f;
+        }
+        else
+        {
+            pov.m_HorizontalAxis.m_MaxSpeed = mouseSensitivity;
+            pov.m_VerticalAxis.m_MaxSpeed = mouseSensitivity;
+        }
     }
 
     private void UpdateCameraZoom()
