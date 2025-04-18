@@ -38,9 +38,11 @@ public abstract class Weapon : MonoBehaviour
     {
         currentFireDelay += Time.deltaTime;
 
-        if (!(currentFireDelay >= Data.FireDelay)) return;
+        if ((currentFireDelay >= Data.FireDelay) == false) return;
         currentFireDelay = 0.0f;
+        if (fireOn) return;
         fireOn = true;
+        localPlayer.IsFire = false;
     }
     
     public abstract bool Fire();

@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 1952719200695388398}
   - component: {fileID: 7218520839999020474}
   m_Layer: 0
-  m_Name: Sci-Fi Mantis_Skin1
+  m_Name: Easy_Mantis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

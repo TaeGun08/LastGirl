@@ -11,14 +11,14 @@ public class PlayerCameraRotate : MonoBehaviour
     [SerializeField, Range(0f, 1000f)] private float mouseSensitivity = 300f;
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
     private CinemachinePOV pov;
-    private CinemachineFramingTransposer framingTransposer;
+    private CinemachineImpulseSource impulseSource;
     
     private LocalPlayer localPlayer;
 
     private void Awake()
     {
         pov = virtualCamera.GetCinemachineComponent<CinemachinePOV>();
-        framingTransposer = virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+        impulseSource =  GetComponent<CinemachineImpulseSource>();
     }
 
     private void Start()
@@ -70,9 +70,9 @@ public class PlayerCameraRotate : MonoBehaviour
 
     private void UpdateWeaponRecoil()
     {
-        if (localPlayer.IsShotReady)
+        if (localPlayer.IsFire)
         {
-            transform.Translate(Vector3.forward * Time.deltaTime, Space.World);
+            impulseSource.GenerateImpulse();
         }
     }
 }
