@@ -12,10 +12,9 @@ public class CombatSystem : MonoBehaviour
         public Action<CombatEvent> OnCombatEvent;
     }
     
-    private Dictionary<Collider, IDamageAble> HitAbleDic = new Dictionary<Collider, IDamageAble>();
-    private Dictionary<Collider, PartType> HitPartTypeDic = new Dictionary<Collider, PartType>();
+    private Dictionary<Collider, IDamageAble> hitAbleDic = new Dictionary<Collider, IDamageAble>();
     
-    private Queue<InGameEvent> EventQueue = new Queue<InGameEvent>();
+    private Queue<InGameEvent> eventQueue = new Queue<InGameEvent>();
     
     private void Awake()
     {
@@ -24,9 +23,9 @@ public class CombatSystem : MonoBehaviour
 
     private void Update()
     {
-        while (EventQueue.Count > 0)
+        while (eventQueue.Count > 0)
         {
-            InGameEvent e = EventQueue.Dequeue();
+            InGameEvent e = eventQueue.Dequeue();
             switch (e.Type)
             {
                 case InGameEvent.EventType.Combat:
@@ -41,19 +40,18 @@ public class CombatSystem : MonoBehaviour
         }
     }
 
-    public IDamageAble GetHitPartType(Collider collider)
+    public void AddHitAbleType(Collider collider, IDamageAble able)
     {
-        HitPartTypeDic[collider] = PartType.Unknown;
-        return HitAbleDic.ContainsKey(collider) ? HitAbleDic[collider] : null;
+        hitAbleDic.TryAdd(collider, able);
     }
 
-    public void AddHitPartType(Collider collider, IDamageAble type)
+    public IDamageAble GetHitAble(Collider collider)
     {
-        HitAbleDic.Add(collider, type);
+        return hitAbleDic.GetValueOrDefault(collider);
     }
 
     public void AddEvent(InGameEvent e)
     {
-        EventQueue.Enqueue(e);
+        eventQueue.Enqueue(e);
     }
 }

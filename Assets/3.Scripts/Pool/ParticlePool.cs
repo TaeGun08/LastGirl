@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class ParticlePool : MonoBehaviour, IEffectPool
 {
-    public IEffectPool.ParticleType Type => IEffectPool.ParticleType.HitA;
+    public IEffectPool.ParticleType Type => type;
+    
+    [Header("ParticlePool Settings")]
+    [SerializeField] private IEffectPool.ParticleType type;
     
     private ParticleSystem particle;
 

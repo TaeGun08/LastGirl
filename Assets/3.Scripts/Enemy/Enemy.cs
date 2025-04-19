@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public abstract class Enemy : MonoBehaviour, IDamageAble
+public abstract class Enemy : HasParts, IDamageAble
 {
+    private static readonly int DEAD = Animator.StringToHash("Dead");
+    private static readonly int HIT = Animator.StringToHash("Hit");
+
     [System.Serializable]
     public class EnemyData
     {
@@ -13,47 +16,55 @@ public abstract class Enemy : MonoBehaviour, IDamageAble
         public int MaxHp;
         public int Armor;
         public int Damage;
-        public int Speed;
-        public int AttackDelay;
+        public float Speed;
+        public float AttackDelay;
         public int HasArca;
     }
 
     [Header("EnemyData Settings")] 
     [SerializeField] protected EnemyData Data;
 
-    [Header("Enemy Settings")] 
-    [SerializeField] protected Collider[] headHitColliders;
-    [SerializeField] protected Collider[] bodyHitColliders;
-    [SerializeField] protected Collider[] legHitColliders;
-    [SerializeField] protected Collider[] armHitColliders;
+    public HasParts HasParts => this;
+    
     protected LocalPlayer localPlayer;
     protected Animator animator;
     protected NavMeshAgent agent;
     protected bool isMoveStop;
     protected bool isDead;
-    
+    [Header("EnemyDeadTime Settings")]
+    [SerializeField] protected float deathTime;
 
     protected virtual void Start()
     {
+        base.Start();
+        
         localPlayer = Player.LocalPlayer.GetComponent<LocalPlayer>();
+        
+        foreach (Collider hitCollider in Parts.HeadHitColliders)
+            CombatSystem.Instance.AddHitAbleType(hitCollider, this);
+        
+        foreach (Collider hitCollider in Parts.BodyHitColliders)
+            CombatSystem.Instance.AddHitAbleType(hitCollider, this);
+        
+        foreach (Collider hitCollider in Parts.LegHitColliders)
+            CombatSystem.Instance.AddHitAbleType(hitCollider, this);
+        
+        foreach (Collider hitCollider in Parts.ArmHitColliders)
+            CombatSystem.Instance.AddHitAbleType(hitCollider, this);
+        
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         agent.speed = Data.Speed;
-        // foreach (Collider hitCollider in headHitColliders)
-        //     CombatSystem.Instance.AddHitPartType(hitCollider, PartType.Head);
-        //
-        // foreach (Collider hitCollider in bodyHitColliders)
-        //     CombatSystem.Instance.AddHitPartType(hitCollider, PartType.Body);
-        //
-        // foreach (Collider hitCollider in legHitColliders)
-        //     CombatSystem.Instance.AddHitPartType(hitCollider, PartType.Leg);
-        //
-        // foreach (Collider hitCollider in armHitColliders)
-        //     CombatSystem.Instance.AddHitPartType(hitCollider, PartType.Arm);
     }
 
     protected virtual void Update()
     {
+        if (isDead)
+        {
+            agent.SetDestination(transform.position);
+            return;
+        };
+        
         UpdateMovement();
         UpdatePattern();
     }
@@ -66,10 +77,20 @@ public abstract class Enemy : MonoBehaviour, IDamageAble
     {
         if (isDead) return;
         
-        //Data.Hp -= damage * (int)part;
+        animator.ResetTrigger(HIT);
+        animator.SetTrigger(HIT);
+        Data.Hp -= (combatEvent.Damage * 
+                    (int)combatEvent.HasParts.GetPartsType(combatEvent.Collider)) - Data.Armor;
 
         if (Data.Hp > 0f) return;
+        StartCoroutine(OnDeadCoroutine(deathTime));
+    }
+
+    private IEnumerator OnDeadCoroutine(float deathTime)
+    {
         isDead = true;
+        animator.SetTrigger(DEAD);
+        yield return new WaitForSeconds(deathTime);
         Destroy(gameObject);
     }
 }

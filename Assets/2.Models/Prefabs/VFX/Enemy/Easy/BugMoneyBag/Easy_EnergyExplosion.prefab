@@ -58750,6 +58750,7 @@ GameObject:
   - component: {fileID: 3813781498053471811}
   - component: {fileID: 1908691623498339141}
   - component: {fileID: -4260373350984581318}
+  - component: {fileID: 8293395095949924465}
   - component: {fileID: 5694436152988583100}
   m_Layer: 0
   m_Name: Easy_EnergyExplosion
@@ -63655,6 +63656,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c709aad481be2a4e98badd297ebdd80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8293395095949924465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7296958251308092132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43494aaf4b6ada746b4c60869cb94e4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
 --- !u!135 &5694436152988583100
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -37,7 +37,8 @@ public class EffectPoolSystem : MonoBehaviour
             for (int i = 0; i < effectPoolQueue.Count; i++)
             {
                 particle = effectPoolQueue.Dequeue();
-                if (particle.gameObject.activeInHierarchy == false)
+                if (particle.gameObject.activeInHierarchy == false
+                    && particle.Type.Equals(type))
                 {
                     effectPoolQueue.Enqueue(particle);
                     particle.gameObject.SetActive(true);

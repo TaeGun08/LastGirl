@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : HasParts
 {
     public static Player LocalPlayer;
 
@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
     public bool IsZoom { get; set; }
     public bool IsFire { get; set; }
     public bool IsReload { get; set; }
+    public bool IsDead { get; set; }
 
     protected virtual void OnAnimatorIK(int layerIndex)
     {

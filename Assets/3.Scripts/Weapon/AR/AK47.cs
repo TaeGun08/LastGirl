@@ -34,10 +34,18 @@ public class AK47 : Weapon
             obj.transform.position = hit.point;
             obj.transform.rotation = Quaternion.LookRotation(hit.normal);
             
-            var hitAble = CombatSystem.Instance.GetHitPartType(hit.collider);
+            var hitAble = CombatSystem.Instance.GetHitAble(hit.collider);
             if (hitAble != null)
             {
-                //hit.collider.GetComponent<IDamageAble>().TakeDamage(10, parts);
+                CombatEvent e =  new CombatEvent();
+                e.Sender = localPlayer;
+                e.Receiver = hitAble;
+                e.Damage = Data.Damage;
+                e.Collider = hit.collider;
+                e.HitPosition = hit.point;
+                e.HasParts = hitAble.HasParts;
+                
+                CombatSystem.Instance.AddEvent(e);
             }
         }
         

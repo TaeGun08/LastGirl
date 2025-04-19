@@ -12,6 +12,7 @@ public abstract class PlayerState : MonoBehaviour
         FireIdle,
         FireWalk,
         ReLoad,
+        CrowdControl,
     }
 
     protected Animator animator;

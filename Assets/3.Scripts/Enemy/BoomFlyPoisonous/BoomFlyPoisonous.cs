@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BugMoneyBag : Enemy
+public class BoomFlyPoisonous : Enemy
 {
     protected override void UpdateMovement()
     {

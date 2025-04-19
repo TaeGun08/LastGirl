@@ -13,6 +13,7 @@ public abstract class InGameEvent
     
     public IDamageAble Sender { get; set; }
     public IDamageAble Receiver { get; set; }
+    public HasParts HasParts { get; set; }
     public abstract EventType Type { get; }
 }
 
@@ -21,6 +22,7 @@ public class CombatEvent : InGameEvent
     public int Damage { get; set; }
     public Vector3 HitPosition { get; set; }
     public Collider Collider { get; set; }
+    
     public override EventType Type => EventType.Combat;
 }
 
