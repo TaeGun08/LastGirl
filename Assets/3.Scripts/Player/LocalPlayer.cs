@@ -8,6 +8,10 @@ public class LocalPlayer : Player, IDamageAble
     public PlayerStatus status;
     public Transform camLookAtPoint;
 
+    public HasParts HasParts { get; }
+    
+    public CrowdControlType CCType { get; set; }
+    
     private void Awake()
     {
         LocalPlayer = this;
@@ -28,13 +32,12 @@ public class LocalPlayer : Player, IDamageAble
             CombatSystem.Instance.AddHitAbleType(hitCollider, this);
     }
 
-    public HasParts HasParts { get; }
-
     public void TakeDamage(CombatEvent combatEvent)
     {
         if (IsDead) return;
         
         status.Hp -= combatEvent.Damage;
+        CCType = combatEvent.CCType;
         
         if (status.Hp <= 0)
         {

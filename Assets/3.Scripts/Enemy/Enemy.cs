@@ -26,6 +26,10 @@ public abstract class Enemy : HasParts, IDamageAble
 
     public HasParts HasParts => this;
     
+    [Header("EnemyCCType")]
+    [SerializeField] protected CrowdControlType ccType;
+    public CrowdControlType CCType { get; set; }
+
     protected LocalPlayer localPlayer;
     protected Animator animator;
     protected NavMeshAgent agent;
@@ -39,6 +43,8 @@ public abstract class Enemy : HasParts, IDamageAble
         base.Start();
         
         localPlayer = Player.LocalPlayer.GetComponent<LocalPlayer>();
+
+        CCType = ccType;
         
         foreach (Collider hitCollider in Parts.HeadHitColliders)
             CombatSystem.Instance.AddHitAbleType(hitCollider, this);
@@ -88,6 +94,7 @@ public abstract class Enemy : HasParts, IDamageAble
 
     private IEnumerator OnDeadCoroutine(float deathTime)
     {
+        animator.ResetTrigger(HIT);
         isDead = true;
         animator.SetTrigger(DEAD);
         yield return new WaitForSeconds(deathTime);

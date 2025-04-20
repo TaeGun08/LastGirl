@@ -8,13 +8,20 @@ public class PlayerIdleState : PlayerState
 
     public override StateName Name => StateName.Idle;
 
-    public override void StateEnter()
+    public override void StateEnter(PlayerController playerController)
     {
+        this.playerController = playerController;
         animator.SetTrigger(IDLE);
     }
 
-    public override void StateUpdate(PlayerController playerController)
+    public override void StateUpdate()
     {
+        if (localPlayer.CCType.Equals(CrowdControlType.Unknown) == false)
+        {
+            playerController.ChangeState(StateName.CrowdControl);
+            return;
+        }
+        
         Vector2 inputAxis = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         
         playerController.ReloadWeapon(inputAxis);

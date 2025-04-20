@@ -17,6 +17,7 @@ public abstract class PlayerState : MonoBehaviour
 
     protected Animator animator;
     protected LocalPlayer localPlayer;
+    protected PlayerController playerController;
 
     public abstract StateName Name { get;}
 
@@ -26,7 +27,7 @@ public abstract class PlayerState : MonoBehaviour
         animator = localPlayer.animator;
     }
 
-    public abstract void StateEnter();
-    public abstract void StateUpdate(PlayerController playerController);
+    public abstract void StateEnter(PlayerController playerController);
+    public abstract void StateUpdate();
     public abstract void StateExit();
 }

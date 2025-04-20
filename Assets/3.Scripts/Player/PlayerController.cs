@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
         }
 
         currentState = states[0];
+        currentState.StateEnter(this);
         states[0].gameObject.SetActive(true);
         
         currentWeapon = weapons[0];
@@ -48,7 +49,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        currentState.StateUpdate(this);
+        currentState.StateUpdate();
     }
 
     public void ChangeState(PlayerState.StateName changeState)
@@ -56,7 +57,7 @@ public class PlayerController : MonoBehaviour
         currentState.StateExit();
         currentState = playerStatesDic[changeState];
         currentState.gameObject.SetActive(true);
-        currentState.StateEnter();
+        currentState.StateEnter(this);
     }
 
     public void ReloadWeapon(Vector2 inputAxis)
@@ -85,5 +86,16 @@ public class PlayerController : MonoBehaviour
         LocalPlayer.animator.SetLayerWeight(2, 0f);
         currentWeapon.Data.Ammo = currentWeapon.Data.MaxAmmo;
         ChangeState(currentState.Name);
+    }
+
+    private IEnumerator SlowStateCoroutine()
+    {
+        yield return new WaitForSeconds(2f);
+    }
+
+    public void SlowState()
+    {
+        StopCoroutine(nameof(SlowStateCoroutine));
+        StartCoroutine(nameof(SlowStateCoroutine));
     }
 }

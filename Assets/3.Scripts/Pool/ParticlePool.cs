@@ -16,10 +16,10 @@ public class ParticlePool : MonoBehaviour, IEffectPool
     {
         particle = GetComponent<ParticleSystem>();
     }
-
+    
     private void LateUpdate()
     {
-        if (!particle.isPlaying)
+        if (particle.isPlaying == false)
         {
             particle.gameObject.SetActive(false);
         }

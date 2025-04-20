@@ -17,8 +17,9 @@ public class PlayerFireIdleState : PlayerState
         mainCam = Camera.main;
     }
 
-    public override void StateEnter()
+    public override void StateEnter(PlayerController playerController)
     {
+        this.playerController = playerController;
         localPlayer.IsShotReady = true;
         animator.SetLayerWeight(localPlayer.IsReload ? 2 : 1, 1f);
         animator.SetTrigger(FIRE);
@@ -26,8 +27,14 @@ public class PlayerFireIdleState : PlayerState
         animator.SetFloat(FORWARD_MOVE, 0f);
     }
 
-    public override void StateUpdate(PlayerController playerController)
+    public override void StateUpdate()
     {
+        if (localPlayer.CCType.Equals(CrowdControlType.Unknown) == false)
+        {
+            playerController.ChangeState(StateName.CrowdControl);
+            return;
+        }
+        
         Vector2 inputAxis = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
         Quaternion targetRotation = mainCam.transform.rotation;

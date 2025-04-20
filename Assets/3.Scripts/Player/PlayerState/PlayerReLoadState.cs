@@ -7,13 +7,14 @@ public class PlayerReLoadState : PlayerState
     private static readonly int RELOAD = Animator.StringToHash("Reload");
     public override StateName Name => StateName.ReLoad;
 
-    public override void StateEnter()
+    public override void StateEnter(PlayerController playerController)
     {
+        this.playerController = playerController;
         animator.SetTrigger(RELOAD);
         animator.SetLayerWeight(1, 1f);
     }
 
-    public override void StateUpdate(PlayerController playerController)
+    public override void StateUpdate()
     {
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
         

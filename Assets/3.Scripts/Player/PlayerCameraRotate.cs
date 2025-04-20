@@ -31,15 +31,13 @@ public class PlayerCameraRotate : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-
-    private void Update()
-    {
-        UpdateCameraZoom();
-        UpdateWeaponRecoil();
-    }
-
+    
     private void LateUpdate()
     {
+        if (localPlayer.CCType.Equals(CrowdControlType.Unknown) == false) return;
+        UpdateCameraZoom();
+        UpdateWeaponRecoil();
+        
         if (localPlayer.IsZoom)
         {
             pov.m_HorizontalAxis.m_MaxSpeed = mouseSensitivity * 0.5f;

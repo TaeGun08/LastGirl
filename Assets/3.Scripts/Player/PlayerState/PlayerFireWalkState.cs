@@ -18,15 +18,22 @@ public class PlayerFireWalkState : PlayerState
         mainCam = Camera.main;
     }
 
-    public override void StateEnter()
+    public override void StateEnter(PlayerController playerController)
     {
+        this.playerController = playerController;
         localPlayer.IsShotReady = true;
         animator.SetLayerWeight(localPlayer.IsReload ? 2 : 1, 1f);
         animator.SetTrigger(FIRE);
     }
 
-    public override void StateUpdate(PlayerController playerController)
+    public override void StateUpdate()
     {
+        if (localPlayer.CCType.Equals(CrowdControlType.Unknown) == false)
+        {
+            playerController.ChangeState(StateName.CrowdControl);
+            return;
+        }
+        
         Vector2 inputAxis = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         Vector3 moveVec = localPlayer.transform.forward * inputAxis.y + localPlayer.transform.right * inputAxis.x;
         playerController.CharacterController.Move(moveVec *
