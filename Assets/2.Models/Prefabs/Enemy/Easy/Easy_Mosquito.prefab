@@ -575,7 +575,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5910139217585539818
 Transform:
   m_ObjectHideFlags: 0
@@ -1240,7 +1240,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2099205080940967995}
   - component: {fileID: 2648766724885244074}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2737,7 +2737,7 @@ GameObject:
   m_Component:
   - component: {fileID: 335679372159667812}
   - component: {fileID: 4468319357559650134}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: spine_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3245,7 +3245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3952888393011344955}
   - component: {fileID: 752699833184925010}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tail
   m_TagString: Untagged
   m_Icon: {fileID: 0}

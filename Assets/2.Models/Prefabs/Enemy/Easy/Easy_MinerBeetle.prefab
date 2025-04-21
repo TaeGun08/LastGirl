@@ -623,7 +623,7 @@ GameObject:
   m_Component:
   - component: {fileID: 657672697232663345}
   - component: {fileID: 6321786932884687364}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ball_main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1293,7 +1293,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8909079503325172705}
   - component: {fileID: 2368168032039006652}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1420,7 +1420,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1039171993504388307
 Transform:
   m_ObjectHideFlags: 0
@@ -3434,7 +3434,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4418100453979791645}
   - component: {fileID: 7763990659844307668}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
