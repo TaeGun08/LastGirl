@@ -11,7 +11,7 @@ public class PlayerFireIdleState : PlayerState
     public override StateName Name => StateName.FireIdle;
 
     private Camera mainCam;
-
+    
     private void Awake()
     {
         mainCam = Camera.main;
@@ -34,7 +34,7 @@ public class PlayerFireIdleState : PlayerState
             playerController.ChangeState(StateName.CrowdControl);
             return;
         }
-        
+
         Vector2 inputAxis = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
         Quaternion targetRotation = mainCam.transform.rotation;
@@ -47,9 +47,15 @@ public class PlayerFireIdleState : PlayerState
         playerController.ReloadWeapon(inputAxis);
         if (localPlayer.IsReload)
         {
-            if (inputAxis.Equals(Vector2.zero) == false) 
+            if (inputAxis.Equals(Vector2.zero) == false)
                 playerController.ChangeState(StateName.FireWalk);
             return;
+        }
+        
+        int layer = LayerMask.GetMask("Default", "Enemy");
+        if (Physics.Raycast(mainCam.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, 200f, layer))
+        {
+            localPlayer.aimPoint.position = hit.point;
         }
         
         playerController.WeaponTrs.localRotation = Quaternion.Euler(0f, -mainCam.transform.eulerAngles.x, 0f);

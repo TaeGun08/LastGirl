@@ -56,6 +56,14 @@ public class PlayerFireWalkState : PlayerState
             return;
         }
         
+        int layer = LayerMask.GetMask("Default", "Enemy");
+        if (Physics.Raycast(mainCam.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, 200f, layer))
+        {
+            localPlayer.aimPoint.position = hit.point;
+        }
+        
+        playerController.WeaponTrs.localRotation = Quaternion.Euler(0f, -mainCam.transform.eulerAngles.x, 0f);
+        
         playerController.WeaponTrs.localRotation = Quaternion.Euler(0f, -mainCam.transform.eulerAngles.x, 0f);
         
         if (Input.GetMouseButton(0))

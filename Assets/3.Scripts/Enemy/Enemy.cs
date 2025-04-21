@@ -8,6 +8,8 @@ public abstract class Enemy : HasParts, IDamageAble
 {
     private static readonly int DEAD = Animator.StringToHash("Dead");
     private static readonly int HIT = Animator.StringToHash("Hit");
+    protected static readonly int ATTACK = Animator.StringToHash("Attack");
+    protected static readonly int PATTERN = Animator.StringToHash("Pattern");
 
     [System.Serializable]
     public class EnemyData
@@ -22,7 +24,7 @@ public abstract class Enemy : HasParts, IDamageAble
     }
 
     [Header("EnemyData Settings")] 
-    [SerializeField] protected EnemyData Data;
+    public EnemyData Data;
 
     public HasParts HasParts => this;
     
@@ -33,8 +35,12 @@ public abstract class Enemy : HasParts, IDamageAble
     protected LocalPlayer localPlayer;
     protected Animator animator;
     protected NavMeshAgent agent;
+    
     protected bool isMoveStop;
+    protected bool isPattern;
     protected bool isDead;
+    protected float attackDelay;
+    
     [Header("EnemyDeadTime Settings")]
     [SerializeField] protected float deathTime;
 
@@ -45,6 +51,8 @@ public abstract class Enemy : HasParts, IDamageAble
         localPlayer = Player.LocalPlayer.GetComponent<LocalPlayer>();
 
         CCType = ccType;
+
+        attackDelay = Data.AttackDelay;
         
         foreach (Collider hitCollider in Parts.HeadHitColliders)
             CombatSystem.Instance.AddHitAbleType(hitCollider, this);
@@ -65,7 +73,7 @@ public abstract class Enemy : HasParts, IDamageAble
 
     protected virtual void Update()
     {
-        if (isDead)
+        if (isDead || isMoveStop)
         {
             agent.SetDestination(transform.position);
             return;
@@ -82,11 +90,24 @@ public abstract class Enemy : HasParts, IDamageAble
     public void TakeDamage(CombatEvent combatEvent)
     {
         if (isDead) return;
+
+        if (isPattern == false)
+        {
+            animator.ResetTrigger(HIT);
+            animator.SetTrigger(HIT);
+        }
         
-        animator.ResetTrigger(HIT);
-        animator.SetTrigger(HIT);
-        Data.Hp -= (combatEvent.Damage * 
-                    (int)combatEvent.HasParts.GetPartsType(combatEvent.Collider)) - Data.Armor;
+        int damage = (combatEvent.Damage * 
+                      (int)combatEvent.HasParts.GetPartsType(combatEvent.Collider)) - Data.Armor;
+
+        if (damage <= 0)
+        {
+            Data.Hp -= 1;
+        }
+        else
+        {
+            Data.Hp -= damage;
+        }
 
         if (Data.Hp > 0f) return;
         StartCoroutine(OnDeadCoroutine(deathTime));

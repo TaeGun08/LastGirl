@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class AK47 : Weapon
 {
@@ -25,8 +26,12 @@ public class AK47 : Weapon
         muzzleFlash.Play();
         Data.Ammo--;
 
-        Vector3 dir = (localPlayer.aimPoint.position - firePoint.position).normalized;
-        Ray ray = new  Ray(firePoint.position, dir);
+        float ranRecoil = Random.Range(-0.3f, 0.3f);
+        Vector3 aimpoint = localPlayer.aimPoint.position;
+        aimpoint.x += (localPlayer.IsZoom ? 0f : ranRecoil);
+        aimpoint.y += (localPlayer.IsZoom ? 0f : ranRecoil);
+        Vector3 dir = (aimpoint - firePoint.position).normalized;
+        Ray ray = new Ray(firePoint.position, dir);
         if (Physics.Raycast(ray, out RaycastHit hit, 200f))
         {
             Debug.DrawRay(firePoint.position, ray.direction * hit.distance, Color.red);

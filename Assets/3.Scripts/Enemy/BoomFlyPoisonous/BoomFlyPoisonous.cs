@@ -6,22 +6,7 @@ public class BoomFlyPoisonous : Enemy
 {
     protected override void UpdateMovement()
     {
-        if (OnEnterPlayer() == false) return;
         agent.SetDestination(localPlayer.transform.position);
-    }
-
-    private bool OnEnterPlayer()
-    {
-        Collider[] colliders = Physics.OverlapSphere(localPlayer.transform.position, 
-            4f, LayerMask.GetMask("Player"));
-
-        if (colliders.Length > 0)
-        {
-            
-            return true;
-        }
-        
-        return false;
     }
 
     protected override void UpdatePattern()

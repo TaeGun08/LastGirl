@@ -3,28 +3,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnergyExplosion : MonoBehaviour
+public class EnemyAttackTrigger : MonoBehaviour
 {
-    public int Damage { get; set; }
+    private Enemy enemy;
 
-    [SerializeField] private bool isHit;
-
-    private void OnEnable()
+    private void Start()
     {
-        isHit = false;
+        enemy = GetComponentInParent<Enemy>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer.Equals(LayerMask.NameToLayer("Player")) == false || isHit) return;
+        if (other.gameObject.layer.Equals(LayerMask.NameToLayer("Player")) == false) return;
         IDamageAble player = other.GetComponent<IDamageAble>();
         if (player == null) return;
         CombatEvent e = new CombatEvent();
-        e.Damage = Damage;
+        e.Damage = enemy.Data.Damage;
         e.Receiver = player;
         e.CCType = CrowdControlType.Stun;
         
         CombatSystem.Instance.AddEvent(e);
-        isHit = true;
+        
+        gameObject.SetActive(false);
     }
 }

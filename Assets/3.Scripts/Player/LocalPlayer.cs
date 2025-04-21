@@ -36,12 +36,25 @@ public class LocalPlayer : Player, IDamageAble
     {
         if (IsDead) return;
         
-        status.Hp -= combatEvent.Damage;
-        CCType = combatEvent.CCType;
+        int damage = combatEvent.Damage;
         
-        if (status.Hp <= 0)
+        damage -= status.Durability;
+        if (status.Durability > 0)
         {
-            IsDead = true;
+            status.Durability -= combatEvent.Damage;
+            if (status.Durability <= 0) status.Durability = 0;
         }
+        else
+        {
+            status.Hp -= damage;
+        }
+        
+        CCType = combatEvent.CCType;
+
+        if (status.Hp > 0) return;
+        IsDead = true;
+        playerController.ChangeState(PlayerState.StateName.Dead);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }

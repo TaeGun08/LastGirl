@@ -19,12 +19,15 @@ public class Player : HasParts
     }
     
     [Header("Player Settings")] 
+    public PlayerController playerController;
     public Animator animator;
-
+    
     public Transform leftHand;
     public Transform rightHand;
 
     public Transform aimPoint;
+
+    public float headAngle;
     
     public bool IsShotReady { get; set; }
     public bool IsZoom { get; set; }
@@ -35,15 +38,21 @@ public class Player : HasParts
     protected virtual void OnAnimatorIK(int layerIndex)
     {
         if (IsShotReady == false) return;
+
+        Vector3 direction = (aimPoint.transform.position - transform.position).normalized;
+        float target = Vector3.Angle(transform.forward, direction);
         
-        animator.SetLookAtWeight(1.0f);
-        animator.SetLookAtPosition(aimPoint.position);
+        if (target < headAngle * 0.5f)
+        {
+            animator.SetLookAtWeight(1.0f);
+            animator.SetLookAtPosition(aimPoint.position);
         
-        animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1f);
-        animator.SetIKPosition(AvatarIKGoal.LeftHand, leftHand.position);
+            animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1f);
+            animator.SetIKPosition(AvatarIKGoal.LeftHand, leftHand.position);
         
-        animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1f);
-        animator.SetIKRotation(AvatarIKGoal.LeftHand, leftHand.rotation);
+            animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1f);
+            animator.SetIKRotation(AvatarIKGoal.LeftHand, leftHand.rotation);
+        }
         
         if (IsReload) return;
         

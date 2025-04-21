@@ -13,6 +13,7 @@ public abstract class PlayerState : MonoBehaviour
         FireWalk,
         ReLoad,
         CrowdControl,
+        Dead,
     }
 
     protected Animator animator;
