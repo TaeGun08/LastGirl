@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class StagBeetle : Enemy
 {
-    [Header("StagBeetle Settings")] 
-    [SerializeField] private GameObject[] attackColliders;
-    [SerializeField] private float chaseAngle;
-    [SerializeField] private int hasPattern;
-
     private void OnDrawGizmos()
     {
         Vector3 leftBoundary = Quaternion.Euler(0, -chaseAngle / 2, 0) * transform.forward;
@@ -33,31 +28,31 @@ public class StagBeetle : Enemy
     protected override void UpdateMovement()
     {
         float distance = Vector3.Distance(new Vector3(transform.position.x, 0f, transform.position.z),
-            new Vector3(localPlayer.transform.position.x, 0f, localPlayer.transform.position.z));
+            new Vector3(LocalPlayer.transform.position.x, 0f, LocalPlayer.transform.position.z));
 
         if (distance <= 7f)
         {
-            agent.SetDestination(localPlayer.transform.position - transform.forward * 6.5f);
+            Agent.SetDestination(LocalPlayer.transform.position - transform.forward * 6.5f);
             return;
         }
 
-        agent.SetDestination(localPlayer.transform.position);
+        Agent.SetDestination(LocalPlayer.transform.position);
     }
 
     protected override void UpdatePattern()
     {
         float distance = Vector3.Distance(new Vector3(transform.position.x, 0f, transform.position.z),
-            new Vector3(localPlayer.transform.position.x, 0f, localPlayer.transform.position.z));
+            new Vector3(LocalPlayer.transform.position.x, 0f, LocalPlayer.transform.position.z));
 
-        Vector3 direction = (localPlayer.transform.position - transform.position).normalized;
+        Vector3 direction = (LocalPlayer.transform.position - transform.position).normalized;
         float target = Vector3.Angle(transform.forward, direction);
 
         attackDelay -= Time.deltaTime;
 
         if (distance > 7f || target > chaseAngle * 0.5f || isDead || attackDelay > 0) return;
-        animator.SetTrigger(ATTACK);
+        Animator.SetTrigger(ATTACK);
         int ran = Random.Range(0, hasPattern);
-        animator.SetFloat(PATTERN, ran);
+        Animator.SetFloat(PATTERN, ran);
         isMoveStop = true;
         isPattern = true;
         StartCoroutine(PatternCoroutine(ran));

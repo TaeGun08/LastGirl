@@ -32,14 +32,31 @@ public abstract class Enemy : HasParts, IDamageAble
     [SerializeField] protected CrowdControlType ccType;
     public CrowdControlType CCType { get; set; }
 
+    [Header("Enemy Settings")]
+    public GameObject[] attackColliders;
+    public float chaseAngle;
+    public int hasPattern;
+    
     protected LocalPlayer localPlayer;
+    public LocalPlayer LocalPlayer => localPlayer;
+    
     protected Animator animator;
+    public Animator Animator => animator;
+    
     protected NavMeshAgent agent;
+    public NavMeshAgent Agent => agent;
+    
+    [SerializeField] protected EnemyState[] states;
+    protected EnemyState currentState;
+    
+    private Dictionary<EnemyState.StateName, EnemyState> enemyStateDic = new Dictionary<EnemyState.StateName, EnemyState>();
     
     protected bool isMoveStop;
-    protected bool isPattern;
+    public bool isPattern;
     protected bool isDead;
-    protected float attackDelay;
+    public float attackDelay;
+
+    public int patternNumber;
     
     [Header("EnemyDeadTime Settings")]
     [SerializeField] protected float deathTime;
@@ -66,9 +83,18 @@ public abstract class Enemy : HasParts, IDamageAble
         foreach (Collider hitCollider in Parts.ArmHitColliders)
             CombatSystem.Instance.AddHitAbleType(hitCollider, this);
         
+        for (int i = 0; i < states.Length; i++)
+        {
+            enemyStateDic.Add(states[i].Name, states[i]);
+            states[i].gameObject.SetActive(false);
+        }
+        
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         agent.speed = Data.Speed;
+        
+        currentState = states[0];
+        currentState.StateEnter(this);
     }
 
     protected virtual void Update()
@@ -120,5 +146,13 @@ public abstract class Enemy : HasParts, IDamageAble
         animator.SetTrigger(DEAD);
         yield return new WaitForSeconds(deathTime);
         Destroy(gameObject);
+    }
+    
+    public void ChangeState(EnemyState.StateName name)
+    {
+        currentState.StateExit();
+        currentState = enemyStateDic[name];
+        currentState.gameObject.SetActive(true);
+        currentState.StateEnter(this);
     }
 }

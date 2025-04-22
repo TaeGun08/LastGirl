@@ -2125,6 +2125,15 @@ MonoBehaviour:
     Speed: 1.5
     AttackDelay: 0
     HasArca: 10
+  ccType: 0
+  attackColliders: []
+  chaseAngle: 0
+  hasPattern: 0
+  localPlayer: {fileID: 0}
+  animator: {fileID: 0}
+  agent: {fileID: 0}
+  attackDelay: 0
+  patternNumber: 0
   deathTime: 2
 --- !u!1 &5799635243979020035
 GameObject:

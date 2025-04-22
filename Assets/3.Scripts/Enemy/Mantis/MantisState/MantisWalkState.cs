@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
-public class MantisIdleState : EnemyState
+public class MantisWalkState : EnemyState
 {
-    private static readonly int IDLE = Animator.StringToHash("Idle");
-    public override StateName Name => StateName.Idle;
+    private static readonly int WALK = Animator.StringToHash("Walk");
+    public override StateName Name =>  StateName.Walk;
 
+    private Tween tween;
+    private bool isRotating;
+    
     private void OnDrawGizmos()
     {
         if(enemy == null) return;
@@ -32,24 +36,25 @@ public class MantisIdleState : EnemyState
     public override void StateEnter(Enemy enemy)
     {
         this.enemy = enemy;
-        this.enemy.Animator.SetTrigger(IDLE);
+        this.enemy.Animator.SetTrigger(WALK);
     }
 
     public override void StateUpdate()
     {
         float distance = Vector3.Distance(enemy.LocalPlayer.transform.position, transform.position);
-        enemy.Agent.SetDestination(transform.position);
-        
+        enemy.Agent.SetDestination(enemy.LocalPlayer.transform.position);
+            
         Vector3 direction = (enemy.LocalPlayer.transform.position - transform.position).normalized;
         float target = Vector3.Angle(transform.forward, direction);
         
-        if (distance <= 12f && target <= enemy.chaseAngle * 0.5f) return;
-        enemy.ChangeState(StateName.Walk);
+        if (distance > 12f || target > enemy.chaseAngle * 0.5f) return;
+        enemy.ChangeState(StateName.Idle);
     }
 
     public override void StateExit()
     {
-        enemy.Animator.ResetTrigger(IDLE);
+        enemy.Animator.ResetTrigger(WALK);
         gameObject.SetActive(false);
     }
+    
 }

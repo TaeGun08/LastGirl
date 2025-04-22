@@ -6,13 +6,13 @@ public class BugMoneyBag : Enemy
 {
     protected override void UpdateMovement()
     {
-        agent.SetDestination(localPlayer.transform.position);
+        Agent.SetDestination(LocalPlayer.transform.position);
     }
 
     protected override void UpdatePattern()
     {
         float distance = Vector3.Distance(new Vector3(transform.position.x, 0f , transform.position.z), 
-            new Vector3(localPlayer.transform.position.x, 0f, localPlayer.transform.position.z));
+            new Vector3(LocalPlayer.transform.position.x, 0f, LocalPlayer.transform.position.z));
 
         if (distance > 1f || isDead) return;
         isDead = true;

@@ -1420,7 +1420,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1039171993504388307
 Transform:
   m_ObjectHideFlags: 0
@@ -1510,13 +1510,18 @@ MonoBehaviour:
     AttackDelay: 4
     HasArca: 100
   ccType: 0
-  deathTime: 4
   attackColliders:
   - {fileID: 621796785670320813}
   - {fileID: 3552180839755076504}
   - {fileID: 3170998999789306666}
   chaseAngle: 20
   hasPattern: 5
+  localPlayer: {fileID: 0}
+  animator: {fileID: 0}
+  agent: {fileID: 0}
+  attackDelay: 4
+  patternNumber: 0
+  deathTime: 4
 --- !u!1 &3472750467858278446
 GameObject:
   m_ObjectHideFlags: 0

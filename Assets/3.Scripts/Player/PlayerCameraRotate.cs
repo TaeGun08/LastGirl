@@ -75,7 +75,7 @@ public class PlayerCameraRotate : MonoBehaviour
         if (!localPlayer.IsFire) return;
         float recoilX = localPlayer.IsZoom ? Random.Range(-0.005f, 0.005f) : Random.Range(-0.01f, 0.01f);
         float recoilY = localPlayer.IsZoom ? Random.Range(-0.005f, 0.005f) : Random.Range(-0.01f, 0.01f);
-        float recoilZ = localPlayer.IsZoom ? Random.Range(-0.001f, 0.005f) : Random.Range(-0.01f, 0.01f);
+        float recoilZ = localPlayer.IsZoom ? Random.Range(-0.005f, 0.005f) : Random.Range(-0.01f, 0.01f);
         Vector3 recoil = new Vector3(recoilX,  recoilY, recoilZ);
         impulseSource.m_DefaultVelocity = recoil;
         impulseSource.GenerateImpulse();

@@ -1,0 +1,18 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MantisJumpTakeDown : EnemyAttack
+{
+    public override IEnumerator Pattern(Enemy enemy)
+    {
+        enemy.isPattern = true;
+        yield return new WaitForSeconds(1.6f);
+        enemy.attackColliders[0].SetActive(true);
+        enemy.attackColliders[1].SetActive(true);
+        yield return new WaitForSeconds(0.8f);
+        enemy.attackColliders[0].SetActive(false);
+        enemy.attackColliders[1].SetActive(false);
+        enemy.isPattern = false;
+    }
+}
