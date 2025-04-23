@@ -31,6 +31,12 @@ public class PlayerRunState : PlayerState
             return;
         }
         
+        if (Input.GetKeyDown(KeyCode.Space) && localPlayer.UseDash == false)
+        {
+            playerController.ChangeState(StateName.Dash);
+            return;
+        }
+        
         Vector2 inputAxis = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         
         playerController.ReloadWeapon(inputAxis);

@@ -21,6 +21,12 @@ public class PlayerIdleState : PlayerState
             playerController.ChangeState(StateName.CrowdControl);
             return;
         }
+
+        if (Input.GetKeyDown(KeyCode.Space) && localPlayer.UseDash == false)
+        {
+            playerController.ChangeState(StateName.Dash);
+            return;
+        }
         
         Vector2 inputAxis = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         

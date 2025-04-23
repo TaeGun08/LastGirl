@@ -17,11 +17,11 @@ public class Scolopendra : Enemy
 
     protected override void UpdatePattern()
     {
-        // if (isPattern) return;
-        // attackDelay -= Time.deltaTime;
-        // if(attackDelay > 0) return;
-        // isPattern = false;
-        // attackDelay = Data.AttackDelay;
-        // ChangeState(EnemyState.StateName.Attack);
+        if (isPattern) return;
+        attackDelay -= Time.deltaTime;
+        if(attackDelay > 0 || currentState.Name.Equals(EnemyState.StateName.Walk)) return;
+        isPattern = false;
+        attackDelay = Data.AttackDelay;
+        ChangeState(EnemyState.StateName.Attack);
     }
 }

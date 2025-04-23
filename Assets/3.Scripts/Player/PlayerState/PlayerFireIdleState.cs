@@ -34,6 +34,12 @@ public class PlayerFireIdleState : PlayerState
             playerController.ChangeState(StateName.CrowdControl);
             return;
         }
+        
+        if (Input.GetKeyDown(KeyCode.Space) && localPlayer.UseDash == false)
+        {
+            playerController.ChangeState(StateName.Dash);
+            return;
+        }
 
         Vector2 inputAxis = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
@@ -66,6 +72,13 @@ public class PlayerFireIdleState : PlayerState
             {
                 playerController.ChangeState(StateName.FireWalk);
                 return;
+            }
+
+            foreach (Ability ability in localPlayer.status.Abilities)
+            {
+                if (ability.AbilityOn) continue;
+                ability.gameObject.SetActive(true);
+                ability.UseAbility(playerController.currentWeapon.FirePoint);
             }
 
             if (playerController.currentWeapon.Data.Ammo <= 0f) return;

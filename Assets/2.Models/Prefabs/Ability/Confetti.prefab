@@ -1,0 +1,147 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1606363549131992687
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4730330923403695176}
+  - component: {fileID: 6240904477665133854}
+  m_Layer: 0
+  m_Name: Confetti
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4730330923403695176
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606363549131992687}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7205146360113094893}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6240904477665133854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606363549131992687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9b9717c3e9a4994bad34570f6a8687c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    damage: 0
+    radius: 0
+    endAbilityTime: 4
+    cooldown: 1
+    speed: 0
+    attackDelay: 0
+  AbilityOn: 0
+  particle: {fileID: 1244268669029085774}
+  type: 0
+--- !u!1001 &5022819075178765324
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4730330923403695176}
+    m_Modifications:
+    - target: {fileID: 2758860657417485537, guid: eb3aa1d6b26dbc9458bf6de5784bd969,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2758860657417485537, guid: eb3aa1d6b26dbc9458bf6de5784bd969,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2758860657417485537, guid: eb3aa1d6b26dbc9458bf6de5784bd969,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2758860657417485537, guid: eb3aa1d6b26dbc9458bf6de5784bd969,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2758860657417485537, guid: eb3aa1d6b26dbc9458bf6de5784bd969,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2758860657417485537, guid: eb3aa1d6b26dbc9458bf6de5784bd969,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2758860657417485537, guid: eb3aa1d6b26dbc9458bf6de5784bd969,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2758860657417485537, guid: eb3aa1d6b26dbc9458bf6de5784bd969,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2758860657417485537, guid: eb3aa1d6b26dbc9458bf6de5784bd969,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2758860657417485537, guid: eb3aa1d6b26dbc9458bf6de5784bd969,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120432116732161602, guid: eb3aa1d6b26dbc9458bf6de5784bd969,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8792718532158082870, guid: eb3aa1d6b26dbc9458bf6de5784bd969,
+        type: 3}
+      propertyPath: m_Name
+      value: VerticalConfetti
+      objectReference: {fileID: 0}
+    - target: {fileID: 8792718532158082870, guid: eb3aa1d6b26dbc9458bf6de5784bd969,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb3aa1d6b26dbc9458bf6de5784bd969, type: 3}
+--- !u!198 &1244268669029085774 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6120432116732161602, guid: eb3aa1d6b26dbc9458bf6de5784bd969,
+    type: 3}
+  m_PrefabInstance: {fileID: 5022819075178765324}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7205146360113094893 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2758860657417485537, guid: eb3aa1d6b26dbc9458bf6de5784bd969,
+    type: 3}
+  m_PrefabInstance: {fileID: 5022819075178765324}
+  m_PrefabAsset: {fileID: 0}

@@ -34,6 +34,12 @@ public class PlayerFireWalkState : PlayerState
             return;
         }
         
+        if (Input.GetKeyDown(KeyCode.Space) && localPlayer.UseDash == false)
+        {
+            playerController.ChangeState(StateName.Dash);
+            return;
+        }
+        
         Vector2 inputAxis = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         Vector3 moveVec = localPlayer.transform.forward * inputAxis.y + localPlayer.transform.right * inputAxis.x;
         playerController.CharacterController.Move(moveVec *

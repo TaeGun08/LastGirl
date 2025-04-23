@@ -23,11 +23,14 @@ public class ScolopendraWalkState : EnemyState
     private IEnumerator ChaseCoroutine()
     {
         yield return new WaitForSeconds(3.5f);
-        enemy.transform.position = enemy.LocalPlayer.transform.position;
+        enemy.attackColliders[0].SetActive(true);
+        enemy.transform.position = enemy.LocalPlayer.transform.position 
+                                   + new Vector3(Random.Range(-9f, 9f), 0f, Random.Range(-9f, 9f));
         Vector3 direction = (enemy.LocalPlayer.transform.position - enemy.transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         enemy.transform.DORotateQuaternion(lookRotation, 1f);
         yield return new WaitForSeconds(3f);
+        enemy.attackColliders[0].SetActive(false);
         enemy.ChangeState(StateName.Idle);
     }
 

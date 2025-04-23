@@ -21,6 +21,7 @@ public abstract class Weapon : MonoBehaviour
     
     [Header("Weapon Settings")]
     [SerializeField] protected Transform firePoint;
+    public Transform FirePoint => firePoint;
     [SerializeField] protected ParticleSystem muzzleFlash;
     [SerializeField] protected ParticleSystem hitVFX;
     protected bool fireOn = false;

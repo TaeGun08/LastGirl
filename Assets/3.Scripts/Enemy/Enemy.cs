@@ -93,6 +93,7 @@ public abstract class Enemy : HasParts, IDamageAble
         agent = GetComponent<NavMeshAgent>();
         agent.speed = Data.Speed;
         
+        if (states.Length <= 0) return;
         currentState = states[0];
         currentState.StateEnter(this);
     }

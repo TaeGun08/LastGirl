@@ -11,6 +11,8 @@ public class LocalPlayer : Player, IDamageAble
     public HasParts HasParts { get; }
     
     public CrowdControlType CCType { get; set; }
+
+    private float dashCoolTimer;
     
     private void Awake()
     {
@@ -30,11 +32,23 @@ public class LocalPlayer : Player, IDamageAble
 
         foreach (Collider hitCollider in Parts.ArmHitColliders)
             CombatSystem.Instance.AddHitAbleType(hitCollider, this);
+        
+        dashCoolTimer = status.DashCooldown;
+    }
+
+    private void Update()
+    {
+        if (UseDash == false) return;
+        
+        dashCoolTimer -= Time.deltaTime;
+        if (dashCoolTimer > 0) return;
+        dashCoolTimer = status.DashCooldown;
+        UseDash = false;
     }
 
     public void TakeDamage(CombatEvent combatEvent)
     {
-        if (IsDead) return;
+        if (IsDead || IsDashing) return;
         
         int damage = combatEvent.Damage;
         

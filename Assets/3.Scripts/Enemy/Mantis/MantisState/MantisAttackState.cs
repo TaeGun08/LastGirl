@@ -12,13 +12,11 @@ public class MantisAttackState : EnemyState
     [Header("MantisAttackState Settings")] 
     [SerializeField] private EnemyAttack[] enemyAttacks;
 
-    [SerializeField] private int hasPattern;
-
     public override void StateEnter(Enemy enemy)
     {
         this.enemy = enemy;
         this.enemy.isPattern = true;
-        int randomPattern = Random.Range(0, hasPattern);
+        int randomPattern = Random.Range(0, enemy.hasPattern);
         this.enemy.Animator.SetTrigger(ATTACK);
         this.enemy.Animator.SetFloat(PATTERN, randomPattern);
         StartCoroutine(enemyAttacks[randomPattern].Pattern(this.enemy));
@@ -27,7 +25,7 @@ public class MantisAttackState : EnemyState
     public override void StateUpdate()
     {
         if (enemy.isPattern) return;
-        enemy.ChangeState(StateName.Idle);
+        enemy.ChangeState(StateName.Walk);
     }
 
     public override void StateExit()
