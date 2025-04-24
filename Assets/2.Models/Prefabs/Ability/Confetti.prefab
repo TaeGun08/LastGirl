@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
+    key: 0
     damage: 10
     endAbilityTime: 0.5
     cooldown: 1
@@ -54,7 +55,6 @@ MonoBehaviour:
   AbilityOn: 0
   particle: {fileID: 1244268669029085774}
   attackCollider: {fileID: 6986036832843632880}
-  type: 0
 --- !u!1 &3966139791411592364
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,6 +164,11 @@ PrefabInstance:
     - target: {fileID: 2758860657417485537, guid: eb3aa1d6b26dbc9458bf6de5784bd969,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120432116732161602, guid: eb3aa1d6b26dbc9458bf6de5784bd969,
+        type: 3}
+      propertyPath: looping
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6120432116732161602, guid: eb3aa1d6b26dbc9458bf6de5784bd969,

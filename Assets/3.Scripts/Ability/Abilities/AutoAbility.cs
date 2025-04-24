@@ -15,8 +15,12 @@ public class AutoAbility : Ability
             {
                 Debug.Log("자동능력발동");
 
+                transform.position = localPlayer.transform.position;
+                transform.forward = localPlayer.transform.forward;
+                
                 particle.Clear();
                 particle.Play();
+                
                 Collider[] hitEnemy = Physics.OverlapBox(attackCollider.bounds.center, attackCollider.bounds.size,
                     Quaternion.identity, LayerMask.GetMask("Enemy"));
 
@@ -55,10 +59,6 @@ public class AutoAbility : Ability
     
     protected override void UseAutoAbility(CombatEvent e)
     {
-        transform.position = e.FirePoint.position;
-        transform.forward = e.FirePoint.forward;
-        transform.SetParent(localPlayer.transform);
-
         StartCoroutine("CoolTimeCoroutine");
     }
 }

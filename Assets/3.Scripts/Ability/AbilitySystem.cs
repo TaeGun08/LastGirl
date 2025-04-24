@@ -38,6 +38,7 @@ public class AbilitySystem : MonoBehaviour
         BuyAbility(1);
         BuyAbility(2);
         BuyAbility(3);
+        BuyAbility(4);
     }
 
     public void BuyAbility(int key)

@@ -34,6 +34,7 @@ MonoBehaviour:
     AbilityPrefab: {fileID: 2577572988860712197, guid: be5319084e5c0424789e0ab05decaa78,
       type: 3}
   - Key: 4
-    Name: 
+    Name: "\uD3ED\uC8FDBoom!!"
     Rank: 0
-    AbilityPrefab: {fileID: 0}
+    AbilityPrefab: {fileID: 7826626714527314445, guid: a9fee06a10dca634b8a584e3655c3042,
+      type: 3}
