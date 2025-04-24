@@ -58,7 +58,7 @@ public class PlayerFireIdleState : PlayerState
             return;
         }
         
-        int layer = LayerMask.GetMask("Default", "Enemy");
+        int layer = LayerMask.GetMask("Enemy", "Map");
         if (Physics.Raycast(mainCam.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, 200f, layer))
         {
             localPlayer.aimPoint.position = hit.point;
@@ -72,13 +72,6 @@ public class PlayerFireIdleState : PlayerState
             {
                 playerController.ChangeState(StateName.FireWalk);
                 return;
-            }
-
-            foreach (Ability ability in localPlayer.status.Abilities)
-            {
-                if (ability.AbilityOn) continue;
-                ability.gameObject.SetActive(true);
-                ability.UseAbility(playerController.currentWeapon.FirePoint);
             }
 
             if (playerController.currentWeapon.Data.Ammo <= 0f) return;

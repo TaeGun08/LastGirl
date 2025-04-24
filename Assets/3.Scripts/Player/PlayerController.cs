@@ -25,6 +25,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Weapon[] weapons;
     public Weapon currentWeapon { get; private set; }
 
+    [SerializeField] private Ability[] hasAbility = new Ability[6];
+    public Ability[] HasAbility { get => hasAbility; set => hasAbility = value; }
+    
     private void Awake()
     {
         CharacterController = GetComponent<CharacterController>();
@@ -88,14 +91,22 @@ public class PlayerController : MonoBehaviour
         ChangeState(currentState.Name);
     }
 
-    private IEnumerator SlowStateCoroutine()
+    public void SetAbility(Ability ability)
     {
-        yield return new WaitForSeconds(2f);
+        for (int i = 0; i < hasAbility.Length; i++)
+        {
+            if (hasAbility[i] != null) continue;
+            hasAbility[i] = ability;
+            return;
+        }
+        
+        Debug.Log("어빌리티가 6개 모두 존재합니다.");
     }
 
-    public void SlowState()
+    public void RemoveAbility(int index)
     {
-        StopCoroutine(nameof(SlowStateCoroutine));
-        StartCoroutine(nameof(SlowStateCoroutine));
+        Debug.Log($"{hasAbility[index].gameObject}를 버렸습니다.");
+        Destroy(hasAbility[index].gameObject);
+        hasAbility[index] = null;
     }
 }

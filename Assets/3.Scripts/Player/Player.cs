@@ -18,7 +18,6 @@ public class Player : HasParts
         public int RunSpeed;
         public float DashForce;
         public float DashCooldown;
-        public Ability[] Abilities;
     }
     
     [Header("Player Settings")] 
@@ -32,9 +31,6 @@ public class Player : HasParts
 
     public float headAngle;
     
-    [Header("Ability Settings")]
-    public PlayerAbility ability;
-    
     public bool IsShotReady { get; set; }
     public bool IsZoom { get; set; }
     public bool IsFire { get; set; }
@@ -42,6 +38,7 @@ public class Player : HasParts
     public bool IsDead { get; set; }
     public bool UseDash { get; set; }
     public bool IsDashing { get; set; }
+    public bool IsBarrierOn { get; set; }
 
     protected virtual void OnAnimatorIK(int layerIndex)
     {

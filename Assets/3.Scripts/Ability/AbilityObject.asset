@@ -19,17 +19,20 @@ MonoBehaviour:
     AbilityPrefab: {fileID: 1606363549131992687, guid: 0721d279cb57693459156e8e1c0a358e,
       type: 3}
   - Key: 1
-    Name: 
+    Name: "\uB77C\uC774\uD2B8\uB2DD\uC775\uC2A4\uD50C\uB85C\uC83C"
     Rank: 0
-    AbilityPrefab: {fileID: 0}
+    AbilityPrefab: {fileID: 5150672310152765898, guid: 4ffa694a5182e8d41bf97d4d8d581fb9,
+      type: 3}
   - Key: 2
-    Name: 
+    Name: "\uD37C\uD50C\uBC30\uB9AC\uC5B4"
     Rank: 0
-    AbilityPrefab: {fileID: 0}
+    AbilityPrefab: {fileID: 3845744161201307014, guid: 1ba1a0d6a0a1ca84fb0bb58999e942bd,
+      type: 3}
   - Key: 3
-    Name: 
+    Name: "\uC2AC\uB798\uC2DC"
     Rank: 0
-    AbilityPrefab: {fileID: 0}
+    AbilityPrefab: {fileID: 2577572988860712197, guid: be5319084e5c0424789e0ab05decaa78,
+      type: 3}
   - Key: 4
     Name: 
     Rank: 0

@@ -1,13 +1,13 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireAbility : Ability
+public class DashAbility : Ability
 {
     protected override IEnumerator CoolTimeCoroutine()
     {
         AbilityOn = true;
+        yield return new WaitForSeconds(0.5f);
         particle.Play();
         Collider[] hitEnemy = Physics.OverlapBox(attackCollider.bounds.center, attackCollider.bounds.size,
             Quaternion.identity, LayerMask.GetMask("Enemy"));
@@ -34,12 +34,12 @@ public class FireAbility : Ability
         yield return new WaitForSeconds(data.cooldown);
         AbilityOn = false;
     }
-    
-    protected override void UseFireAbility(CombatEvent e)
+
+    protected override void UseDahsAbility(CombatEvent e)
     {
         if (AbilityOn) return;
         
-        Debug.Log("발사능력발동");
+        Debug.Log("대쉬능력발동");
         transform.position = e.FirePoint.position;
         transform.forward = e.FirePoint.forward;
         

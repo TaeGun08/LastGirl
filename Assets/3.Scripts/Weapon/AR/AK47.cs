@@ -32,17 +32,19 @@ public class AK47 : Weapon
         aimpoint.y += (localPlayer.IsZoom ? 0f : ranRecoil);
         Vector3 dir = (aimpoint - firePoint.position).normalized;
         Ray ray = new Ray(firePoint.position, dir);
-        if (Physics.Raycast(ray, out RaycastHit hit, 200f))
+        CombatEvent e =  new CombatEvent();
+        
+        int layer = LayerMask.GetMask("Enemy", "Map");
+        if (Physics.Raycast(ray, out RaycastHit hit, 200f, layer))
         {
             Debug.DrawRay(firePoint.position, ray.direction * hit.distance, Color.red);
             GameObject obj = effectPoolSystem.ParticlePool(IEffectPool.ParticleType.HitA).gameObject;
             obj.transform.position = hit.point;
             obj.transform.rotation = Quaternion.LookRotation(hit.normal);
             
-            var hitAble = CombatSystem.Instance.GetHitAble(hit.collider);
+            IDamageAble hitAble = CombatSystem.Instance.GetHitAble(hit.collider);
             if (hitAble != null)
             {
-                CombatEvent e =  new CombatEvent();
                 e.Sender = localPlayer;
                 e.Receiver = hitAble;
                 e.Damage = Data.Damage;
@@ -54,6 +56,8 @@ public class AK47 : Weapon
             }
         }
         
+        e.FirePoint = FirePoint;
+        AbilitySystem.Instance.Events.OnFireAbilityEvent?.Invoke(e);
         fireOn = false;
         localPlayer.IsFire = true;
         

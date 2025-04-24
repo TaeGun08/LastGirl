@@ -25,16 +25,16 @@ public class AbilityObject : ScriptableObject
     
     public AbilityData[] Data;
 
-    public GameObject GetAbilityPrefab(int key)
+    public AbilityData GetAbilityPrefab(int key)
     {
-        GameObject prefab = null;
+        AbilityData returnData = null;
 
         foreach (AbilityData data in Data)
         {
             if (data.Key != key) continue;
-            prefab = data.AbilityPrefab;
+            returnData = data;
         }
         
-        return prefab;
+        return returnData;
     }
 }

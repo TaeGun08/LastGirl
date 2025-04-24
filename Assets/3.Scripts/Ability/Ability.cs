@@ -5,31 +5,64 @@ using UnityEngine;
 
 public abstract class Ability : MonoBehaviour
 {
-    public enum AttackType
-    {
-        Area,
-        Projectile,
-    }
-
     [System.Serializable]
     public class AbilityData
     {
-        public float damage;
-        public float radius;
+        public int key;
+        public int damage;
         public float endAbilityTime;
         public float cooldown;
-        public float speed;
         public float attackDelay;
     }
+    
+    protected LocalPlayer localPlayer;
 
     [Header("Ability Settings")]
     [SerializeField] protected AbilityData data;
+    public AbilityData Data => data;
     public bool AbilityOn;
     [SerializeField] protected ParticleSystem particle;
-    
-    [Header("AttackType Settings")]
-    [SerializeField] protected AttackType type;
-    public AttackType Type => type;
+    [SerializeField] protected Collider attackCollider;
 
-    public abstract void UseAbility(Transform target);
+    protected virtual void Start()
+    {
+        localPlayer = Player.LocalPlayer.GetComponent<LocalPlayer>();
+        AbilitySystem.Instance.Events.OnFireAbilityEvent += UseFireAbility;
+        AbilitySystem.Instance.Events.OnDashAbilityEvent += UseDahsAbility;
+        AbilitySystem.Instance.Events.OnBarrierAbilityEvent += UseBarrierAbility;
+        AbilitySystem.Instance.Events.OnPersistentAbilityEvent += UsePersistentAbility;
+        AbilitySystem.Instance.Events.OnAutoAbilityEvent += UseAutoAbility;
+    }
+
+    protected void OnDestroy()
+    {
+        AbilitySystem.Instance.Events.OnFireAbilityEvent -= UseFireAbility;
+        AbilitySystem.Instance.Events.OnDashAbilityEvent -= UseDahsAbility;
+        AbilitySystem.Instance.Events.OnBarrierAbilityEvent -= UseBarrierAbility;
+        AbilitySystem.Instance.Events.OnPersistentAbilityEvent -= UsePersistentAbility;
+        AbilitySystem.Instance.Events.OnAutoAbilityEvent -= UseAutoAbility;
+
+    }
+
+    protected abstract IEnumerator CoolTimeCoroutine();
+
+    protected virtual void UseFireAbility(CombatEvent e)
+    {
+    }
+
+    protected virtual void UseDahsAbility(CombatEvent e)
+    {
+    }
+
+    protected virtual void UseBarrierAbility(CombatEvent e)
+    {
+    }
+
+    protected virtual void UsePersistentAbility(CombatEvent e)
+    {
+    }
+
+    protected virtual void UseAutoAbility(CombatEvent e)
+    {
+    }
 }

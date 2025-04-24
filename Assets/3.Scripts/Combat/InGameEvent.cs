@@ -9,6 +9,7 @@ public abstract class InGameEvent
         Unknown,
         Combat,
         Heal,
+        Ability,
     }
     
     public IDamageAble Sender { get; set; }
@@ -23,6 +24,7 @@ public class CombatEvent : InGameEvent
     public Vector3 HitPosition { get; set; }
     public Collider Collider { get; set; }
     public CrowdControlType CCType { get; set; }
+    public Transform FirePoint { get; set; }
     
     public override EventType Type => EventType.Combat;
 }

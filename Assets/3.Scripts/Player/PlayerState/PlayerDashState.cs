@@ -22,6 +22,9 @@ public class PlayerDashState : PlayerState
         localPlayer.IsDashing = true;
         localPlayer.UseDash = true;
         dashEffect.gameObject.SetActive(true);
+        CombatEvent e =  new CombatEvent();
+        e.FirePoint = localPlayer.transform;
+        AbilitySystem.Instance.Events.OnDashAbilityEvent?.Invoke(e);
         dashTween = this.playerController.transform.DOMove(transform.position + 
                                                            transform.forward * localPlayer.status.DashForce, 0.2f)
             .OnComplete(() =>
@@ -38,7 +41,7 @@ public class PlayerDashState : PlayerState
 
     public override void StateExit()
     {
-        localPlayer.UseDash = false;
+        localPlayer.IsDashing = false;
         dashEffect.gameObject.SetActive(false);
         animator.ResetTrigger(RUN);
         gameObject.SetActive(false);

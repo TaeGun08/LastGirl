@@ -62,7 +62,7 @@ public class PlayerFireWalkState : PlayerState
             return;
         }
         
-        int layer = LayerMask.GetMask("Default", "Enemy");
+        int layer = LayerMask.GetMask("Enemy", "Map");
         if (Physics.Raycast(mainCam.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, 200f, layer))
         {
             localPlayer.aimPoint.position = hit.point;

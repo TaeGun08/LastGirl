@@ -48,6 +48,12 @@ public class LocalPlayer : Player, IDamageAble
 
     public void TakeDamage(CombatEvent combatEvent)
     {
+        if (IsBarrierOn)
+        {
+            IsBarrierOn = false;
+            return;
+        }
+        
         if (IsDead || IsDashing) return;
         
         int damage = combatEvent.Damage;
