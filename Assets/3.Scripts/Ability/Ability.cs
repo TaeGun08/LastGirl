@@ -32,6 +32,7 @@ public abstract class Ability : MonoBehaviour
         AbilitySystem.Instance.Events.OnBarrierAbilityEvent += UseBarrierAbility;
         AbilitySystem.Instance.Events.OnPersistentAbilityEvent += UsePersistentAbility;
         AbilitySystem.Instance.Events.OnAutoAbilityEvent += UseAutoAbility;
+        AbilitySystem.Instance.Events.OnProjectileAbilityEvent += UseProjectileAbility;
     }
 
     protected void OnDestroy()
@@ -41,6 +42,7 @@ public abstract class Ability : MonoBehaviour
         AbilitySystem.Instance.Events.OnBarrierAbilityEvent -= UseBarrierAbility;
         AbilitySystem.Instance.Events.OnPersistentAbilityEvent -= UsePersistentAbility;
         AbilitySystem.Instance.Events.OnAutoAbilityEvent -= UseAutoAbility;
+        AbilitySystem.Instance.Events.OnProjectileAbilityEvent -= UseProjectileAbility;
 
     }
 
@@ -63,6 +65,10 @@ public abstract class Ability : MonoBehaviour
     }
 
     protected virtual void UseAutoAbility(CombatEvent e)
+    {
+    }
+
+    protected virtual void UseProjectileAbility(CombatEvent e)
     {
     }
 }

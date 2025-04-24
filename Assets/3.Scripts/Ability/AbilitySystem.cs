@@ -17,6 +17,7 @@ public class AbilitySystem : MonoBehaviour
         public Action<CombatEvent> OnBarrierAbilityEvent;
         public Action<CombatEvent> OnPersistentAbilityEvent;
         public Action<CombatEvent> OnAutoAbilityEvent;
+        public Action<CombatEvent> OnProjectileAbilityEvent;
     }
     
     [Header("Ability Settings")]
@@ -34,11 +35,12 @@ public class AbilitySystem : MonoBehaviour
         localPlayer = Player.LocalPlayer.GetComponent<LocalPlayer>();
         playerController = localPlayer.playerController;
         
-        BuyAbility(0);
-        BuyAbility(1);
-        BuyAbility(2);
-        BuyAbility(3);
-        BuyAbility(4);
+        // BuyAbility(0);
+        // BuyAbility(1);
+        // BuyAbility(2);
+        // BuyAbility(3);
+        // BuyAbility(4);
+        BuyAbility(5);
     }
 
     public void BuyAbility(int key)

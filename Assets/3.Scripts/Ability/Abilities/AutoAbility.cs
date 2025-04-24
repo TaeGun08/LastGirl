@@ -17,6 +17,9 @@ public class AutoAbility : Ability
 
                 transform.position = localPlayer.transform.position;
                 transform.forward = localPlayer.transform.forward;
+
+
+                yield return null;
                 
                 particle.Clear();
                 particle.Play();

@@ -58,6 +58,7 @@ public class AK47 : Weapon
         
         e.FirePoint = FirePoint;
         AbilitySystem.Instance.Events.OnFireAbilityEvent?.Invoke(e);
+        AbilitySystem.Instance.Events.OnProjectileAbilityEvent?.Invoke(e);
         fireOn = false;
         localPlayer.IsFire = true;
         

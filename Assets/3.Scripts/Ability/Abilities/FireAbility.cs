@@ -31,6 +31,7 @@ public class FireAbility : Ability
         }
         yield return new WaitForSeconds(data.endAbilityTime);
         particle.Stop();
+        particle.Clear();
         yield return new WaitForSeconds(data.cooldown);
         AbilityOn = false;
     }
