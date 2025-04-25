@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public abstract class Enemy : HasParts, IDamageAble
 {
@@ -142,6 +143,11 @@ public abstract class Enemy : HasParts, IDamageAble
 
     private IEnumerator OnDeadCoroutine(float deathTime)
     {
+        for (int i = 0; i < Data.HasArca; i++)
+        {
+            Arca arca = EffectPoolSystem.Instance.ParticlePool(IEffectPool.ParticleType.HitA).GetComponent<Arca>();
+            arca.AddForce(new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f),Random.Range(-1f, 1f)));
+        }
         animator.ResetTrigger(HIT);
         isDead = true;
         animator.SetTrigger(DEAD);

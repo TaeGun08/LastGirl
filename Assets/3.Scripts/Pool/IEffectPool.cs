@@ -8,6 +8,7 @@ public interface IEffectPool
     {
         HitA,
         EnergyExplosionA,
+        Arca,
     }
 
     public ParticleType Type { get; }

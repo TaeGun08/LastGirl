@@ -38,12 +38,33 @@ public class LocalPlayer : Player, IDamageAble
 
     private void Update()
     {
+        GetArca();
         if (UseDash == false) return;
         
         dashCoolTimer -= Time.deltaTime;
         if (dashCoolTimer > 0) return;
         dashCoolTimer = status.DashCooldown;
         UseDash = false;
+    }
+
+    private void GetArca()
+    {
+        Collider[] colliders = Physics.OverlapSphere(camLookAtPoint.position + Vector3.up, 3f,  
+            LayerMask.GetMask("Arca"));
+
+        if (colliders.Length <= 0) return;
+        
+        foreach (Collider collider in colliders)
+        {
+            Vector3 direction = (transform.position + Vector3.up - collider.transform.position).normalized;
+            collider.transform.position += direction * (10f * Time.deltaTime);
+            float distance = Vector3.Distance(new Vector3(collider.transform.position.x, 0f, collider.transform.position.z), 
+                new Vector3(transform.position.x, 0f, transform.position.z));
+            if (distance <= 0.1f)
+            {
+                collider.gameObject.SetActive(false);
+            }
+        }
     }
 
     public void TakeDamage(CombatEvent combatEvent)

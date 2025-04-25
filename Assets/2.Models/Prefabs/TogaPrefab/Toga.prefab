@@ -22128,7 +22128,7 @@ GameObject:
   - component: {fileID: 6954240017329549638}
   - component: {fileID: 2679106866714039160}
   m_Layer: 3
-  m_Name: Text (TMP)
+  m_Name: ArcaText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59401,7 +59401,7 @@ MonoBehaviour:
   hpBar: {fileID: 3870505593844556680}
   durabilityBar: {fileID: 6222444034894177879}
   ammoBar: {fileID: 8609205053666514788}
-  hasArca: {fileID: 0}
+  hasArca: {fileID: 2679106866714039160}
 --- !u!1 &8729704575547761798
 GameObject:
   m_ObjectHideFlags: 0
