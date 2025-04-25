@@ -34,28 +34,14 @@ public class AbilitySystem : MonoBehaviour
     {
         localPlayer = Player.LocalPlayer.GetComponent<LocalPlayer>();
         playerController = localPlayer.playerController;
-        
-        // BuyAbility(0);
-        // BuyAbility(1);
-        // BuyAbility(2);
-        // BuyAbility(3);
-        // BuyAbility(4);
-        BuyAbility(5);
-    }
-
-    public void BuyAbility(int key)
-    {
-        Ability ability = Instantiate(abilityObject.GetAbilityPrefab(key).AbilityPrefab, transform)
-            .GetComponent<Ability>();
-        SetAbility(ability);
     }
     
-    public void SetAbility(Ability ability)
+    private void SetAbility(Ability ability)
     {
         for (int i = 0; i < playerController.HasAbility.Length; i++)
         {
             if (playerController.HasAbility[i] != null &&
-                playerController.HasAbility[i].Data.key.Equals(ability.Data.key)) return;
+                playerController.HasAbility[i].abilityData.Key.Equals(ability.abilityData.Key)) return;
             if (playerController.HasAbility[i] != null) continue;
             playerController.HasAbility[i] = ability;
             return;
@@ -64,10 +50,29 @@ public class AbilitySystem : MonoBehaviour
         Debug.Log("능력이 6개가 모두 존재합니다.");
     }
 
+    public void GetAbility(int key)
+    {
+        Ability ability = Instantiate(abilityObject.GetAbilityPrefab(key).AbilityPrefab, transform)
+            .GetComponent<Ability>();
+        ability.abilityData = abilityObject.GetAbilityPrefab(key);
+        SetAbility(ability);
+    }
+
     public void RemoveAbility(int index)
     {
         Debug.Log($"{playerController.HasAbility[index].gameObject}능력을(를) 버렸습니다.");
         Destroy(playerController.HasAbility[index].gameObject);
         playerController.HasAbility[index] = null;
+    }
+
+    public bool HasAbility(int key)
+    {
+        for (int index = 0; index < playerController.HasAbility.Length; index++)
+        {
+            Ability hasAbility = playerController.HasAbility[index];
+            if (hasAbility.abilityData.Key.Equals(key)) return true;
+        }
+
+        return false;
     }
 }

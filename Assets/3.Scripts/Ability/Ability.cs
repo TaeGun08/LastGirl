@@ -8,7 +8,6 @@ public abstract class Ability : MonoBehaviour
     [System.Serializable]
     public class AbilityData
     {
-        public int key;
         public int damage;
         public float endAbilityTime;
         public float cooldown;
@@ -19,7 +18,10 @@ public abstract class Ability : MonoBehaviour
 
     [Header("Ability Settings")]
     [SerializeField] protected AbilityData data;
-    public AbilityData Data => data;
+    
+    [Header("AbilityData")]
+    public AbilityObject.AbilityData abilityData;
+    
     public bool AbilityOn;
     [SerializeField] protected ParticleSystem particle;
     [SerializeField] protected Collider attackCollider;

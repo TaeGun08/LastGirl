@@ -64,7 +64,8 @@ public class LocalPlayer : Player, IDamageAble
             status.Durability -= combatEvent.Damage;
             if (status.Durability <= 0) status.Durability = 0;
         }
-        else
+        
+        if (status.Durability <= 0)
         {
             status.Hp -= damage;
         }
@@ -72,6 +73,7 @@ public class LocalPlayer : Player, IDamageAble
         CCType = combatEvent.CCType;
 
         if (status.Hp > 0) return;
+        status.Hp = 0;
         IsDead = true;
         playerController.ChangeState(PlayerState.StateName.Dead);
         Cursor.lockState = CursorLockMode.None;

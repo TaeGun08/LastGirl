@@ -21,6 +21,7 @@ public class AbilityObject : ScriptableObject
         public string Name;
         public AbilituRank Rank;
         public GameObject AbilityPrefab;
+        public string AbilitySummary;
     }
     
     public AbilityData[] Data;

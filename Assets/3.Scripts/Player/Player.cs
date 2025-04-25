@@ -18,6 +18,7 @@ public class Player : HasParts
         public int RunSpeed;
         public float DashForce;
         public float DashCooldown;
+        public int HasArca;
     }
     
     [Header("Player Settings")] 

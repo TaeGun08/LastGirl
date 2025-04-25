@@ -15,5 +15,6 @@ public class GetCanvasCamera : MonoBehaviour
     private void Start()
     {
         canvas.worldCamera = Camera.main;
+        canvas.planeDistance = 0.15f;
     }
 }

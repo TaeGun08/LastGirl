@@ -10,6 +10,7 @@ public class PlayerDashState : PlayerState
     public override StateName Name => StateName.Dash;
 
     private Tween dashTween;
+    private bool isEnterDashing = false;
     
     [Header("DashEffect Settings")]
     [SerializeField] private ParticleSystem dashEffect;
@@ -25,18 +26,26 @@ public class PlayerDashState : PlayerState
         CombatEvent e =  new CombatEvent();
         e.FirePoint = localPlayer.transform;
         AbilitySystem.Instance.Events.OnDashAbilityEvent?.Invoke(e);
-        dashTween = this.playerController.transform.DOMove(transform.position + 
-                                                           transform.forward * localPlayer.status.DashForce, 0.2f)
-            .OnComplete(() =>
-            {
-                dashTween = null;
-            });
+        StartCoroutine(nameof(DashCoroutine));
     }
 
     public override void StateUpdate()
     { 
-        if (dashTween != null) return;
+        if (isEnterDashing) return;
         playerController.ChangeState(StateName.Run);
+    }
+
+    private IEnumerator DashCoroutine()
+    {
+        float timer = 0f;
+        isEnterDashing = true;
+        while (timer < 0.2f)
+        {
+            timer += Time.deltaTime;
+            playerController.CharacterController.Move(transform.forward * localPlayer.status.DashForce * Time.deltaTime);
+            yield return null;
+        }
+        isEnterDashing = false;
     }
 
     public override void StateExit()
