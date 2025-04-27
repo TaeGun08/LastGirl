@@ -19514,6 +19514,7 @@ GameObject:
   - component: {fileID: 3754646309216692804}
   - component: {fileID: 4445091544176129438}
   - component: {fileID: 4158192079703512402}
+  - component: {fileID: 3020043519497555376}
   - component: {fileID: 2677028972640941561}
   m_Layer: 8
   m_Name: Arca
@@ -19586,6 +19587,18 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3020043519497555376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6681088283658796448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 772ce8c4fe4df2b44a02e73dd41e213f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2677028972640941561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19599,6 +19612,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
+  particle: {fileID: 1724000721463600409}
+  activeOn: 1
 --- !u!1 &7387940500959214837
 GameObject:
   m_ObjectHideFlags: 0

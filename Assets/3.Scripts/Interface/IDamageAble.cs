@@ -12,8 +12,8 @@ public enum CrowdControlType
 public interface IDamageAble
 {
     public HasParts HasParts { get; }
-
     public CrowdControlType CCType { get; set; }
+    public GameObject GameObject { get; }
     
     public void TakeDamage(CombatEvent combatEvent);
 }

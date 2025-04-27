@@ -28,6 +28,7 @@ public abstract class Enemy : HasParts, IDamageAble
     public EnemyData Data;
 
     public HasParts HasParts => this;
+    public GameObject GameObject => gameObject;
     
     [Header("EnemyCCType")]
     [SerializeField] protected CrowdControlType ccType;
@@ -143,14 +144,15 @@ public abstract class Enemy : HasParts, IDamageAble
 
     private IEnumerator OnDeadCoroutine(float deathTime)
     {
-        for (int i = 0; i < Data.HasArca; i++)
-        {
-            Arca arca = EffectPoolSystem.Instance.ParticlePool(IEffectPool.ParticleType.HitA).GetComponent<Arca>();
-            arca.AddForce(new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f),Random.Range(-1f, 1f)));
-        }
         animator.ResetTrigger(HIT);
         isDead = true;
         animator.SetTrigger(DEAD);
+        for (int i = 0; i < Data.HasArca; i++)
+        {
+            Arca arca = EffectPoolSystem.Instance.ParticlePool(IEffectPool.ParticleType.Arca).GetComponent<Arca>();
+            arca.transform.position = transform.position;
+            arca.AddForce(new Vector3(Random.Range(-1.5f, 1.5f), Random.Range(3f, 6f),Random.Range(-1.5f, 1.5f)));
+        }
         yield return new WaitForSeconds(deathTime);
         Destroy(gameObject);
     }

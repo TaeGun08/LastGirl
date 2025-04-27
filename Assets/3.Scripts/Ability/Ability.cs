@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class Ability : MonoBehaviour
 {
     [System.Serializable]
-    public class AbilityData
+    public class AbilitySettingData
     {
         public int damage;
         public float endAbilityTime;
@@ -17,10 +17,10 @@ public abstract class Ability : MonoBehaviour
     protected LocalPlayer localPlayer;
 
     [Header("Ability Settings")]
-    [SerializeField] protected AbilityData data;
+    [SerializeField] protected AbilitySettingData data;
     
     [Header("AbilityData")]
-    public AbilityObject.AbilityData abilityData;
+    public AbilityData abilityData;
     
     public bool AbilityOn;
     [SerializeField] protected ParticleSystem particle;

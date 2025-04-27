@@ -13,8 +13,6 @@ public class AutoAbility : Ability
             timer -= Time.deltaTime;
             if (timer <= 0)
             {
-                Debug.Log("자동능력발동");
-
                 transform.position = localPlayer.transform.position;
                 transform.forward = localPlayer.transform.forward;
 

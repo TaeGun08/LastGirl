@@ -40,7 +40,6 @@ public class FireAbility : Ability
     {
         if (AbilityOn) return;
         
-        Debug.Log("발사능력발동");
         transform.position = e.FirePoint.position;
         transform.forward = e.FirePoint.forward;
         

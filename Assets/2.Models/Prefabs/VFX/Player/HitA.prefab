@@ -14682,7 +14682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  duration: 0.5
+  particle: {fileID: 6722088792676444454}
 --- !u!1 &5415507534191163671
 GameObject:
   m_ObjectHideFlags: 0

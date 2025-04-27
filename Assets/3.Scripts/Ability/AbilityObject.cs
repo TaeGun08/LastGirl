@@ -2,28 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "AbilityObject", menuName = "Ability/AbilityObject")]
-public class AbilityObject : ScriptableObject
+[System.Serializable]
+public class AbilityData
 {
     public enum AbilituRank
     {
-        FRank,
-        CRank,
-        BRank,
-        ARank,
-        SRank,
+        F,
+        C,
+        B,
+        A,
+        S,
     }
     
-    [System.Serializable]
-    public class AbilityData
-    {
-        public int Key;
-        public string Name;
-        public AbilituRank Rank;
-        public GameObject AbilityPrefab;
-        public string AbilitySummary;
-    }
-    
+    public int Key;
+    public string Name;
+    public AbilituRank Rank;
+    public int Price;
+    public GameObject AbilityPrefab;
+    public string AbilitySummary;
+}
+
+[CreateAssetMenu(fileName = "AbilityObject", menuName = "Ability/AbilityObject")]
+public class AbilityObject : ScriptableObject
+{
     public AbilityData[] Data;
 
     public AbilityData GetAbilityPrefab(int key)

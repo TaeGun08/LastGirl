@@ -9,6 +9,7 @@ public class LocalPlayer : Player, IDamageAble
     public Transform camLookAtPoint;
 
     public HasParts HasParts { get; }
+    public GameObject GameObject => gameObject;
     
     public CrowdControlType CCType { get; set; }
 
@@ -49,7 +50,7 @@ public class LocalPlayer : Player, IDamageAble
 
     private void GetArca()
     {
-        Collider[] colliders = Physics.OverlapSphere(camLookAtPoint.position + Vector3.up, 3f,  
+        Collider[] colliders = Physics.OverlapSphere(transform.position + Vector3.up, 1.5f,  
             LayerMask.GetMask("Arca"));
 
         if (colliders.Length <= 0) return;
@@ -60,10 +61,9 @@ public class LocalPlayer : Player, IDamageAble
             collider.transform.position += direction * (10f * Time.deltaTime);
             float distance = Vector3.Distance(new Vector3(collider.transform.position.x, 0f, collider.transform.position.z), 
                 new Vector3(transform.position.x, 0f, transform.position.z));
-            if (distance <= 0.1f)
-            {
-                collider.gameObject.SetActive(false);
-            }
+            if ((distance <= 0.1f) == false) continue;
+            status.HasArca++;
+            collider.gameObject.SetActive(false);
         }
     }
 

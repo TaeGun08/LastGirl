@@ -7,7 +7,8 @@ public class ProjectileAbility : Ability
     private void OnTriggerEnter(Collider other)
     {
         IDamageAble hitAble = CombatSystem.Instance.GetHitAble(other);
-        if (hitAble == null) return;
+        if (hitAble == null 
+            || other.gameObject.layer.Equals(LayerMask.NameToLayer("Enemy")) == false) return;
         CombatEvent e =  new CombatEvent();
         e.Sender = localPlayer;
         e.Receiver = hitAble;
@@ -34,7 +35,6 @@ public class ProjectileAbility : Ability
     {
         if (AbilityOn) return;
         
-        Debug.Log("발사체능력발동");
         transform.position = e.FirePoint.position;
         transform.forward = e.FirePoint.forward;
         

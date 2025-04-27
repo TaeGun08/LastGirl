@@ -1508,7 +1508,7 @@ MonoBehaviour:
     Damage: 25
     Speed: 1.5
     AttackDelay: 4
-    HasArca: 100
+    HasArca: 15
   ccType: 0
   attackColliders:
   - {fileID: 621796785670320813}
@@ -1516,9 +1516,8 @@ MonoBehaviour:
   - {fileID: 3170998999789306666}
   chaseAngle: 20
   hasPattern: 5
-  localPlayer: {fileID: 0}
-  animator: {fileID: 0}
-  agent: {fileID: 0}
+  states: []
+  isPattern: 0
   attackDelay: 4
   patternNumber: 0
   deathTime: 4

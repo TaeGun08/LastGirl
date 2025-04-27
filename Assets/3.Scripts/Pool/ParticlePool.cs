@@ -9,17 +9,12 @@ public class ParticlePool : MonoBehaviour, IEffectPool
     
     [Header("ParticlePool Settings")]
     [SerializeField] private IEffectPool.ParticleType type;
-    
-    private ParticleSystem particle;
-
-    private void Awake()
-    {
-        particle = GetComponent<ParticleSystem>();
-    }
+    [SerializeField] private ParticleSystem particle;
+    [SerializeField] private bool activeOn;
     
     private void LateUpdate()
     {
-        if (particle.isPlaying == false)
+        if (particle.isPlaying == false && activeOn == false)
         {
             particle.gameObject.SetActive(false);
         }

@@ -11575,7 +11575,7 @@ MonoBehaviour:
     MaxDurability: 100
     WalkSpeed: 2
     RunSpeed: 5
-    DashForce: 30
+    DashForce: 25
     DashCooldown: 3
     HasArca: 0
   camLookAtPoint: {fileID: 3349650346187310344}

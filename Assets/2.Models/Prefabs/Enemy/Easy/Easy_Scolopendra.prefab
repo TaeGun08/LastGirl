@@ -8997,7 +8997,7 @@ MonoBehaviour:
     Damage: 70
     Speed: 0
     AttackDelay: 8
-    HasArca: 1000
+    HasArca: 80
   ccType: 0
   attackColliders:
   - {fileID: 7980380446260354496}

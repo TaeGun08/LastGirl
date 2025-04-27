@@ -22,9 +22,9 @@ namespace Michsky.MUIP
                 try
                 {
 #if UNITY_2023_2_OR_NEWER
-                    var canvas = FindObjectsByType<Canvas>(FindObjectsSortMode.None)[0];
+                    var canvas = GetComponentsInParent<Canvas>(FindObjectsSortMode.None)[0];
 #else
-                    var canvas = (Canvas)FindObjectsOfType(typeof(Canvas))[0];
+                    var canvas = (Canvas)GetComponentsInParent(typeof(Canvas))[0];
 #endif
                     dragArea = canvas.GetComponent<RectTransform>();
                 }

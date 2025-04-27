@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         currentState.StateUpdate();
+        OnNpcCheck();
     }
 
     public void ChangeState(PlayerState.StateName changeState)
@@ -91,22 +92,18 @@ public class PlayerController : MonoBehaviour
         ChangeState(currentState.Name);
     }
 
-    public void SetAbility(Ability ability)
+    private void OnNpcCheck()
     {
-        for (int i = 0; i < hasAbility.Length; i++)
-        {
-            if (hasAbility[i] != null) continue;
-            hasAbility[i] = ability;
-            return;
-        }
+        if(Input.GetKeyDown(KeyCode.F) == false) return;
         
-        Debug.Log("어빌리티가 6개 모두 존재합니다.");
-    }
-
-    public void RemoveAbility(int index)
-    {
-        Debug.Log($"{hasAbility[index].gameObject}를 버렸습니다.");
-        Destroy(hasAbility[index].gameObject);
-        hasAbility[index] = null;
+        Collider[] colliders = Physics.OverlapSphere(transform.position + Vector3.up, 1.5f,  
+            LayerMask.GetMask("Npc"));
+        
+        if (colliders.Length <= 0) return;
+        
+        foreach (Collider collider in colliders)
+        {
+            collider.gameObject.GetComponent<Npc>().OpenUI();
+        }
     }
 }

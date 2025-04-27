@@ -663,16 +663,15 @@ MonoBehaviour:
     Damage: 15
     Speed: 2
     AttackDelay: 3
-    HasArca: 30
+    HasArca: 10
   ccType: 0
   attackColliders:
   - {fileID: 6117246166438653504}
   - {fileID: 3281574623612358209}
   chaseAngle: 20
   hasPattern: 3
-  localPlayer: {fileID: 0}
-  animator: {fileID: 0}
-  agent: {fileID: 0}
+  states: []
+  isPattern: 0
   attackDelay: 2
   patternNumber: 2
   deathTime: 3
