@@ -8991,13 +8991,14 @@ MonoBehaviour:
     LegHitColliders: []
     ArmHitColliders: []
   Data:
+    index: 6
     Hp: 2000
     MaxHp: 2000
     Armor: 200
     Damage: 70
     Speed: 0
-    AttackDelay: 8
-    HasArca: 80
+    AttackDelay: 5
+    HasArca: 100
   ccType: 0
   attackColliders:
   - {fileID: 7980380446260354496}
@@ -9011,7 +9012,7 @@ MonoBehaviour:
   - {fileID: 6386054442097787556}
   - {fileID: 104155136842654906}
   isPattern: 0
-  attackDelay: 8
+  attackDelay: 5
   patternNumber: 0
   deathTime: 5
 --- !u!1 &8138949098287923878

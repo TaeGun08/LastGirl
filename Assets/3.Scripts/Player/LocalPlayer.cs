@@ -14,6 +14,8 @@ public class LocalPlayer : Player, IDamageAble
     public CrowdControlType CCType { get; set; }
 
     private float dashCoolTimer;
+
+    public GameObject PlayerCanvas;
     
     private void Awake()
     {

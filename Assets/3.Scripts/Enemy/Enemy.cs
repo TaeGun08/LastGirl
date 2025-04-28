@@ -7,6 +7,8 @@ using Random = UnityEngine.Random;
 
 public abstract class Enemy : HasParts, IDamageAble
 {
+    protected RoundSystem roundSystem;
+    
     private static readonly int DEAD = Animator.StringToHash("Dead");
     private static readonly int HIT = Animator.StringToHash("Hit");
     protected static readonly int ATTACK = Animator.StringToHash("Attack");
@@ -15,6 +17,7 @@ public abstract class Enemy : HasParts, IDamageAble
     [System.Serializable]
     public class EnemyData
     {
+        public int index;
         public int Hp;
         public int MaxHp;
         public int Armor;
@@ -23,7 +26,7 @@ public abstract class Enemy : HasParts, IDamageAble
         public float AttackDelay;
         public int HasArca;
     }
-
+    
     [Header("EnemyData Settings")] 
     public EnemyData Data;
 
@@ -63,9 +66,18 @@ public abstract class Enemy : HasParts, IDamageAble
     [Header("EnemyDeadTime Settings")]
     [SerializeField] protected float deathTime;
 
+    protected void OnEnable()
+    {
+        Data.Hp = Data.MaxHp;
+        isDead = false;
+        if (states.Length <= 0) return;
+        ChangeState(EnemyState.StateName.Idle);
+    }
+
     protected virtual void Start()
     {
         base.Start();
+        roundSystem = RoundSystem.Instance;
         
         localPlayer = Player.LocalPlayer.GetComponent<LocalPlayer>();
 
@@ -154,7 +166,9 @@ public abstract class Enemy : HasParts, IDamageAble
             arca.AddForce(new Vector3(Random.Range(-1.5f, 1.5f), Random.Range(3f, 6f),Random.Range(-1.5f, 1.5f)));
         }
         yield return new WaitForSeconds(deathTime);
-        Destroy(gameObject);
+        roundSystem.SpawnEnemyCount--;
+        Debug.Log(roundSystem.SpawnEnemyCount);
+        gameObject.SetActive(false);
     }
     
     public void ChangeState(EnemyState.StateName name)

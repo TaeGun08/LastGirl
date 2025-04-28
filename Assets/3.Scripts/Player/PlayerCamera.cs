@@ -8,6 +8,8 @@ using Random = UnityEngine.Random;
 
 public class PlayerCamera : MonoBehaviour
 {
+    private Camera cam;
+    
     [Header("PlayerCameraRotate Settings")]
     [SerializeField, Range(0f, 1000f)] private float mouseSensitivity = 300f;
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
@@ -20,6 +22,7 @@ public class PlayerCamera : MonoBehaviour
 
     private void Awake()
     {
+        cam = Camera.main;
         pov = virtualCamera.GetCinemachineComponent<CinemachinePOV>();
         transposer = virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
     }

@@ -11579,6 +11579,7 @@ MonoBehaviour:
     DashCooldown: 3
     HasArca: 0
   camLookAtPoint: {fileID: 3349650346187310344}
+  PlayerCanvas: {fileID: 8716896562452062422}
 --- !u!114 &8796888689231389319
 MonoBehaviour:
   m_ObjectHideFlags: 0

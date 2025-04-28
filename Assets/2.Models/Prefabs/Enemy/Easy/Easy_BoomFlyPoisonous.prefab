@@ -2053,13 +2053,14 @@ MonoBehaviour:
     LegHitColliders: []
     ArmHitColliders: []
   Data:
+    index: 1
     Hp: 50
     MaxHp: 50
     Armor: 5
     Damage: 30
     Speed: 2
     AttackDelay: 0
-    HasArca: 5
+    HasArca: 4
   ccType: 0
   attackColliders: []
   chaseAngle: 0

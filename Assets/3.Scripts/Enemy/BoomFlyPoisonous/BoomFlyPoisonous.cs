@@ -27,6 +27,8 @@ public class BoomFlyPoisonous : Enemy
         particle.Play();
         EnergyExplosion energyExplosion = particle.GetComponent<EnergyExplosion>();
         energyExplosion.Damage = Data.Damage;
-        Destroy(gameObject);
+        roundSystem.SpawnEnemyCount--;
+        Debug.Log(roundSystem.SpawnEnemyCount);
+        gameObject.SetActive(false);
     }
 }

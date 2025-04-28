@@ -657,13 +657,14 @@ MonoBehaviour:
     - {fileID: 752699833184925010}
     ArmHitColliders: []
   Data:
+    index: 2
     Hp: 100
     MaxHp: 100
     Armor: 10
     Damage: 15
     Speed: 2
     AttackDelay: 3
-    HasArca: 10
+    HasArca: 7
   ccType: 0
   attackColliders:
   - {fileID: 6117246166438653504}

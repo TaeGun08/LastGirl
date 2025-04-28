@@ -152,6 +152,7 @@ MonoBehaviour:
     - {fileID: 7287808429004555391}
     - {fileID: 714457660058267285}
   Data:
+    index: 5
     Hp: 1000
     MaxHp: 1000
     Armor: 100

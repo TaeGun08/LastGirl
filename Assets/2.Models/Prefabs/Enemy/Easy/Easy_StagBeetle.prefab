@@ -2822,13 +2822,14 @@ MonoBehaviour:
     LegHitColliders: []
     ArmHitColliders: []
   Data:
+    index: 4
     Hp: 400
     MaxHp: 400
     Armor: 50
     Damage: 40
     Speed: 1.5
     AttackDelay: 5
-    HasArca: 20
+    HasArca: 25
   ccType: 0
   attackColliders:
   - {fileID: 2442148898719742963}

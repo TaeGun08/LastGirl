@@ -40,6 +40,14 @@ public class AbilityStore : MonoBehaviour
         playerController = localPlayer.playerController;
     }
 
+    private void LateUpdate()
+    {
+        if (abilitySystem.AbilityCanvas.StoreUI.activeInHierarchy == false && AbilityData != null)
+        {
+            Reset();
+        }
+    }
+
     private void ButtonEvents()
     {
         buttons[0].onClick.AddListener(() =>
@@ -76,5 +84,13 @@ public class AbilityStore : MonoBehaviour
             buyShellUI[1].SetActive(false);
             AbilityData = null;
         });
+    }
+
+    private void Reset()
+    {
+        buyShellUI[0].SetActive(false);
+        buyShellUI[1].SetActive(false);
+        AbilityData = null;
+        AbilityUI  = null;
     }
 }

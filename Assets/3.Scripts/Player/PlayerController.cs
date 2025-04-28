@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private GameManager gameManager;
+    
     private static readonly int RELOAD = Animator.StringToHash("Reload");
     public LocalPlayer LocalPlayer { get; private set; }
 
@@ -35,6 +37,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        gameManager = GameManager.Instance;
+        
         LocalPlayer = Player.LocalPlayer.GetComponent<LocalPlayer>();
 
         for (int i = 0; i < states.Length; i++)
@@ -52,6 +56,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (gameManager.IsGameStart == false ) return;
+        
         currentState.StateUpdate();
         OnNpcCheck();
     }
