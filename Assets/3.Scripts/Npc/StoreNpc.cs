@@ -16,8 +16,16 @@ public class StoreNpc : Npc
         storeShell.HasAbility();
     }
 
+    private void OnDisable()
+    {
+        abilitySystem.AbilityCanvas.StoreUI.gameObject.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
     protected override void Start()
     {
+        abilitySystem = AbilitySystem.Instance;
         base.Start();
         StartCoroutine(nameof(OnAbilityStoreCoroutine));
     }

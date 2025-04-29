@@ -1,15 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class EnemyState : MonoBehaviour
 {
+    protected PlayerCamera playerCam;
+    
     public enum StateName
     {
         Idle,
         Walk,
         Attack,
         Dead,
+    }
+
+    protected void Start()
+    {
+        playerCam = Camera.main.GetComponent<PlayerCamera>();
     }
 
     public abstract StateName Name { get; }

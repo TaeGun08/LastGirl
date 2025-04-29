@@ -38,5 +38,6 @@ public class DirectionCamera : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
         gameManager.IsGameStart = true;
+        gameObject.SetActive(false);
     }
 }

@@ -52,7 +52,7 @@ public class LocalPlayer : Player, IDamageAble
 
     private void GetArca()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position + Vector3.up, 1.5f,  
+        Collider[] colliders = Physics.OverlapSphere(transform.position + Vector3.up, 10f,  
             LayerMask.GetMask("Arca"));
 
         if (colliders.Length <= 0) return;

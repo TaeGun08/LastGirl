@@ -157,7 +157,7 @@ MonoBehaviour:
     MaxHp: 1000
     Armor: 100
     Damage: 60
-    Speed: 2.5
+    Speed: 3
     AttackDelay: 5
     HasArca: 50
   ccType: 0
@@ -470,6 +470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11c980b6fe179f14d85c08db3525807e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particles: []
 --- !u!1 &578066638970153853
 GameObject:
   m_ObjectHideFlags: 0
@@ -2085,6 +2086,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bded093fd40fe2c4b92095b9749465e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particles: []
 --- !u!1 &3047555251490397162
 GameObject:
   m_ObjectHideFlags: 0
@@ -2951,6 +2953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252876778afcd614ab2c91264dfe0b35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particles: []
 --- !u!1 &5215184465996997011
 GameObject:
   m_ObjectHideFlags: 0
@@ -3051,6 +3054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5759b0d544948804f8784086a944aada, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particles: []
 --- !u!1 &5299279005198789509
 GameObject:
   m_ObjectHideFlags: 0
@@ -3210,7 +3214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4736003418194029524}
   - component: {fileID: 6886536069392586810}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: pelvis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3518,6 +3522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28b05b6bc3e7f9f45ad07479161c0cd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particles: []
 --- !u!1 &5838349116063113246
 GameObject:
   m_ObjectHideFlags: 0
@@ -4484,6 +4489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f7e5d45aea3c84f8afab9d4853f9c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particles: []
 --- !u!1 &7653396603597377101
 GameObject:
   m_ObjectHideFlags: 0
@@ -5132,6 +5138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0cd3aa46901fcf4d80f4dd04d0b8f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particles: []
 --- !u!1 &8757278120391374077
 GameObject:
   m_ObjectHideFlags: 0
@@ -5352,3 +5359,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c952708f977564fb31a84985ee96cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particles: []

@@ -2118,11 +2118,12 @@ MonoBehaviour:
     LegHitColliders: []
     ArmHitColliders: []
   Data:
+    index: 0
     Hp: 50
     MaxHp: 50
     Armor: 5
     Damage: 30
-    Speed: 1.5
+    Speed: 3
     AttackDelay: 0
     HasArca: 2
   ccType: 0
@@ -3477,7 +3478,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7513843962500640661}
-  m_Layer: 0
+  - component: {fileID: 5534432542736013460}
+  m_Layer: 10
   m_Name: root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3500,6 +3502,27 @@ Transform:
   - {fileID: 672062979371868096}
   m_Father: {fileID: 7037059996471947997}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &5534432542736013460
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8053753444338005515}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0.3, z: 0}
 --- !u!1 &8205851727673361258
 GameObject:
   m_ObjectHideFlags: 0

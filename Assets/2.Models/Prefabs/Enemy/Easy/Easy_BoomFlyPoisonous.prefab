@@ -823,7 +823,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 207479613174276052}
-  m_Layer: 0
+  - component: {fileID: 6262550539671350255}
+  m_Layer: 10
   m_Name: root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -846,6 +847,27 @@ Transform:
   - {fileID: 429809227101413283}
   m_Father: {fileID: 8641191236554970400}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &6262550539671350255
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3229257197099670048}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0.57, z: 0}
 --- !u!1 &3861609392496990523
 GameObject:
   m_ObjectHideFlags: 0
@@ -2058,7 +2080,7 @@ MonoBehaviour:
     MaxHp: 50
     Armor: 5
     Damage: 30
-    Speed: 2
+    Speed: 3
     AttackDelay: 0
     HasArca: 4
   ccType: 0

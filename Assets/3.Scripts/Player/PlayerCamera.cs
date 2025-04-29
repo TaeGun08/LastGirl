@@ -86,14 +86,24 @@ public class PlayerCamera : MonoBehaviour
         impulseSource.GenerateImpulse();
     }
 
-    public IEnumerator ShakeCameraCoroutine(float time)
+    private IEnumerator ShakeCameraCoroutine(float time)
     {
         float timer = time;
         while (timer > 0)
         {
             timer -= Time.deltaTime;
+            float shakeX = Random.Range(-0.005f, 0.005f);
+            float shakeY = Random.Range(-0.005f, 0.005f);
+            float shakeZ = Random.Range(-0.005f, 0.005f);
+            Vector3 shake = new Vector3(shakeX,  shakeY, shakeZ);
+            impulseSourceShake.m_DefaultVelocity = shake;
             impulseSourceShake.GenerateImpulse();
             yield return null;
         }
+    }
+
+    public void ShakeCamera(float time)
+    {
+        StartCoroutine(ShakeCameraCoroutine(time));
     }
 }

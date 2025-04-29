@@ -12,14 +12,17 @@ public class RoundController : MonoBehaviour
     
     [Header("RoundController Settings")] 
     [SerializeField] private RoundObject roundObject;
+    [SerializeField] private Transform[] spawnPoints;
+    [SerializeField] private GameObject[] roundEndPrefabs;
     private int curSpawnEnemy;
-    private int curRound;
+    [SerializeField] private int curRound;
     
     private Queue<Enemy> minionQueue = new Queue<Enemy>();
     private Queue<Enemy> eliteQueue = new Queue<Enemy>();
     private Queue<Enemy> subBossQueue = new Queue<Enemy>();
     private Queue<Enemy> lastBossQueue = new Queue<Enemy>();
-
+    
+    
     private void Start()
     {
         gameManager = GameManager.Instance;
@@ -31,6 +34,9 @@ public class RoundController : MonoBehaviour
         if (gameManager.IsGameStart == false) return;
         if (roundSystem.IsRoundStart == false) return;
         roundSystem.IsRoundStart = false;
+        roundEndPrefabs[0].gameObject.SetActive(false);
+        roundEndPrefabs[1].gameObject.SetActive(false);
+        roundEndPrefabs[2].gameObject.SetActive(false);
         roundSystem.RoundCanvas.RoundText.text = $"현재 라운드 : {curRound + 1}";
         StartCoroutine(SpawnEnemiesCoroutine(roundObject.Data[curRound].Minion, 
             roundObject.Data[curRound].MaxSpawnMinion, minionQueue));
@@ -47,6 +53,16 @@ public class RoundController : MonoBehaviour
         curRound++;
     }
 
+    private void LateUpdate()
+    {
+        if (roundEndPrefabs[0].activeInHierarchy
+            || roundSystem.SpawnEnemyCount > 0
+            || curRound <= 0) return;
+        roundEndPrefabs[0].gameObject.SetActive(true);
+        roundEndPrefabs[1].gameObject.SetActive(true);
+        roundEndPrefabs[2].gameObject.SetActive(true);
+    }
+    
     private IEnumerator SpawnEnemiesCoroutine(Enemy[] enemyArr, int count, Queue<Enemy> enemyQueue)
     {
         if (enemyArr == null) yield break;
@@ -54,7 +70,7 @@ public class RoundController : MonoBehaviour
         Enemy temp = null;
         int spawnEnemyCount = 0;
         int maxSpawnEnemyCount = count;
-        WaitForSeconds wait = new WaitForSeconds(0.25f);
+        WaitForSeconds wait = new WaitForSeconds(0.1f);
         while (spawnEnemyCount < maxSpawnEnemyCount)
         {
             bool check = false;
@@ -67,6 +83,8 @@ public class RoundController : MonoBehaviour
                     if (temp.gameObject.activeInHierarchy == false)
                     {
                         temp.gameObject.SetActive(true);
+                        temp.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length)].position;
+                        temp.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length)].position;
                         enemyQueue.Enqueue(temp);
                         check = true;
                         break;
@@ -78,8 +96,7 @@ public class RoundController : MonoBehaviour
             if (check == false)
             {
                 enemyQueue.Enqueue(Instantiate(enemies[Random.Range(0, enemies.Length)].gameObject, 
-                    new Vector3(Player.LocalPlayer.transform.position.x + Random.Range(-20f, 20f), 0f, 
-                        Player.LocalPlayer.transform.position.z + Random.Range(-20f, 20f)), 
+                    spawnPoints[Random.Range(0, spawnPoints.Length)].position, 
                     Quaternion.identity, transform).GetComponent<Enemy>());
             }
 

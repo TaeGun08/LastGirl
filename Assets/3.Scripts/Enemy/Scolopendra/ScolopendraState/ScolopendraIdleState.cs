@@ -43,7 +43,7 @@ public class ScolopendraIdleState : EnemyState
         
         float distance = Vector3.Distance(new Vector3(enemy.transform.position.x, 0f, enemy.transform.position.z), 
             new Vector3(enemy.LocalPlayer.transform.position.x, 0f, enemy.LocalPlayer.transform.position.z));
-        Debug.Log(distance);
+
         if (target <= enemy.chaseAngle * 0.5f && distance <= 11) return;
         enemy.ChangeState(StateName.Walk);
     }

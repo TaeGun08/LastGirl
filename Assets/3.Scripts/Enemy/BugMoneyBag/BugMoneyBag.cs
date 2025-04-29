@@ -28,7 +28,6 @@ public class BugMoneyBag : Enemy
         EnergyExplosion energyExplosion = particle.GetComponent<EnergyExplosion>();
         energyExplosion.Damage = Data.Damage;
         roundSystem.SpawnEnemyCount--;
-        Debug.Log(roundSystem.SpawnEnemyCount);
         gameObject.SetActive(false);
     }
 }

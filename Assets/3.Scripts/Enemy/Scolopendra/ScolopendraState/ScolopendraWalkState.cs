@@ -29,6 +29,7 @@ public class ScolopendraWalkState : EnemyState
         Vector3 direction = (enemy.LocalPlayer.transform.position - enemy.transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         enemy.transform.DORotateQuaternion(lookRotation, 1f);
+        playerCam.ShakeCamera(2f);
         yield return new WaitForSeconds(3f);
         enemy.attackColliders[0].SetActive(false);
         enemy.ChangeState(StateName.Idle);

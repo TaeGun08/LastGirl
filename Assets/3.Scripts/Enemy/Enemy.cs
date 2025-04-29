@@ -70,7 +70,7 @@ public abstract class Enemy : HasParts, IDamageAble
     {
         Data.Hp = Data.MaxHp;
         isDead = false;
-        if (states.Length <= 0) return;
+        if (currentState == null) return;
         ChangeState(EnemyState.StateName.Idle);
     }
 

@@ -8,6 +8,7 @@ public class FireAbility : Ability
     protected override IEnumerator CoolTimeCoroutine()
     {
         AbilityOn = true;
+        yield return new WaitForSeconds(0.1f);
         particle.Play();
         Collider[] hitEnemy = Physics.OverlapBox(attackCollider.bounds.center, attackCollider.bounds.size,
             Quaternion.identity, LayerMask.GetMask("Enemy"));

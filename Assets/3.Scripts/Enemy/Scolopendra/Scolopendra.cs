@@ -17,6 +17,10 @@ public class Scolopendra : Enemy
 
     protected override void UpdatePattern()
     {
+        float distance = Vector3.Distance(new Vector3(transform.position.x, 0f, transform.position.z), 
+            new Vector3(LocalPlayer.transform.position.x, 0f, LocalPlayer.transform.position.z));
+        
+        if (distance > 20) return;
         if (isPattern) return;
         attackDelay -= Time.deltaTime;
         if(attackDelay > 0 || currentState.Name.Equals(EnemyState.StateName.Walk)) return;
