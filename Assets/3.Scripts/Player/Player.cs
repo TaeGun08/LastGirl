@@ -52,13 +52,13 @@ public class Player : HasParts
         {
             animator.SetLookAtWeight(1.0f);
             animator.SetLookAtPosition(aimPoint.position);
-        
-            animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1f);
-            animator.SetIKPosition(AvatarIKGoal.LeftHand, leftHand.position);
-        
-            animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1f);
-            animator.SetIKRotation(AvatarIKGoal.LeftHand, leftHand.rotation);
         }
+        
+        animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1f);
+        animator.SetIKPosition(AvatarIKGoal.LeftHand, leftHand.position);
+        
+        animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1f);
+        animator.SetIKRotation(AvatarIKGoal.LeftHand, leftHand.rotation);
         
         if (IsReload) return;
         

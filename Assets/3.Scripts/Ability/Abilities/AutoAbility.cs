@@ -6,42 +6,23 @@ public class AutoAbility : Ability
 {
     protected override IEnumerator CoolTimeCoroutine()
     {
+        yield return new WaitForSeconds(0.1f);
         float timer = data.cooldown;
 
         while (gameObject.activeInHierarchy)
         {
+            if (particle.gameObject.activeInHierarchy == false) continue;
+            
             timer -= Time.deltaTime;
             if (timer <= 0)
             {
                 transform.position = localPlayer.transform.position;
                 transform.forward = localPlayer.transform.forward;
 
-
-                yield return null;
+                yield return new WaitForSeconds(0.1f);
                 
-                particle.Clear();
                 particle.Play();
-                
-                Collider[] hitEnemy = Physics.OverlapBox(attackCollider.bounds.center, attackCollider.bounds.size,
-                    Quaternion.identity, LayerMask.GetMask("Enemy"));
-
-                if (hitEnemy.Length > 0)
-                {
-                    foreach (Collider hit in hitEnemy)
-                    {
-                        IDamageAble hitAble = CombatSystem.Instance.GetHitAble(hit);
-                        if (hitAble == null) continue;
-                        CombatEvent e =  new CombatEvent();
-                        e.Sender = localPlayer;
-                        e.Receiver = hitAble;
-                        e.Damage = data.damage;
-                        e.Collider = hit;
-                        e.HitPosition = hit.transform.position;
-                        e.HasParts = hitAble.HasParts;
-                
-                        CombatSystem.Instance.AddEvent(e);
-                    }
-                }
+                particle.gameObject.SetActive(true);
                 
                 timer = data.cooldown;
             }
@@ -60,6 +41,6 @@ public class AutoAbility : Ability
     
     protected override void UseAutoAbility(CombatEvent e)
     {
-        StartCoroutine("CoolTimeCoroutine");
+        StartCoroutine(nameof(CoolTimeCoroutine));
     }
 }

@@ -70,13 +70,18 @@ public class PlayerController : MonoBehaviour
         currentState.StateEnter(this);
     }
 
-    public void ReloadWeapon(Vector2 inputAxis)
+    public void ReloadWeapon(Vector2 inputAxis, bool auto)
     {
         AnimatorStateInfo stateInfo = LocalPlayer.animator.GetCurrentAnimatorStateInfo(2);
 
         if (stateInfo.IsName("Reload") && stateInfo.normalizedTime < 0.85f) return;
         
-        if (!Input.GetKeyDown(KeyCode.R) || currentWeapon.Data.Ammo.Equals(currentWeapon.Data.MaxAmmo)) return;
+        if (auto == false)
+        {
+            if (!Input.GetKeyDown(KeyCode.R)) return;
+        }
+        
+        if (currentWeapon.Data.Ammo.Equals(currentWeapon.Data.MaxAmmo)) return;
         
         StartCoroutine(ReloadCoroutine(inputAxis));
     }

@@ -50,7 +50,7 @@ public class PlayerFireIdleState : PlayerState
             Quaternion.Slerp(localPlayer.transform.rotation, targetRotation, Time.deltaTime * 10f);
 
 
-        playerController.ReloadWeapon(inputAxis);
+        playerController.ReloadWeapon(inputAxis, false);
         if (localPlayer.IsReload)
         {
             if (inputAxis.Equals(Vector2.zero) == false)
@@ -68,12 +68,17 @@ public class PlayerFireIdleState : PlayerState
 
         if (Input.GetMouseButton(0))
         {
+            if (playerController.currentWeapon.Data.Ammo <= 0f)
+            {
+                playerController.ReloadWeapon(inputAxis, true);
+            }
+            
             if (inputAxis.Equals(Vector2.zero) == false)
             {
                 playerController.ChangeState(StateName.FireWalk);
                 return;
             }
-
+            
             if (playerController.currentWeapon.Data.Ammo <= 0f) return;
             if (!playerController.currentWeapon.Fire()) return;
             animator.ResetTrigger(FIRE_IK);

@@ -30,7 +30,7 @@ public class PlayerIdleState : PlayerState
         
         Vector2 inputAxis = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         
-        playerController.ReloadWeapon(inputAxis);
+        playerController.ReloadWeapon(inputAxis, false);
         
         if(localPlayer.IsReload) return;
         
@@ -42,6 +42,11 @@ public class PlayerIdleState : PlayerState
 
         if (Input.GetMouseButtonDown(0))
         {
+            if (playerController.currentWeapon.Data.Ammo <= 0f)
+            {
+                playerController.ReloadWeapon(inputAxis, true);
+            }
+            
             playerController.ChangeState(StateName.FireIdle);
             return;
         }

@@ -42,8 +42,6 @@ public class BarrierAbility : Ability
 
     protected override void UseBarrierAbility(CombatEvent e)
     {
-        Debug.Log("배리어능력발동");
-
         transform.position = e.FirePoint.position + Vector3.up * 0.8f;
         transform.forward = e.FirePoint.forward;
         transform.SetParent(localPlayer.transform);

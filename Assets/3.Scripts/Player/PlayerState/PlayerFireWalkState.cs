@@ -54,7 +54,7 @@ public class PlayerFireWalkState : PlayerState
         animator.SetFloat(LEFT_MOVE, inputAxis.x);
         animator.SetFloat(FORWARD_MOVE, inputAxis.y);
         
-        playerController.ReloadWeapon(inputAxis);
+        playerController.ReloadWeapon(inputAxis, false);
         if (localPlayer.IsReload)
         {
             if (inputAxis.Equals(Vector2.zero)) 
@@ -74,6 +74,11 @@ public class PlayerFireWalkState : PlayerState
         
         if (Input.GetMouseButton(0))
         {
+            if (playerController.currentWeapon.Data.Ammo <= 0f)
+            {
+                playerController.ReloadWeapon(inputAxis, true);
+            }
+            
             if (inputAxis.Equals(Vector2.zero))
             {
                 playerController.ChangeState(StateName.FireIdle);

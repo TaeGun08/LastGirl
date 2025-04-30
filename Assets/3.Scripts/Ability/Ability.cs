@@ -9,26 +9,26 @@ public abstract class Ability : MonoBehaviour
     public class AbilitySettingData
     {
         public int damage;
-        public float endAbilityTime;
-        public float cooldown;
-        public float attackDelay;
+        public float cooldown;  
     }
     
     protected LocalPlayer localPlayer;
 
     [Header("Ability Settings")]
     [SerializeField] protected AbilitySettingData data;
+    public AbilitySettingData Data => data;
     
     [Header("AbilityData")]
     public AbilityData abilityData;
     
     public bool AbilityOn;
-    [SerializeField] protected ParticleSystem particle;
-    [SerializeField] protected Collider attackCollider;
+    protected ParticleSystem particle;
 
     protected virtual void Start()
     {
         localPlayer = Player.LocalPlayer.GetComponent<LocalPlayer>();
+        particle = GetComponentInParent<ParticleSystem>();
+        
         AbilitySystem.Instance.Events.OnFireAbilityEvent += UseFireAbility;
         AbilitySystem.Instance.Events.OnDashAbilityEvent += UseDahsAbility;
         AbilitySystem.Instance.Events.OnBarrierAbilityEvent += UseBarrierAbility;
