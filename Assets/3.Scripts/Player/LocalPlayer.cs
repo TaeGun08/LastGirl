@@ -52,7 +52,7 @@ public class LocalPlayer : Player, IDamageAble
 
     private void GetArca()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position + Vector3.up, 10f,  
+        Collider[] colliders = Physics.OverlapSphere(transform.position + Vector3.up, 30f,  
             LayerMask.GetMask("Arca"));
 
         if (colliders.Length <= 0) return;
@@ -88,11 +88,22 @@ public class LocalPlayer : Player, IDamageAble
             if (status.Durability <= 0) status.Durability = 0;
         }
         
-        if (status.Durability <= 0)
+        switch (status.Durability)
         {
-            status.Hp -= damage;
+            case > 100:
+                status.Durability = 100;
+                break;
+            case <= 0:
+                status.Hp -= damage;
+                break;
         }
-        
+
+        if (status.Hp > 100)
+        {
+            status.Hp = 100;
+            status.Durability -= combatEvent.Damage;
+        }
+
         CCType = combatEvent.CCType;
 
         if (status.Hp > 0) return;

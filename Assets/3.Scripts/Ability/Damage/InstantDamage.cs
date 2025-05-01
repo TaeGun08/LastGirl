@@ -2,13 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class InstantDamage : MonoBehaviour
 {
     private Ability ability;
-    private ParticleSystem particle;       
+    private ParticleSystem particle;
     
-    [Header("InstantDamage Settings")]
+    [Header("InstantDamage Settings")] 
+    [SerializeField] private bool enemyOrPlayer;
     [SerializeField] private float duration;
     private float durationTimer;
     
@@ -26,8 +28,10 @@ public class InstantDamage : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         IDamageAble hitAble = CombatSystem.Instance.GetHitAble(other);
-        if (hitAble == null 
-            || other.gameObject.layer.Equals(LayerMask.NameToLayer("Enemy")) == false) return;
+        string targetLayer = enemyOrPlayer ? "Player" : "Enemy";
+        if (hitAble == null || 
+            other.gameObject.layer.Equals(LayerMask.NameToLayer(targetLayer)) == false) return;
+        
         CombatEvent e =  new CombatEvent();
         e.Receiver = hitAble;
         e.Damage = ability.Data.damage;

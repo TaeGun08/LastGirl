@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class FireAbility : Ability
 {
+    [SerializeField] private bool setPlayerTrs;
+    
     protected override IEnumerator CoolTimeCoroutine()
     {
         AbilityOn = true;
-        particle.Play();
+        yield return new WaitForSeconds(0.1f);
         particle.gameObject.SetActive(true);
+        particle.Play();
         yield return new WaitForSeconds(data.cooldown);
         AbilityOn = false;
     }
@@ -18,8 +21,12 @@ public class FireAbility : Ability
     {
         if (AbilityOn || particle.gameObject.activeInHierarchy) return;
         
-        transform.position = e.FirePoint.position;
-        transform.forward = e.FirePoint.forward;
+        particle.transform.position = e.FirePoint.position;
+        particle.transform.forward = e.FirePoint.forward;
+        if (setPlayerTrs)
+        {
+            particle.transform.SetParent(localPlayer.transform);
+        }
         
         StartCoroutine(nameof(CoolTimeCoroutine));
     }

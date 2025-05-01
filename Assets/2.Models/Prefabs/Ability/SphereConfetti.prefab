@@ -10,14 +10,16 @@ GameObject:
   m_Component:
   - component: {fileID: 3436672513129962660}
   - component: {fileID: 6601355976913654179}
+  - component: {fileID: 6888305788383880864}
   - component: {fileID: 3773649404802816240}
+  - component: {fileID: 515295435570025629}
   m_Layer: 0
   m_Name: SphereConfetti
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3436672513129962660
 Transform:
   m_ObjectHideFlags: 0
@@ -4814,6 +4816,20 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &6888305788383880864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3946831940584884142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddbb38e23ac6f314eac895acca0c92fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyOrPlayer: 0
+  duration: 2
 --- !u!199 &3773649404802816240
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -4888,45 +4904,13 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!1 &7373095518473760815
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 624131806685491247}
-  - component: {fileID: 3701773863337148347}
-  m_Layer: 0
-  m_Name: AttackCollider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &624131806685491247
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7373095518473760815}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1214315580645091515}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3701773863337148347
+--- !u!65 &515295435570025629
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7373095518473760815}
+  m_GameObject: {fileID: 3946831940584884142}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -4972,7 +4956,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3436672513129962660}
-  - {fileID: 624131806685491247}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4544648199464510272
@@ -4988,11 +4971,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    key: 4
     damage: 15
-    endAbilityTime: 0
     cooldown: 10
-    attackDelay: 0
+  abilityData:
+    Key: 0
+    Name: 
+    Rank: 0
+    Price: 0
+    AbilityPrefab: {fileID: 0}
+    AbilitySummary: 
   AbilityOn: 0
   particle: {fileID: 6601355976913654179}
-  attackCollider: {fileID: 3701773863337148347}
+  setPlayerTrs: 0

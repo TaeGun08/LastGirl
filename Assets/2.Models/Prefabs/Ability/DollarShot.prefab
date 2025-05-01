@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9172906524318794614
 Transform:
   m_ObjectHideFlags: 0
@@ -54,7 +54,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -4745,6 +4745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddbb38e23ac6f314eac895acca0c92fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyOrPlayer: 0
   duration: 1
 --- !u!65 &4042391521432874617
 BoxCollider:
@@ -4817,7 +4818,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -9633,6 +9634,7 @@ MonoBehaviour:
     AbilityPrefab: {fileID: 0}
     AbilitySummary: 
   AbilityOn: 0
+  particle: {fileID: 4305785521633299113}
 --- !u!1 &6093981930018236687
 GameObject:
   m_ObjectHideFlags: 0
@@ -9683,7 +9685,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:

@@ -32,7 +32,7 @@ public class DOTDamage : MonoBehaviour
         delayTimer -= Time.deltaTime;
         if ((delayTimer <= 0) == false) return;
         Collider[] hitEnemy = Physics.OverlapBox(attackCollider.bounds.center, 
-            attackCollider.bounds.size, Quaternion.identity, LayerMask.GetMask("Enemy"));
+            attackCollider.bounds.size * 0.5f, Quaternion.identity, LayerMask.GetMask("Enemy"));
 
         if (hitEnemy.Length > 0)
         {
@@ -56,7 +56,7 @@ public class DOTDamage : MonoBehaviour
 
     private void LateUpdate()
     {
-        duration -= Time.deltaTime;
+        durationTimer -= Time.deltaTime;
 
         if ((durationTimer <= 0f) == false) return;
         durationTimer = duration;

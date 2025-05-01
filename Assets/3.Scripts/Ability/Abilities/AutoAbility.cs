@@ -4,25 +4,30 @@ using UnityEngine;
 
 public class AutoAbility : Ability
 {
+    [SerializeField] private bool setPlayerTrs;
+    [SerializeField] private bool playerForwardOff;
+    
     protected override IEnumerator CoolTimeCoroutine()
     {
-        yield return new WaitForSeconds(0.1f);
         float timer = data.cooldown;
 
         while (gameObject.activeInHierarchy)
         {
-            if (particle.gameObject.activeInHierarchy == false) continue;
+            //if (particle.gameObject.activeInHierarchy) continue;
             
             timer -= Time.deltaTime;
             if (timer <= 0)
             {
-                transform.position = localPlayer.transform.position;
-                transform.forward = localPlayer.transform.forward;
+                particle.transform.position = localPlayer.transform.position;
+                if (playerForwardOff == false)
+                {
+                    particle.transform.forward = localPlayer.transform.forward;
+                }
 
                 yield return new WaitForSeconds(0.1f);
                 
-                particle.Play();
                 particle.gameObject.SetActive(true);
+                particle.Play();
                 
                 timer = data.cooldown;
             }
@@ -36,6 +41,10 @@ public class AutoAbility : Ability
         base.Start();
         CombatEvent e = new CombatEvent();
         e.FirePoint = localPlayer.transform;
+        if (setPlayerTrs)
+        {
+            transform.SetParent(localPlayer.transform);
+        }
         AbilitySystem.Instance.Events.OnAutoAbilityEvent?.Invoke(e);
     }
     

@@ -50,7 +50,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -4846,13 +4846,14 @@ GameObject:
   - component: {fileID: 1165906992480600551}
   - component: {fileID: 8325044394373509984}
   - component: {fileID: 2892348482284826372}
+  - component: {fileID: 8102167194437910738}
   m_Layer: 0
   m_Name: LightningOrbSharpBlue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8275396079188349850
 Transform:
   m_ObjectHideFlags: 0
@@ -4888,7 +4889,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -9633,7 +9634,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddbb38e23ac6f314eac895acca0c92fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyOrPlayer: 0
   duration: 5
+--- !u!65 &8102167194437910738
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2612502217248966452}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.172103, y: 2.5964334, z: 2.7287636}
+  m_Center: {x: -0.14131927, y: 0.21455562, z: 0.1671493}
 --- !u!1 &6134006486201985362
 GameObject:
   m_ObjectHideFlags: 0
@@ -9684,7 +9707,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -14572,6 +14595,7 @@ MonoBehaviour:
     AbilityPrefab: {fileID: 0}
     AbilitySummary: 
   AbilityOn: 0
+  particle: {fileID: 3748998316703292808}
 --- !u!1 &9078165275856602516
 GameObject:
   m_ObjectHideFlags: 0
@@ -14622,7 +14646,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:

@@ -8,6 +8,7 @@ public class ProjectileAbility : Ability
     {
         AbilityOn = true;
         yield return new WaitForSeconds(0.1f);
+        particle.gameObject.SetActive(true);
         particle.Play();
         yield return new WaitForSeconds(data.cooldown);
         AbilityOn = false;
@@ -17,8 +18,8 @@ public class ProjectileAbility : Ability
     {
         if (AbilityOn || particle.gameObject.activeInHierarchy) return;
         
-        transform.position = e.FirePoint.position;
-        transform.forward = e.FirePoint.forward;
+        particle.transform.position = e.FirePoint.position;
+        particle.transform.forward = e.FirePoint.forward;
         
         StartCoroutine(nameof(CoolTimeCoroutine));
     }

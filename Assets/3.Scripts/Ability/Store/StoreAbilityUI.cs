@@ -30,7 +30,9 @@ public class StoreAbilityUI : AbilityUI, IEndDragHandler
         List<RaycastResult> results = new List<RaycastResult>();
         raycaster.Raycast(eventData, results);
 
-        if (results.Count <= 0) return;
+        if (results.Count <= 0 || 
+            abilityStore.PlayerController.HasAbility[5] != null) return;
+        
         foreach (RaycastResult result in results)
         {
             if (result.gameObject.name != "StoreShell") continue;

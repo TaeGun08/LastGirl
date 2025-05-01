@@ -22,12 +22,11 @@ public abstract class Ability : MonoBehaviour
     public AbilityData abilityData;
     
     public bool AbilityOn;
-    protected ParticleSystem particle;
+    [SerializeField] protected ParticleSystem particle;
 
     protected virtual void Start()
     {
         localPlayer = Player.LocalPlayer.GetComponent<LocalPlayer>();
-        particle = GetComponentInParent<ParticleSystem>();
         
         AbilitySystem.Instance.Events.OnFireAbilityEvent += UseFireAbility;
         AbilitySystem.Instance.Events.OnDashAbilityEvent += UseDahsAbility;
