@@ -11535,6 +11535,7 @@ GameObject:
   - component: {fileID: 8796888689231389319}
   - component: {fileID: 5868534227756243862}
   - component: {fileID: 6909961178224448015}
+  - component: {fileID: 8133375118054097492}
   m_Layer: 3
   m_Name: Toga
   m_TagString: Untagged
@@ -11770,6 +11771,35 @@ MonoBehaviour:
   m_ReferenceObject: {fileID: 0}
   m_DistanceToObject: 20
   m_Multithread: 1
+--- !u!114 &8133375118054097492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485205254212811131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ccf3ffb6b2d954eaf3438a274d6301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heads:
+  - {fileID: 8651286022751670417}
+  faces:
+  - {fileID: 3424249802789923681}
+  - {fileID: 4359169740212779097}
+  - {fileID: 4402332418004885298}
+  - {fileID: 8729704575547761798}
+  - {fileID: 6542259634583099188}
+  bodies:
+  - {fileID: 5504797949925942574}
+  - {fileID: 6719346752290765355}
+  - {fileID: 1709698808981803118}
+  accs:
+  - {fileID: 3556666866668453810}
+  - {fileID: 7159519209497461097}
+  - {fileID: 7202001340421621884}
+  - {fileID: 7115663519914642659}
 --- !u!1 &1500569070475567095
 GameObject:
   m_ObjectHideFlags: 0

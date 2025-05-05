@@ -7,13 +7,16 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
     
+    [Header("AudioObject")]
+    [SerializeField] private AudioObject audioObject;
+    public AudioObject AudioObject => audioObject;
+    
     [Header("AudioSource Settings")]
     [SerializeField] private AudioSource bgmAudioSource;
     [SerializeField] private AudioSource sfxAudioSource;
 
     [Header("Audio Settings")] 
     [SerializeField] private AudioClip bgmClip;
-    [SerializeField] private AudioClip sfxClip;
 
     private void Awake()
     {
@@ -35,5 +38,15 @@ public class AudioManager : MonoBehaviour
     public void SetSfxClip(AudioClip clip)
     {
         sfxAudioSource.PlayOneShot(clip);
+    }
+
+    public void SetBgmVolume(float volume)
+    {
+        bgmAudioSource.volume = volume;
+    }
+
+    public void SetSfxVolume(float volume)
+    {
+        sfxAudioSource.volume = volume;
     }
 }

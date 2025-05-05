@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class LobbyHeadParts : LobbyParts
 {
-    public override void PartsInteraction()
+    protected override IEnumerator OnInteractionCoroutine()
     {
-        
+        isInteractionEnabled = true;
+        audioManager.SetSfxClip(audioManager.AudioObject.playerClips.HeadClips[
+            Random.Range(0, audioManager.AudioObject.playerClips.HeadClips.Length)]);
+        yield return new WaitForSeconds(2f);
+        isInteractionEnabled = false;
     }
 }

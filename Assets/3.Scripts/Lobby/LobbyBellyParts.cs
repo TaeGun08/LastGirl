@@ -2,17 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LobbyBellyParts : MonoBehaviour
+public class LobbyBellyParts : LobbyParts
 {
-    // Start is called before the first frame update
-    void Start()
+    protected override IEnumerator OnInteractionCoroutine()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        isInteractionEnabled = true;
+        audioManager.SetSfxClip(audioManager.AudioObject.playerClips.BellyClips[
+            Random.Range(0, audioManager.AudioObject.playerClips.BellyClips.Length)]);
+        yield return new WaitForSeconds(2f);
+        isInteractionEnabled = false;
     }
 }

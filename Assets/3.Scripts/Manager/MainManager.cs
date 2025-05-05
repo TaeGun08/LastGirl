@@ -11,18 +11,22 @@ public class MainManager : MonoBehaviour
     
     private static readonly int IS_GAME_START = Animator.StringToHash("isGameStart");
 
+    private AudioManager audioManager;
+    
     [Header("Title Settings")] 
     [SerializeField] private Button[] buttons;
     [SerializeField] private GameObject settingUI;
     [SerializeField] private GameObject titleUI;
     [SerializeField] private GameObject[] cams;
     [SerializeField] private Animator anim;
-    public bool IsGameStart { get; private set; }
+    public bool IsGameStart { get; set; }
 
     [Header("Lobby Settings")] 
     [SerializeField] private Transform playerTrs;
     [SerializeField] private GameObject lobbyUI;
-
+    
+    public bool IsGameReady { get; set; }
+    
     private void Awake()
     {
         Instance = this;
@@ -47,8 +51,14 @@ public class MainManager : MonoBehaviour
         });
     }
 
+    private void Start()
+    {
+        audioManager = AudioManager.Instance;
+    }
+
     private IEnumerator GameStartCoroutine()
     {
+        audioManager.SetBgmClip(audioManager.AudioObject.bgmClips.LobbyBgmClips[0]);
         playerTrs.DOMoveY(0.25f, 2f);
         anim.SetBool(IS_GAME_START, true);
         titleUI.gameObject.SetActive(false);
