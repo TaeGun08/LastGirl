@@ -14,12 +14,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmClips:
     TitleBgmClips:
-    - {fileID: 8300000, guid: e68d715be345e6f4f9bcf9f8c6907afd, type: 3}
+    - {fileID: 8300000, guid: 4970e93658a815546a7d65324d843303, type: 3}
     LobbyBgmClips:
     - {fileID: 8300000, guid: d09bb123c5ed17f46ae21c8811fd7b6a, type: 3}
     - {fileID: 8300000, guid: daebf0e7e0094b340bd25cc81f6a96f7, type: 3}
     - {fileID: 8300000, guid: 6f7db42ebff84d54c878aa9d314a4318, type: 3}
-    GameBgmClips: []
+    GameBgmClips:
+    - {fileID: 8300000, guid: e68d715be345e6f4f9bcf9f8c6907afd, type: 3}
+    - {fileID: 8300000, guid: ca117056e1e5498438fabbf4733a1c28, type: 3}
+    - {fileID: 8300000, guid: 908344cf7a54ac445b7557e41c83ab31, type: 3}
+  uiClips:
+    ButtonsClips:
+    - {fileID: 8300000, guid: 44766caa059435f4fb71af84b2bea7e4, type: 3}
+  weaponClips:
+    ARClips:
+    - {fileID: 8300000, guid: 28b1af0f0d63fee42a3f094f88f130ac, type: 3}
+    - {fileID: 8300000, guid: 49f5d7587161b054188c8d09497ee908, type: 3}
+    - {fileID: 8300000, guid: 07532e25ab2bf0e4e9520610dfe2e0ce, type: 3}
+  abilityClips:
+    FireClips: []
+    LaserClips: []
+  enemyClips:
+    HitClips:
+    - {fileID: 8300000, guid: b30f0eef4c21e3d47b7bcc1b35a16887, type: 3}
+    DeadClips:
+    - {fileID: 8300000, guid: 92d3259b6a9732e4ba3fb95331b2c95d, type: 3}
   playerClips:
     HeadClips:
     - {fileID: 8300000, guid: c78d04f299c97ff4bb54165afa306aa0, type: 3}
@@ -49,6 +68,14 @@ MonoBehaviour:
     DashClips:
     - {fileID: 8300000, guid: 2895e3690f420344c92b5c252a1d003d, type: 3}
     - {fileID: 8300000, guid: abbcca710712103429ed69680b3762f7, type: 3}
+    - {fileID: 8300000, guid: 5dd1f09719ac01a41a331bd31d6422d4, type: 3}
+    - {fileID: 8300000, guid: e139905e14e25ea4eade5a5be7238dd7, type: 3}
     HitClips:
     - {fileID: 8300000, guid: 59480cfeb308c654d83f897dc1c00aff, type: 3}
     - {fileID: 8300000, guid: a6014f2c352451b41acf00cabe363c63, type: 3}
+    - {fileID: 8300000, guid: 8922b54530d484e409a71a4b2092660e, type: 3}
+    - {fileID: 8300000, guid: d91e48adcb48bee45ab6aa0cf94d0929, type: 3}
+    - {fileID: 8300000, guid: 721a0a52739256d4f98503a27871796b, type: 3}
+    - {fileID: 8300000, guid: 211317404e22e93479a9876e6f22444b, type: 3}
+    DeadClips:
+    - {fileID: 8300000, guid: 8f4564b0141b99e479d536550975531a, type: 3}

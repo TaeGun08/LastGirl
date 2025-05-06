@@ -22,7 +22,7 @@ public class LobbyDontTouchParts : LobbyParts
         yield return new WaitForSeconds(1.3f);
         lobbyUI.SetActive(false);
         muzzleFlash.Play();
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         ForcedExitUI.SetActive(true);
         yield return new WaitForSeconds(1f);
         cam.DORotate(new Vector3(-90f, 10f, -90f), 2f).OnComplete(() =>

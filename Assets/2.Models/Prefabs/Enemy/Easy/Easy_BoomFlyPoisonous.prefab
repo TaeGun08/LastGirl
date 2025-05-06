@@ -2076,9 +2076,9 @@ MonoBehaviour:
     ArmHitColliders: []
   Data:
     index: 1
-    Hp: 50
+    Hp: 100
     MaxHp: 50
-    Armor: 5
+    Armor: 0
     Damage: 30
     Speed: 3
     AttackDelay: 0

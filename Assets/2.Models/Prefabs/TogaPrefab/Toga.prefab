@@ -33982,7 +33982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data:
-    Damage: 5
+    Damage: 20
     Ammo: 30
     MaxAmmo: 30
     FireDelay: 0.2
@@ -59636,7 +59636,7 @@ Canvas:
   m_GameObject: {fileID: 8716896562452062422}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 0.1
   m_PixelPerfect: 0

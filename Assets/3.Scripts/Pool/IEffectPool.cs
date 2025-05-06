@@ -7,6 +7,7 @@ public interface IEffectPool
     public enum ParticleType
     {
         HitA,
+        HitB,
         EnergyExplosionA,
         Arca,
     }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class StoreBuy : Store
@@ -12,6 +13,12 @@ public class StoreBuy : Store
     [SerializeField] private AbilityData[] abilityData = new AbilityData[3];
     [SerializeField] private RectTransform[] abilityUIRect;
     private List<StoreAbilityUI> abilityUIPrefab = new List<StoreAbilityUI>();
+    [SerializeField] private Button refreshButton;
+
+    private void Awake()
+    {
+        RefreshAbility();
+    }
 
     private void OnEnable()
     {
@@ -26,7 +33,7 @@ public class StoreBuy : Store
     public void OpenAbility()
     {
         abilityDatas.Clear();
-        
+
         foreach (AbilityData data in abilityStore.AbilityObject.Data)
         {
             abilityDatas.Add(data);
@@ -75,5 +82,10 @@ public class StoreBuy : Store
 
     public void RefreshAbility()
     {
+        refreshButton.onClick.AddListener(() =>
+        {
+            if (localPlayer.status.HasArca < 50) return;
+            OpenAbility(); 
+        });
     }
 }

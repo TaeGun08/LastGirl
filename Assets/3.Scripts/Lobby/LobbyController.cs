@@ -21,6 +21,7 @@ public class LobbyController : MonoBehaviour
     [SerializeField] private Transform lobbyCameraTrs;
     [SerializeField] private Transform targetPoint;
     [SerializeField] private Transform[] arrowScales;
+    [SerializeField] private Button aroundButton;
 
     [Header("InTitle Settings")] [SerializeField]
     private Animator anim;
@@ -31,13 +32,26 @@ public class LobbyController : MonoBehaviour
 
     [Header("InGameReady Settings")]
     [SerializeField] private GameObject readyUI;
+
+    private bool isAround = true;
     
     private void Awake()
     {
-        buttons[0].onClick.AddListener(() => { StartCoroutine(nameof(TitleBackCoroutine)); });
+        aroundButton.onClick.AddListener(() =>
+        {
+            audioManager.SetSfxClip(audioManager.AudioObject.uiClips.ButtonsClips[0]);
+            isAround = isAround == false;
+        });
+        
+        buttons[0].onClick.AddListener(() =>
+        {
+            audioManager.SetSfxClip(audioManager.AudioObject.uiClips.ButtonsClips[0]);
+            StartCoroutine(nameof(TitleBackCoroutine));
+        });
 
         buttons[1].onClick.AddListener(() =>
         {
+            audioManager.SetSfxClip(audioManager.AudioObject.uiClips.ButtonsClips[0]);
             StartCoroutine(nameof(GameReadyCoroutine));
         });
     }
@@ -51,9 +65,15 @@ public class LobbyController : MonoBehaviour
 
     private void Update()
     {
+        if (mainManager.IsCameraTransition) return; 
         if (mainManager.IsGameStart == false
             || mainManager.IsGameReady) return;
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            StartCoroutine(nameof(TitleBackCoroutine));
+        }
+        
         InputCharacterRotate();
         InputMouseWheelZoom();
         InputPartsInteraction();
@@ -61,7 +81,7 @@ public class LobbyController : MonoBehaviour
 
     private void InputCharacterRotate()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && isAround)
         {
             float mousePosX = (Input.mousePosition.x / Screen.width) * 2f - 1f;
 
@@ -107,6 +127,7 @@ public class LobbyController : MonoBehaviour
 
     private void InputPartsInteraction()
     {
+        if (isAround) return;
         Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
 
         if (Input.GetMouseButtonDown(0) == false) return;
@@ -125,8 +146,10 @@ public class LobbyController : MonoBehaviour
         lobbyUI.gameObject.SetActive(false);
         cams[0].gameObject.SetActive(true);
         cams[1].gameObject.SetActive(false);
-        yield return new WaitForSeconds(2f);
         mainManager.IsGameStart = false;
+        mainManager.IsCameraTransition = true;
+        yield return new WaitForSeconds(2f);
+        mainManager.IsCameraTransition = false;
         titleUI.gameObject.SetActive(true);
     }
 
@@ -136,7 +159,9 @@ public class LobbyController : MonoBehaviour
         cams[1].SetActive(false);
         cams[2].SetActive(true);
         mainManager.IsGameReady = true;
+        mainManager.IsCameraTransition = true;
         yield return new WaitForSeconds(2f);
+        mainManager.IsCameraTransition = false;
         readyUI.SetActive(true);
     }
 }

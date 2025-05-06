@@ -63669,8 +63669,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43494aaf4b6ada746b4c60869cb94e4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  type: 2
   particle: {fileID: 3813781498053471811}
+  activeOn: 0
 --- !u!135 &5694436152988583100
 SphereCollider:
   m_ObjectHideFlags: 0

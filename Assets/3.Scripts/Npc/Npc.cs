@@ -6,14 +6,18 @@ using UnityEngine;
 public abstract class Npc : MonoBehaviour
 {
     protected AbilitySystem abilitySystem;
+    protected PlayerController playerController;
+    protected PlayerCamera playerCamera;
     
     [Header("Npc Settings")] 
     [SerializeField] protected GameObject hasUI;
-    protected bool isOpenUI = false;
+    protected bool isOpenUI;
 
     protected virtual void Start()
     {
         abilitySystem = AbilitySystem.Instance;
+        playerController = Player.LocalPlayer.playerController;
+        playerCamera = Camera.main.GetComponent<PlayerCamera>();
     }
 
     public void OpenUI()
@@ -22,5 +26,8 @@ public abstract class Npc : MonoBehaviour
         Cursor.visible = isOpenUI;
         Cursor.lockState = !isOpenUI ? CursorLockMode.Locked : CursorLockMode.None;
         hasUI.SetActive(isOpenUI);
+        abilitySystem.IsOpenStore = isOpenUI;
+        playerController.ChangeState(PlayerState.StateName.Idle);
+        playerCamera.VirtualCamera.gameObject.SetActive(!isOpenUI);
     }
 }

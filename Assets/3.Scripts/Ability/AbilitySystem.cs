@@ -27,7 +27,9 @@ public class AbilitySystem : MonoBehaviour
     public AbilityCanvas AbilityCanvas => abilityCanvas;
     
     public readonly Callbacks Events = new Callbacks();
-    
+
+    public bool IsOpenStore { get; set; }
+
     private void Awake()
     {
         Instance = this;

@@ -75,20 +75,7 @@ MonoBehaviour:
     Elite: []
     SubBoss: []
     LastBoss: []
-    MaxSpawnMinion: 60
-    MaxSpawnElite: 0
-    MaxSpawnSubBoss: 0
-    MaxSpawnLastBoss: 0
-  - Minion:
-    - {fileID: 6270415544724634551, guid: 9204ae7a3c3fb814a9bec18ca4790e2a, type: 3}
-    - {fileID: 5652389846024637039, guid: 9769e68378b657f449be2bf43b455436, type: 3}
-    - {fileID: 7891613599319486754, guid: 5137f3c4b0449d94d8c8d5a9d8db5468, type: 3}
-    - {fileID: 6163672336958956188, guid: 8b72926b713cbba43b891170509d4475, type: 3}
-    Elite:
-    - {fileID: 4543187068859857328, guid: 0546235aba68f4849beffd665261356c, type: 3}
-    SubBoss: []
-    LastBoss: []
-    MaxSpawnMinion: 60
+    MaxSpawnMinion: 40
     MaxSpawnElite: 5
     MaxSpawnSubBoss: 0
     MaxSpawnLastBoss: 0
@@ -101,8 +88,21 @@ MonoBehaviour:
     - {fileID: 4543187068859857328, guid: 0546235aba68f4849beffd665261356c, type: 3}
     SubBoss: []
     LastBoss: []
-    MaxSpawnMinion: 70
+    MaxSpawnMinion: 40
     MaxSpawnElite: 10
+    MaxSpawnSubBoss: 0
+    MaxSpawnLastBoss: 0
+  - Minion:
+    - {fileID: 6270415544724634551, guid: 9204ae7a3c3fb814a9bec18ca4790e2a, type: 3}
+    - {fileID: 5652389846024637039, guid: 9769e68378b657f449be2bf43b455436, type: 3}
+    - {fileID: 7891613599319486754, guid: 5137f3c4b0449d94d8c8d5a9d8db5468, type: 3}
+    - {fileID: 6163672336958956188, guid: 8b72926b713cbba43b891170509d4475, type: 3}
+    Elite:
+    - {fileID: 4543187068859857328, guid: 0546235aba68f4849beffd665261356c, type: 3}
+    SubBoss: []
+    LastBoss: []
+    MaxSpawnMinion: 40
+    MaxSpawnElite: 15
     MaxSpawnSubBoss: 0
     MaxSpawnLastBoss: 0
   - Minion:
@@ -115,9 +115,9 @@ MonoBehaviour:
     SubBoss:
     - {fileID: 5603831843777209549, guid: 7350183e208a3de4eaa9692225ec2212, type: 3}
     LastBoss: []
-    MaxSpawnMinion: 70
-    MaxSpawnElite: 10
-    MaxSpawnSubBoss: 2
+    MaxSpawnMinion: 40
+    MaxSpawnElite: 20
+    MaxSpawnSubBoss: 0
     MaxSpawnLastBoss: 0
   - Minion:
     - {fileID: 6270415544724634551, guid: 9204ae7a3c3fb814a9bec18ca4790e2a, type: 3}
@@ -130,7 +130,7 @@ MonoBehaviour:
     - {fileID: 5603831843777209549, guid: 7350183e208a3de4eaa9692225ec2212, type: 3}
     LastBoss:
     - {fileID: 8557582187058466725, guid: cba357bc8a9f5294f847d9bd980ea182, type: 3}
-    MaxSpawnMinion: 70
+    MaxSpawnMinion: 40
     MaxSpawnElite: 10
-    MaxSpawnSubBoss: 2
+    MaxSpawnSubBoss: 0
     MaxSpawnLastBoss: 1

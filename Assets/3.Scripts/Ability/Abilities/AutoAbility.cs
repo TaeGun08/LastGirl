@@ -13,8 +13,6 @@ public class AutoAbility : Ability
 
         while (gameObject.activeInHierarchy)
         {
-            //if (particle.gameObject.activeInHierarchy) continue;
-            
             timer -= Time.deltaTime;
             if (timer <= 0)
             {

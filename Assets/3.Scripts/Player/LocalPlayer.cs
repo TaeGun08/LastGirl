@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class LocalPlayer : Player, IDamageAble
 {
@@ -24,6 +25,8 @@ public class LocalPlayer : Player, IDamageAble
 
     private void Start()
     {
+        audioManager = AudioManager.Instance;
+        
         foreach (Collider hitCollider in Parts.HeadHitColliders)
             CombatSystem.Instance.AddHitAbleType(hitCollider, this);
 
@@ -41,6 +44,10 @@ public class LocalPlayer : Player, IDamageAble
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.T) && Input.GetKeyDown(KeyCode.G))
+        {
+            status.HasArca += 1000;
+        }
         GetArca();
         if (UseDash == false) return;
         
@@ -80,6 +87,12 @@ public class LocalPlayer : Player, IDamageAble
         if (IsDead || IsDashing) return;
         
         int damage = combatEvent.Damage;
+
+        if (damage > 0)
+        {
+            audioManager.SetSfxClip(audioManager.AudioObject.playerClips.HitClips[
+                Random.Range(0, audioManager.AudioObject.playerClips.HitClips.Length)]);
+        }
         
         damage -= status.Durability;
         if (status.Durability > 0)
@@ -107,6 +120,7 @@ public class LocalPlayer : Player, IDamageAble
         CCType = combatEvent.CCType;
 
         if (status.Hp > 0) return;
+        GameManager.Instance.GameEnd(false);
         status.Hp = 0;
         IsDead = true;
         playerController.ChangeState(PlayerState.StateName.Dead);

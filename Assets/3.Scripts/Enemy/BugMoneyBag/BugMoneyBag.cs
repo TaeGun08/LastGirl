@@ -21,6 +21,7 @@ public class BugMoneyBag : Enemy
 
     private void Bombing()
     {
+        audioManager.SetSfxClip(audioManager.AudioObject.enemyClips.DeadClips[0]);
         ParticleSystem particle = EffectPoolSystem.Instance.
             ParticlePool(IEffectPool.ParticleType.EnergyExplosionA).GetComponent<ParticleSystem>();
         particle.transform.position = transform.position;

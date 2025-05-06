@@ -14,6 +14,8 @@ public abstract class Enemy : HasParts, IDamageAble
     protected static readonly int ATTACK = Animator.StringToHash("Attack");
     protected static readonly int PATTERN = Animator.StringToHash("Pattern");
 
+    protected AudioManager audioManager;
+    
     [System.Serializable]
     public class EnemyData
     {
@@ -78,6 +80,7 @@ public abstract class Enemy : HasParts, IDamageAble
     {
         base.Start();
         roundSystem = RoundSystem.Instance;
+        audioManager = AudioManager.Instance;
         
         localPlayer = Player.LocalPlayer.GetComponent<LocalPlayer>();
 
@@ -132,6 +135,7 @@ public abstract class Enemy : HasParts, IDamageAble
     {
         if (isDead) return;
 
+        audioManager.SetSfxClip(audioManager.AudioObject.enemyClips.HitClips[0]);
         if (isPattern == false)
         {
             animator.ResetTrigger(HIT);
@@ -159,6 +163,11 @@ public abstract class Enemy : HasParts, IDamageAble
         animator.ResetTrigger(HIT);
         isDead = true;
         animator.SetTrigger(DEAD);
+        agent.SetDestination(transform.position);
+        if (currentState != null)
+        {
+            ChangeState(EnemyState.StateName.Dead);
+        }
         for (int i = 0; i < Data.HasArca; i++)
         {
             Arca arca = EffectPoolSystem.Instance.ParticlePool(IEffectPool.ParticleType.Arca).GetComponent<Arca>();

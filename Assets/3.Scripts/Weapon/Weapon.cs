@@ -18,6 +18,7 @@ public abstract class Weapon : MonoBehaviour
     private float currentFireDelay = 0.0f;
     
     protected LocalPlayer localPlayer;
+    protected AudioManager audioManager;
     
     [Header("Weapon Settings")]
     [SerializeField] protected Transform firePoint;
@@ -33,6 +34,7 @@ public abstract class Weapon : MonoBehaviour
         Data.Ammo = Data.MaxAmmo;
 
         localPlayer = Player.LocalPlayer.GetComponent<LocalPlayer>();
+        audioManager = AudioManager.Instance;
     }
 
     private void Update()

@@ -13,8 +13,6 @@ public class PersistentAbility : Ability
 
         while (gameObject.activeInHierarchy)
         {
-            //if (particle.gameObject.activeInHierarchy) continue;
-            
             timer -= Time.deltaTime;
             if (timer <= 0)
             {
@@ -23,7 +21,9 @@ public class PersistentAbility : Ability
 
                 if (colliders.Length > 0)
                 {
-                    particle.transform.position = colliders[0].transform.position;
+                    Vector3 spawnPoint = colliders[0].transform.position;
+                    spawnPoint.y = localPlayer.transform.position.y;
+                    particle.transform.position = spawnPoint;
                     if (playerForwardOff == false)
                     {
                         particle.transform.forward = localPlayer.transform.forward;

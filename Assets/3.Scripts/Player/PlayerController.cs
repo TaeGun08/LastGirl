@@ -7,6 +7,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private GameManager gameManager;
+    private AudioManager audioManager;
+    private AbilitySystem abilitySystem;
     
     private static readonly int RELOAD = Animator.StringToHash("Reload");
     public LocalPlayer LocalPlayer { get; private set; }
@@ -38,6 +40,8 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         gameManager = GameManager.Instance;
+        audioManager = AudioManager.Instance;
+        abilitySystem = AbilitySystem.Instance;
         
         LocalPlayer = Player.LocalPlayer.GetComponent<LocalPlayer>();
 
@@ -56,10 +60,19 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (gameManager.IsGameStart == false ) return;
+        OnNpcCheck();
+
+        if (abilitySystem.IsOpenStore == false && Input.GetKeyDown(KeyCode.Escape))
+        {
+            gameManager.Option();
+        }
+        
+        if (gameManager.IsGameStart == false || 
+            abilitySystem.IsOpenStore || 
+            gameManager.IsGameEnd ||
+            gameManager.IsOptionOpen) return;
         
         currentState.StateUpdate();
-        OnNpcCheck();
     }
 
     public void ChangeState(PlayerState.StateName changeState)
@@ -93,6 +106,7 @@ public class PlayerController : MonoBehaviour
         LocalPlayer.animator.ResetTrigger(RELOAD);
         LocalPlayer.animator.SetTrigger(RELOAD);
         weaponTrs.localRotation = Quaternion.identity;
+        audioManager.SetSfxClip(audioManager.AudioObject.weaponClips.ARClips[1]);
         
         yield return new WaitForSeconds(1f);
         
@@ -105,7 +119,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnNpcCheck()
     {
-        if(Input.GetKeyDown(KeyCode.F) == false) return;
+        if (gameManager.IsOptionOpen) return;
+        if (Input.GetKeyDown(KeyCode.F) == false
+            && (abilitySystem.IsOpenStore == false || Input.GetKeyDown(KeyCode.Escape) == false)) return;
         
         Collider[] colliders = Physics.OverlapSphere(transform.position + Vector3.up, 1.5f,  
             LayerMask.GetMask("Npc"));

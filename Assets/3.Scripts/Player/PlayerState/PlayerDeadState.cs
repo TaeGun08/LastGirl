@@ -10,6 +10,7 @@ public class PlayerDeadState : PlayerState
     public override void StateEnter(PlayerController playerController)
     {
         this.playerController = playerController;
+        audioManager.SetSfxClip(audioManager.AudioObject.playerClips.DeadClips[0]);
         animator.SetTrigger(DEAD);
     }
 

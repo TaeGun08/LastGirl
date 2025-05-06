@@ -21,6 +21,8 @@ public class Player : HasParts
         public int HasArca;
     }
     
+    protected AudioManager audioManager;
+    
     [Header("Player Settings")] 
     public PlayerController playerController;
     public Animator animator;

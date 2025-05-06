@@ -104,13 +104,6 @@ MonoBehaviour:
     AbilitySummary: "\uC8FC\uC704\uC5D0 \uC788\uB294 \uC801\uC758 \uC704\uCE58\uC5D0
       \uBC88\uAC1C\uB97C \uB5A8\uC5B4\uD2B8\uB9BC"
   - Key: 12
-    Name: "\uD654\uC5FC\uBC29\uC0AC\uAE30"
-    Rank: 3
-    Price: 300
-    AbilityPrefab: {fileID: 763873781352986137, guid: f63332d2b33839648b2ac9b28cf5eba8,
-      type: 3}
-    AbilitySummary: "\uD654\uC5FC\uC744 \uBC1C\uC0AC \uD568"
-  - Key: 13
     Name: "\uD50C\uB809\uC11C\uC2A4 \uC775\uC2A4\uD50C\uB85C\uC83C"
     Rank: 3
     Price: 300
@@ -119,7 +112,7 @@ MonoBehaviour:
     AbilitySummary: "\uC790\uC2E0\uC758 \uC8FC\uBCC0\uC5D0 \uC788\uB294 \uC801\uC744
       \uC9C0\uC18D\uC801\uC73C\uB85C \uACF5\uACA9\uD558\uB294 \uD3ED\uBC15\uC744
       \uC77C\uC73C\uD0B4"
-  - Key: 14
+  - Key: 13
     Name: "\uC18C\uC6A9\uB3CC\uC774 \uCE7C\uB0A0"
     Rank: 3
     Price: 300
@@ -127,7 +120,7 @@ MonoBehaviour:
       type: 3}
     AbilitySummary: "\uC790\uC2E0\uC758 \uC704\uCE58\uC5D0 \uD68C\uC804\uD558\uB294
       \uCE7C\uB0A0\uC744 \uC0DD\uC131"
-  - Key: 15
+  - Key: 14
     Name: "\uC5D0\uB108\uC9C0 \uD1A0\uB124\uC774\uB3C4"
     Rank: 4
     Price: 500

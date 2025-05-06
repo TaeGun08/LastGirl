@@ -1,18 +1,15 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using Cinemachine;
-using DG.Tweening;
 using UnityEngine;
+using Newtonsoft.Json;
 using Random = UnityEngine.Random;
 
 public class PlayerCamera : MonoBehaviour
 {
-    private Camera cam;
-    
     [Header("PlayerCameraRotate Settings")]
     [SerializeField, Range(0f, 1000f)] private float mouseSensitivity = 300f;
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
+    public CinemachineVirtualCamera VirtualCamera => virtualCamera;
     private CinemachinePOV pov;
     private CinemachineFramingTransposer transposer;
     [SerializeField] private CinemachineImpulseSource impulseSource;
@@ -20,11 +17,16 @@ public class PlayerCamera : MonoBehaviour
     
     private LocalPlayer localPlayer;
 
+    private SettingData settingData = new SettingData();
+    
     private void Awake()
     {
-        cam = Camera.main;
         pov = virtualCamera.GetCinemachineComponent<CinemachinePOV>();
         transposer = virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+        
+        if (string.IsNullOrEmpty(PlayerPrefs.GetString("SettingData"))) return;
+        settingData = JsonConvert.DeserializeObject<SettingData>(PlayerPrefs.GetString("SettingData"));
+        SetSensitivity(settingData.Sensitivity);
     }
 
     private void Start()
@@ -92,9 +94,9 @@ public class PlayerCamera : MonoBehaviour
         while (timer > 0)
         {
             timer -= Time.deltaTime;
-            float shakeX = Random.Range(-0.005f, 0.005f);
-            float shakeY = Random.Range(-0.005f, 0.005f);
-            float shakeZ = Random.Range(-0.005f, 0.005f);
+            float shakeX = Random.Range(-0.01f, 0.01f);
+            float shakeY = Random.Range(-0.01f, 0.01f);
+            float shakeZ = Random.Range(-0.01f, 0.01f);
             Vector3 shake = new Vector3(shakeX,  shakeY, shakeZ);
             impulseSourceShake.m_DefaultVelocity = shake;
             impulseSourceShake.GenerateImpulse();
@@ -105,5 +107,11 @@ public class PlayerCamera : MonoBehaviour
     public void ShakeCamera(float time)
     {
         StartCoroutine(ShakeCameraCoroutine(time));
+    }
+
+    public void SetSensitivity(float sensitivity)
+    {
+        pov.m_HorizontalAxis.m_MaxSpeed = sensitivity * 600f;
+        pov.m_VerticalAxis.m_MaxSpeed = sensitivity * 600f;
     }
 }

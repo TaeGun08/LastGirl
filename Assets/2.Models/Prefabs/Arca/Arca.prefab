@@ -19611,7 +19611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43494aaf4b6ada746b4c60869cb94e4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
+  type: 3
   particle: {fileID: 1724000721463600409}
   activeOn: 1
 --- !u!1 &7387940500959214837

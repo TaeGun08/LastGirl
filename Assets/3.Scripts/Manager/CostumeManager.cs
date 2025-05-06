@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class CostumeManager : MonoBehaviour
 {
+    private AudioManager audioManager;
+    
     [Header("CostumeManager Settings")]
     [SerializeField] private PlayerCostume playerCostume;
     [Space]
@@ -22,15 +24,22 @@ public class CostumeManager : MonoBehaviour
         AccButtonsEvent();
     }
 
+    private void Start()
+    {
+        audioManager = AudioManager.Instance;
+    }
+
     private void HeadButtonsEvent()
     {
         headButtons[0].onClick.AddListener(() =>
         {
+            audioManager.SetSfxClip(audioManager.AudioObject.uiClips.ButtonsClips[0]);
             playerCostume.ChangeCostume(0, 0);
         });
         
         headButtons[1].onClick.AddListener(() =>
         {
+            audioManager.SetSfxClip(audioManager.AudioObject.uiClips.ButtonsClips[0]);
             playerCostume.ChangeCostume(0, 1);
         });
     }
@@ -39,26 +48,31 @@ public class CostumeManager : MonoBehaviour
     {
         faceButtons[0].onClick.AddListener(() =>
         {
+            audioManager.SetSfxClip(audioManager.AudioObject.uiClips.ButtonsClips[0]);
             playerCostume.ChangeCostume(1, 1);
         });
         
         faceButtons[1].onClick.AddListener(() =>
         {
+            audioManager.SetSfxClip(audioManager.AudioObject.uiClips.ButtonsClips[0]);
             playerCostume.ChangeCostume(1, 2);
         });
         
         faceButtons[2].onClick.AddListener(() =>
         {
+            audioManager.SetSfxClip(audioManager.AudioObject.uiClips.ButtonsClips[0]);
             playerCostume.ChangeCostume(1, 3);
         });
         
         faceButtons[3].onClick.AddListener(() =>
         {
+            audioManager.SetSfxClip(audioManager.AudioObject.uiClips.ButtonsClips[0]);
             playerCostume.ChangeCostume(1, 4);
         });
         
         faceButtons[4].onClick.AddListener(() =>
         {
+            audioManager.SetSfxClip(audioManager.AudioObject.uiClips.ButtonsClips[0]);
             playerCostume.ChangeCostume(1, 5);
         });
     }
@@ -67,16 +81,19 @@ public class CostumeManager : MonoBehaviour
     {
         bodyButtons[0].onClick.AddListener(() =>
         {
+            audioManager.SetSfxClip(audioManager.AudioObject.uiClips.ButtonsClips[0]);
             playerCostume.ChangeCostume(2, 1);
         });
         
         bodyButtons[1].onClick.AddListener(() =>
         {
+            audioManager.SetSfxClip(audioManager.AudioObject.uiClips.ButtonsClips[0]);
             playerCostume.ChangeCostume(2, 2);
         });
         
         bodyButtons[2].onClick.AddListener(() =>
         {
+            audioManager.SetSfxClip(audioManager.AudioObject.uiClips.ButtonsClips[0]);
             playerCostume.ChangeCostume(2, 3);
         });
     }
@@ -85,26 +102,31 @@ public class CostumeManager : MonoBehaviour
     {
         accButtons[0].onClick.AddListener(() =>
         {
+            audioManager.SetSfxClip(audioManager.AudioObject.uiClips.ButtonsClips[0]);
             playerCostume.ChangeAccCostume(0, true);
         });
         
         accButtons[1].onClick.AddListener(() =>
         {
+            audioManager.SetSfxClip(audioManager.AudioObject.uiClips.ButtonsClips[0]);
             playerCostume.ChangeAccCostume(1);
         });
         
         accButtons[2].onClick.AddListener(() =>
         {
+            audioManager.SetSfxClip(audioManager.AudioObject.uiClips.ButtonsClips[0]);
             playerCostume.ChangeAccCostume(2);
         });
         
         accButtons[3].onClick.AddListener(() =>
         {
+            audioManager.SetSfxClip(audioManager.AudioObject.uiClips.ButtonsClips[0]);
             playerCostume.ChangeAccCostume(3);
         });
         
         accButtons[4].onClick.AddListener(() =>
         {
+            audioManager.SetSfxClip(audioManager.AudioObject.uiClips.ButtonsClips[0]);
             playerCostume.ChangeAccCostume(4);
         });
     }

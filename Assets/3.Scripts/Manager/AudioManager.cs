@@ -1,7 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Newtonsoft.Json;
 
 public class AudioManager : MonoBehaviour
 {
@@ -18,9 +16,16 @@ public class AudioManager : MonoBehaviour
     [Header("Audio Settings")] 
     [SerializeField] private AudioClip bgmClip;
 
+    private SettingData settingData = new SettingData();
+    
     private void Awake()
     {
         Instance = this;
+        
+        if (string.IsNullOrEmpty(PlayerPrefs.GetString("SettingData"))) return;
+        settingData = JsonConvert.DeserializeObject<SettingData>(PlayerPrefs.GetString("SettingData"));
+        SetBgmVolume(settingData.BGM);
+        SetSfxVolume(settingData.SFX);
     }
     
     private void Start()

@@ -26,6 +26,7 @@ public class AK47 : Weapon
         muzzleFlash.Play();
         Data.Ammo--;
 
+        audioManager.SetSfxClip(audioManager.AudioObject.weaponClips.ARClips[0]);
         float ranRecoil = Random.Range(-0.3f, 0.3f);
         Vector3 aimpoint = localPlayer.aimPoint.position;
         aimpoint.x += (localPlayer.IsZoom ? 0f : ranRecoil);
@@ -34,12 +35,22 @@ public class AK47 : Weapon
         Ray ray = new Ray(firePoint.position, dir);
         CombatEvent e =  new CombatEvent();
         
-        int layer = LayerMask.GetMask("Enemy", "Map");
+        int layer = LayerMask.GetMask("Enemy", "Map", "Wall");
         if (Physics.Raycast(ray, out RaycastHit hit, 200f, layer))
         {
             Debug.DrawRay(firePoint.position, ray.direction * hit.distance, Color.red);
-            GameObject obj = effectPoolSystem.ParticlePool(IEffectPool.ParticleType.HitA).gameObject;
-            obj.transform.position = hit.point;
+            GameObject obj = null;
+            if (hit.collider.gameObject.layer.Equals(LayerMask.NameToLayer("Enemy")))
+            {
+                obj = effectPoolSystem.ParticlePool(IEffectPool.ParticleType.HitA).gameObject;
+            }
+            else
+            {
+                audioManager.SetSfxClip(audioManager.AudioObject.weaponClips.ARClips[2]);
+                obj = effectPoolSystem.ParticlePool(IEffectPool.ParticleType.HitB).gameObject;
+            }
+            
+            obj.transform.position = hit.point + Vector3.up * 0.1f;
             obj.transform.rotation = Quaternion.LookRotation(hit.normal);
             
             IDamageAble hitAble = CombatSystem.Instance.GetHitAble(hit.collider);

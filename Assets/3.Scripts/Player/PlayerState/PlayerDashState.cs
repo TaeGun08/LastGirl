@@ -25,6 +25,8 @@ public class PlayerDashState : PlayerState
         dashEffect.gameObject.SetActive(true);
         CombatEvent e =  new CombatEvent();
         e.FirePoint = localPlayer.transform;
+        audioManager.SetSfxClip(audioManager.AudioObject.playerClips.DashClips[
+            Random.Range(0, audioManager.AudioObject.playerClips.DashClips.Length)]);
         AbilitySystem.Instance.Events.OnDashAbilityEvent?.Invoke(e);
         StartCoroutine(nameof(DashCoroutine));
     }

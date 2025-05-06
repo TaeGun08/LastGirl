@@ -26,6 +26,8 @@ public class MainManager : MonoBehaviour
     [SerializeField] private GameObject lobbyUI;
     
     public bool IsGameReady { get; set; }
+
+    public bool IsCameraTransition { get; set; }
     
     private void Awake()
     {
@@ -33,16 +35,19 @@ public class MainManager : MonoBehaviour
         
         buttons[0].onClick.AddListener(() =>
         {
+            audioManager.SetSfxClip(audioManager.AudioObject.uiClips.ButtonsClips[0]);
             StartCoroutine(nameof(GameStartCoroutine));
         });
         
         buttons[1].onClick.AddListener(() =>
         {
+            audioManager.SetSfxClip(audioManager.AudioObject.uiClips.ButtonsClips[0]);
             settingUI.gameObject.SetActive(true);
         });
         
         buttons[2].onClick.AddListener(() =>
         {
+            audioManager.SetSfxClip(audioManager.AudioObject.uiClips.ButtonsClips[0]);
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
 #else

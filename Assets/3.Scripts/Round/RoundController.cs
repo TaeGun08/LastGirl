@@ -31,13 +31,24 @@ public class RoundController : MonoBehaviour
 
     private void Update()
     {
+        if (gameManager.IsGameEnd) return;
+
+        if (roundObject.Data.Length < curRound + 1 && roundSystem.SpawnEnemyCount <= 0)
+        {
+            gameManager.GameEnd(true);
+            return;
+        }
+        
         if (gameManager.IsGameStart == false) return;
         if (roundSystem.IsRoundStart == false) return;
         roundSystem.IsRoundStart = false;
         roundEndPrefabs[0].gameObject.SetActive(false);
         roundEndPrefabs[1].gameObject.SetActive(false);
         roundEndPrefabs[2].gameObject.SetActive(false);
-        roundSystem.RoundCanvas.RoundText.text = $"현재 라운드 : {curRound + 1}";
+        
+        roundSystem.RoundCanvas.RoundText.text = roundObject.Data.Length > curRound + 1 ? 
+            $"현재 라운드 : {curRound + 1}" : $"현재 라운드 : 마지막 라운드";
+
         StartCoroutine(SpawnEnemiesCoroutine(roundObject.Data[curRound].Minion, 
             roundObject.Data[curRound].MaxSpawnMinion, minionQueue));
         
@@ -59,7 +70,7 @@ public class RoundController : MonoBehaviour
             || roundSystem.SpawnEnemyCount > 0
             || curRound <= 0) return;
         roundEndPrefabs[0].gameObject.SetActive(true);
-        roundEndPrefabs[1].gameObject.SetActive(true);
+        //roundEndPrefabs[1].gameObject.SetActive(true);
         roundEndPrefabs[2].gameObject.SetActive(true);
     }
     

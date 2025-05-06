@@ -660,7 +660,7 @@ MonoBehaviour:
     index: 2
     Hp: 100
     MaxHp: 100
-    Armor: 10
+    Armor: 3
     Damage: 15
     Speed: 4
     AttackDelay: 3

@@ -16,6 +16,8 @@ public abstract class PlayerState : MonoBehaviour
         Dash,
         Dead,
     }
+    
+    protected AudioManager audioManager;
 
     protected Animator animator;
     protected LocalPlayer localPlayer;
@@ -25,6 +27,7 @@ public abstract class PlayerState : MonoBehaviour
 
     protected virtual void Start()
     {
+        audioManager = AudioManager.Instance;
         localPlayer = Player.LocalPlayer.GetComponent<LocalPlayer>();
         animator = localPlayer.animator;
     }
