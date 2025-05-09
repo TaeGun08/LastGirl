@@ -22,6 +22,8 @@ public class Option : MonoBehaviour
 
     private void OnEnable()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0;
     }
 
@@ -68,7 +70,6 @@ public class Option : MonoBehaviour
         
         buttons[2].onClick.AddListener(() =>
         {
-            audioManager.SetSfxClip(audioManager.AudioObject.uiClips.ButtonsClips[0]);
             fadeIn.FadeOut("Main");
         });
     }

@@ -5931,8 +5931,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -910, y: 0}
-  m_SizeDelta: {x: 100, y: 980}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &4920732124871111872
 CanvasRenderer:
@@ -33982,7 +33982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data:
-    Damage: 20
+    Damage: 5
     Ammo: 30
     MaxAmmo: 30
     FireDelay: 0.2
@@ -44565,8 +44565,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 390}
-  m_SizeDelta: {x: 1820, y: 100}
+  m_AnchoredPosition: {x: 0, y: -100}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &3850276162916190273
 CanvasRenderer:
@@ -58612,8 +58612,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: -490}
-  m_SizeDelta: {x: 1820, y: 100}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &5296487638118253906
 CanvasRenderer:
@@ -60046,8 +60046,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 810, y: 0}
-  m_SizeDelta: {x: 100, y: 980}
+  m_AnchoredPosition: {x: -100, y: 0}
+  m_SizeDelta: {x: 100, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &4852898901475952265
 CanvasRenderer:

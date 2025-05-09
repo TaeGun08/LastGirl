@@ -45,10 +45,10 @@ public class PlayerController : MonoBehaviour
         
         LocalPlayer = Player.LocalPlayer.GetComponent<LocalPlayer>();
 
-        for (int i = 0; i < states.Length; i++)
+        foreach (PlayerState state in states)
         {
-            playerStatesDic.Add(states[i].Name, states[i]);
-            states[i].gameObject.SetActive(false);
+            playerStatesDic.Add(state.Name, state);
+            state.gameObject.SetActive(false);
         }
 
         currentState = states[0];

@@ -50,8 +50,8 @@ public class AK47 : Weapon
                 obj = effectPoolSystem.ParticlePool(IEffectPool.ParticleType.HitB).gameObject;
             }
             
-            obj.transform.position = hit.point + Vector3.up * 0.1f;
             obj.transform.rotation = Quaternion.LookRotation(hit.normal);
+            obj.transform.position = hit.point + obj.transform.forward * 0.01f;
             
             IDamageAble hitAble = CombatSystem.Instance.GetHitAble(hit.collider);
             if (hitAble != null)
