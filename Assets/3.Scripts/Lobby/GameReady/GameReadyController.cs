@@ -68,6 +68,8 @@ public class GameReadyController : MonoBehaviour
 
     private IEnumerator GameInCoroutine()
     {
+        lobbyButton.gameObject.SetActive(false);
+        inGameButton.gameObject.SetActive(false);
         while (virtualCamera.m_Lens.FieldOfView <= 69f)
         {
             virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(virtualCamera.m_Lens.FieldOfView, 70f, Time.deltaTime * 5f);
